@@ -39,7 +39,7 @@ export default class PodcastList extends Component {
                                     onClick={this.onSubmitPodcastName}>Search
                             </button>
                         </Link>
-                        <h2 className="mt-3">Select your Podcast from the list:</h2>
+                        <h2 className="mt-3">Select a podcast to view episodes</h2>
                         <ul>
                             {this.state.podcasts['channels'].map((podcast) =>
                                 <Podcast podcastId={podcast.id}

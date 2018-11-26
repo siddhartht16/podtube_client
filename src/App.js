@@ -26,6 +26,16 @@ class App extends Component {
                         <Route path="/search/:searchTerm"
                                render={(props) => <PodcastSearchList {...props}/>}/>
                     </div>
+                    <footer className="footer">
+                        <div className="container">
+                            <div className="row text-center">
+                                <p className="mb-0">
+                                    <b>Disclaimer</b>:
+                                    This website is purely for educational purposes, no commercial use intended.
+                                </p>
+                            </div>
+                        </div>
+                    </footer>
                 </div>
             </Router>
         );

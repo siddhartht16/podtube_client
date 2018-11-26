@@ -23,7 +23,7 @@ export default class GenreList extends Component {
             <div>
                 {this.state.genre === null ? <h4 className="text-center mt-5"><i>Loading...</i></h4> :
                     <div>
-                        <h2 className="mt-5">Select your genre from the list:</h2>
+                        <h2 className="mt-5">Select a category to view podcasts</h2>
                         <ul>
                             {this.state.genre['genres'].map((genre) =>
                                 <Genre id={genre.id} name={genre.name}/>)

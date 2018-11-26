@@ -17,7 +17,8 @@ export default class EpisodeList extends Component {
         PodcastService.findEpisodesForPodcast(this.state.podcastId)
             .then(data => {
                 console.log(data);
-                this.setState({episodeList: data})});
+                this.setState({episodeList: data})
+            });
 
     }
 
@@ -31,7 +32,9 @@ export default class EpisodeList extends Component {
                                 <Episode id={episode.id}
                                          title={episode.title}
                                          description={episode.description}
-                                         thumbnail={episode.thumbnail}/>)
+                                         thumbnail={episode.thumbnail}
+                                         audio={episode.audio}
+                                         audioLength={episode.audio_length}/>)
                             }
                         </ul>
                     </div>
