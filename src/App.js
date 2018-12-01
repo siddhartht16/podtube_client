@@ -11,6 +11,9 @@ import Footer from "./components/Footer";
 
 class App extends Component {
     render() {
+        const pb50 = {
+            paddingBottom:'50px'
+        };
         return (
             <Router>
                 <div className="App">
@@ -19,7 +22,7 @@ class App extends Component {
                             <div className="col-md-2 sidebar">
                                 <Sidebar/>
                             </div>
-                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4">
+                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb50}>
                                 <Header text="Header"/>
                                 <Route exact
                                        path="/"
@@ -32,18 +35,9 @@ class App extends Component {
                                 <Route path="/search/:searchTerm"
                                        render={(props) => <PodcastSearchList {...props}/>}/>
                             </main>
+                            <Footer/>
                         </div>
                     </div>
-                    {/*<footer className="footer">*/}
-                    {/*<div className="container">*/}
-                    {/*<div className="row text-center">*/}
-                    {/*<p className="mb-0">*/}
-                    {/*<b>Disclaimer</b>:*/}
-                    {/*This website is purely for educational purposes, no commercial use intended.*/}
-                    {/*</p>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
-                    {/*</footer>*/}
                 </div>
             </Router>
         );

@@ -18,7 +18,6 @@ export default class GenreList extends Component {
             .then(data => {
                 console.log(data);
                 this.setState({genre: data})});
-
     }
 
     render() {

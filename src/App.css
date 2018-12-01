@@ -1,75 +1,130 @@
 .App {
-  color: white;
-  height: 100%;
+    color: white;
+    height: 100%;
+    position: relative;
 }
 
+.app-name a {
+    color: #aaa;
+    transition: all .1s ease-out;
+}
+
+.app-name a:hover {
+    text-decoration: none;
+    color: #fff;
+    transition: all .1s ease-out;
+}
+
+/* Header */
 .App-header {
-  height: 80px;
-  padding: 20px 20px 20px 0;
-  border-bottom: 1px solid #242527;
-  font-weight: bold;
-  position: relative;
+    height: 80px;
+    padding: 20px 20px 20px 0;
+    border-bottom: 1px solid #242527;
+    position: relative;
 }
 
-.App-header h1 {
-  font-weight: bold;
-  letter-spacing: 1px;
+.App-header h2 {
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 .logout {
-  text-align: right;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 0;
-  cursor: pointer;
+    text-align: right;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    cursor: pointer;
 }
 
-.logout:hover{
-  text-decoration: underline;
+.logout:hover {
+    text-decoration: underline;
 }
+
+/*../ Header */
+
+/* Side Navigation Bar */
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 100;
-  padding: 20px;
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  background-color: #121213;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    background-color: #121213;
 }
 
 .sidebar-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .sidebar-list li {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .sidebar-list li a {
-  color: #aaa;
-  text-decoration: none;
-  transition: all .1s ease-out;
-  font-weight: 600;
+    color: #aaa;
+    text-decoration: none;
+    transition: all .1s ease-out;
+    font-weight: 600;
+}
+
+.sidebar-list li a.active {
+    color: #fff;
 }
 
 .sidebar-list li a:hover {
-  color: #fff;
-  transition: all .1s ease-out;
+    color: #fff;
+    transition: all .1s ease-out;
 }
 
 .sidebar-list li a .icon:before {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
+/*../ Side Navigation Bar */
+
+/* Footer */
+
 .footer {
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background-color: #f5f5f5;
-  color: black;
+    margin-left: 210px;
+    background-color: #121213;
+    height: 50px;
+    padding: 10px;
+    font-size: 14px;
+    border-top: 1px solid #242527;
 }
+
+.footer .disclaimer-text {
+    margin: 0;
+    color: #fff;
+}
+
+.footer .footer-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer .footer-list li {
+    float: left;
+    margin-left: 20px;
+}
+
+.footer .footer-list li:first-child {
+    margin-left: 0;
+}
+
+.footer .footer-list li a {
+    color: #fff;
+}
+
+.footer .footer-list li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
