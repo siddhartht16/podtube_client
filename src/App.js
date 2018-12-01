@@ -5,6 +5,9 @@ import './App.css';
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import EpisodeList from "./components/EpisodeList";
 import PodcastSearchList from "./components/PodcastSearchList";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 class App extends Component {
     render() {
@@ -13,11 +16,11 @@ class App extends Component {
                 <div className="App">
                     <div className="container-fluid">
                         <div className="row">
-                            <nav className="col-md-2 sidebar"></nav>
+                            <div className="col-md-2 sidebar">
+                                <Sidebar/>
+                            </div>
                             <main className="col-md-9 ml-sm-auto col-lg-10 px-4">
-                                <header className="App-header">
-                                    <h2>PodTube</h2>
-                                </header>
+                                <Header text="Header"/>
                                 <Route exact
                                        path="/"
                                        render={() => <GenreList/>}
