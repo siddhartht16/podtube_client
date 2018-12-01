@@ -11,31 +11,36 @@ class App extends Component {
         return (
             <Router>
                 <div className="App">
-                    <div className="container">
-                        <header className="App-header text-center"><h1>PodTube</h1></header>
-                        <Route exact
-                               path="/"
-                               render={() => <GenreList/>}
-                        />
-                        <Route path="/genre/:id/"
-                               render={(props) => <PodcastList {...props}/>}/>
-
-                        <Route path="/podcast/:podcastId"
-                               render={(props) => <EpisodeList {...props}/>}/>
-
-                        <Route path="/search/:searchTerm"
-                               render={(props) => <PodcastSearchList {...props}/>}/>
-                    </div>
-                    <footer className="footer">
-                        <div className="container">
-                            <div className="row text-center">
-                                <p className="mb-0">
-                                    <b>Disclaimer</b>:
-                                    This website is purely for educational purposes, no commercial use intended.
-                                </p>
-                            </div>
+                    <div className="container-fluid">
+                        <div className="row">
+                            <nav className="col-md-2 sidebar"></nav>
+                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4">
+                                <header className="App-header">
+                                    <h2>PodTube</h2>
+                                </header>
+                                <Route exact
+                                       path="/"
+                                       render={() => <GenreList/>}
+                                />
+                                <Route path="/genre/:id/"
+                                       render={(props) => <PodcastList {...props}/>}/>
+                                <Route path="/podcast/:podcastId"
+                                       render={(props) => <EpisodeList {...props}/>}/>
+                                <Route path="/search/:searchTerm"
+                                       render={(props) => <PodcastSearchList {...props}/>}/>
+                            </main>
                         </div>
-                    </footer>
+                    </div>
+                    {/*<footer className="footer">*/}
+                    {/*<div className="container">*/}
+                    {/*<div className="row text-center">*/}
+                    {/*<p className="mb-0">*/}
+                    {/*<b>Disclaimer</b>:*/}
+                    {/*This website is purely for educational purposes, no commercial use intended.*/}
+                    {/*</p>*/}
+                    {/*</div>*/}
+                    {/*</div>*/}
+                    {/*</footer>*/}
                 </div>
             </Router>
         );

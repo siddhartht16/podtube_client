@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PodcastService from "../services/PodcastService";
+import "./GenreList.style.css";
 import Genre from "./Genre";
 
 
@@ -14,16 +15,17 @@ export default class GenreList extends Component {
 
     componentDidMount() {
         PodcastService.findAllGenre()
-            .then(data => this.setState({genre: data}));
+            .then(data => {
+                console.log(data);
+                this.setState({genre: data})});
 
     }
 
     render() {
         return (
             <div>
-                {this.state.genre === null ? <h4 className="text-center mt-5"><i>Loading...</i></h4> :
-                    <div>
-                        <h2 className="mt-5">Select a category to view podcasts</h2>
+                {this.state.genre === null ? <p className="mt-5">Loading...</p> :
+                    <div className="genre-list">
                         <ul>
                             {this.state.genre['genres'].map((genre) =>
                                 <Genre id={genre.id} name={genre.name}/>)

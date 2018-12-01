@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import PodcastService from '../services/PodcastService';
+import "./EpisodeList.style.css";
 import Episode from "./Episode";
 
 export default class EpisodeList extends Component {
@@ -13,7 +14,6 @@ export default class EpisodeList extends Component {
     }
 
     componentDidMount() {
-        console.log(this.state.podcastId);
         PodcastService.findEpisodesForPodcast(this.state.podcastId)
             .then(data => {
                 console.log(data);
@@ -25,8 +25,8 @@ export default class EpisodeList extends Component {
     render() {
         return (
             <div>
-                {this.state.episodeList === null ? <h4 className="text-center mt-5"><i>Loading...</i></h4> :
-                    <div>
+                {this.state.episodeList === null ? <p className="mt-5">Loading...</p> :
+                    <div className="episode-list">
                         <ul>
                             {this.state.episodeList['episodes'].map((episode) =>
                                 <Episode id={episode.id}

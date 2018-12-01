@@ -1,0 +1,17 @@
+.episode-list {
+    display: inline-block;
+    padding: 20px;
+    padding-left: 0;
+    width: 100%;
+}
+
+.episode-list ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.episode-wrapper {
+    padding: 20px;
+    border-bottom: 1px solid #242527;
+}
