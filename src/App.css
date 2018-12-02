@@ -30,10 +30,10 @@
 
 .logout {
     text-align: right;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
+    /*position: absolute;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    /*right: 0;*/
     cursor: pointer;
 }
 
@@ -87,6 +87,21 @@
 }
 
 /*../ Side Navigation Bar */
+
+/* React Player */
+
+.react-player {
+    background-color: #121213;
+    width: 100% !important;
+    height: auto !important;
+    padding: 10px;
+    font-size: 14px;
+    border-top: 1px solid #242527;
+}
+
+.react-player audio, .react-player video {
+    height: 55px !important;
+}
 
 /* Footer */
 

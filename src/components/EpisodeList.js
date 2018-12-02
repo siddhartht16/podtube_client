@@ -6,7 +6,6 @@ import Episode from "./Episode";
 export default class EpisodeList extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             podcastId: this.props.match.params.podcastId,
             episodeList: null,
@@ -19,7 +18,6 @@ export default class EpisodeList extends Component {
                 console.log(data);
                 this.setState({episodeList: data})
             });
-
     }
 
     render() {

@@ -8,11 +8,15 @@ import PodcastSearchList from "./components/PodcastSearchList";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
+import Profile from "./components/Profile";
+import ReactPlayer from 'react-player'
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 
 class App extends Component {
     render() {
-        const pb50 = {
-            paddingBottom:'50px'
+        const pb120 = {
+            paddingBottom: '120px'
         };
         return (
             <Router>
@@ -22,7 +26,7 @@ class App extends Component {
                             <div className="col-md-2 sidebar">
                                 <Sidebar/>
                             </div>
-                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb50}>
+                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb120}>
                                 <Header text="Header"/>
                                 <Route exact
                                        path="/"
@@ -34,8 +38,18 @@ class App extends Component {
                                        render={(props) => <EpisodeList {...props}/>}/>
                                 <Route path="/search/:searchTerm"
                                        render={(props) => <PodcastSearchList {...props}/>}/>
+                                <Route path="/profile"
+                                       render={() => <Profile/>}/>
+                                <Route path="/login"
+                                       render={() => <Login/>}/>
+                                <Route path="/register"
+                                       render={() => <Register/>}/>
                             </main>
-                            <Footer/>
+                            <ReactPlayer url="https://bit.ly/2Q4Ej4K"
+                                         className="react-player fixed-bottom"
+                                         controls
+                                         playbackRate={1}/>
+                            {/*<Footer/>*/}
                         </div>
                     </div>
                 </div>

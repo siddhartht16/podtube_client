@@ -1,0 +1,75 @@
+.card-auth {
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid #242527;
+}
+
+.card-auth label {
+    font-size: 14px;
+    font-weight: 500;
+}
+.card-auth .input-fld{
+    background-color: transparent;
+    border-color: #242527;
+    color: #fff;
+}
+
+.card-auth .input-fld:active,
+.card-auth .input-fld:focus{
+
+    outline: 0;
+}
+
+.card-footer button {
+    border-radius: 25px;
+    background-color: #76b852;
+    width: 100%;
+    border-color: transparent;
+    color: white;
+    font-weight: bold;
+    transition: all .1s ease-out;
+}
+
+.card-footer button:hover{
+    background-color: #1ED760;
+    transition: all .1s ease-out;
+    border-color: transparent;
+}
+
+.forgot-password {
+    color: #76b852;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.register-promt {
+    border-top: 1px solid #242527;
+    padding-top: 15px;
+}
+
+.register-promt p {
+    color: white;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.register-promt .btn__alt {
+    background-color: transparent;
+    border-color: #76b852;
+}
+
+.register-promt .btn__alt a {
+    color: white;
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+}
+
+.register-promt .btn__alt a:hover {
+    text-decoration: none;
+}
+
+.register-promt .btn__alt:hover {
+    background-color: transparent;
+    border-color: #1ED760;
+}

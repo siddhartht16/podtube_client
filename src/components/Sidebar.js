@@ -24,7 +24,7 @@ export default class Sidebar extends Component {
                     <li><a href=""><i className="fa fa-history icon" aria-hidden="true"/>History</a></li>
                     <li><a href=""><i className="fa fa-bookmark icon" aria-hidden="true"/>Bookmarks</a></li>
                     <li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>New Releases</a></li>
-                    <li><a href=""><i className="fa fa-user icon" aria-hidden="true"/>Profile</a></li>
+                    <li><Link to="/profile"><i className="fa fa-user icon" aria-hidden="true"/>Profile</Link></li>
                 </ul>
             </div>
         )
