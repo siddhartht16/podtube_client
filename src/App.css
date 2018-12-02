@@ -45,6 +45,13 @@
 
 /* Side Navigation Bar */
 
+.home-logo{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -67,18 +74,18 @@
 }
 
 .sidebar-list li a {
-    color: #aaa;
+    color: #fff;
     text-decoration: none;
     transition: all .1s ease-out;
     font-weight: 600;
 }
 
 .sidebar-list li a.active {
-    color: #fff;
+    color: #1ED760;
 }
 
 .sidebar-list li a:hover {
-    color: #fff;
+    color: #1ED760;
     transition: all .1s ease-out;
 }
 

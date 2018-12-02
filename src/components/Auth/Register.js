@@ -24,11 +24,6 @@ export default class Register extends Component {
                             </div>
                             <div className="card-body">
                                 <div className="form-group">
-                                    <label>Username</label>
-                                    <input type="text"
-                                           placeholder="Enter Username" className="form-control input-fld"/>
-                                </div>
-                                <div className="form-group">
                                     <label>First Name</label>
                                     <input type="text"
                                            placeholder="First Name" className="form-control input-fld"/>
@@ -37,6 +32,11 @@ export default class Register extends Component {
                                     <label>Last Name</label>
                                     <input type="text"
                                            placeholder="Last Name" className="form-control input-fld"/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Username</label>
+                                    <input type="text"
+                                           placeholder="Enter Username" className="form-control input-fld"/>
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>

@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import PodcastIcon from '../assests/podcast-icon.png';
 export default class Sidebar extends Component {
     constructor(props) {
         super(props);
@@ -15,16 +16,21 @@ export default class Sidebar extends Component {
         return (
             <div>
                 <h3 className="mb-5 app-name">
-                    <Link to="/">PodTube</Link>
+                    <Link to="/">
+                        <img src={PodcastIcon} className="home-logo"/>
+                        PodTube
+                    </Link>
                 </h3>
                 <ul className="sidebar-list">
-                    <li><a href="#" className="active"><i className="fa fa-search icon" aria-hidden="true"/>Categories</a></li>
+                    <li>
+                        <a href="#" className="active">
+                            <i className="fa fa-search icon" aria-hidden="true"/>Categories</a></li>
                     <li><a href="#"><i className="fa fa-plus-circle icon" aria-hidden="true"/>Subscriptions</a></li>
                     <li><a href="#"><i className="fa fa-play-circle icon" aria-hidden="true"/>Playlist</a></li>
-                    <li><a href=""><i className="fa fa-history icon" aria-hidden="true"/>History</a></li>
+                    <li><a href=""><i className="fa fa-history icon" aria-hidden="true"/>Recently Played</a></li>
                     <li><a href=""><i className="fa fa-bookmark icon" aria-hidden="true"/>Bookmarks</a></li>
-                    <li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>New Releases</a></li>
-                    <li><Link to="/profile"><i className="fa fa-user icon" aria-hidden="true"/>Profile</Link></li>
+                    <li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>Latest Podcasts</a></li>
+                    {/*<li><Link to="/profile"><i className="fa fa-user icon" aria-hidden="true"/>Profile</Link></li>*/}
                 </ul>
             </div>
         )

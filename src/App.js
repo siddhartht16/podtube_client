@@ -15,8 +15,8 @@ import Register from "./components/Auth/Register";
 
 class App extends Component {
     render() {
-        const pb120 = {
-            paddingBottom: '120px'
+        const pb100 = {
+            paddingBottom: '100px'
         };
         return (
             <Router>
@@ -26,7 +26,7 @@ class App extends Component {
                             <div className="col-md-2 sidebar">
                                 <Sidebar/>
                             </div>
-                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb120}>
+                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb100}>
                                 <Header text="Header"/>
                                 <Route exact
                                        path="/"
@@ -45,11 +45,11 @@ class App extends Component {
                                 <Route path="/register"
                                        render={() => <Register/>}/>
                             </main>
-                            <ReactPlayer url="https://bit.ly/2Q4Ej4K"
-                                         className="react-player fixed-bottom"
-                                         controls
-                                         playbackRate={1}/>
-                            {/*<Footer/>*/}
+                            {/*<ReactPlayer url="https://bit.ly/2Q4Ej4K"*/}
+                                         {/*className="react-player fixed-bottom"*/}
+                                         {/*controls*/}
+                                         {/*playbackRate={1}/>*/}
+                            <Footer/>
                         </div>
                     </div>
                 </div>

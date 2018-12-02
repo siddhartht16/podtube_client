@@ -16,8 +16,9 @@
 
 .card-auth .input-fld:active,
 .card-auth .input-fld:focus{
-
-    outline: 0;
+    outline: none;
+    border-color: #1ED760;
+    box-shadow:none
 }
 
 .card-footer button {
