@@ -12,6 +12,10 @@ import Profile from "./components/Profile";
 import ReactPlayer from 'react-player'
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Dashboard from "./components/Admin/Dashboard";
+import CategoryList from "./components/Admin/CategoryList";
+import AdminPodcastList from "./components/Admin/AdminPodcastList";
+import AdminPodcast from "./components/Admin/AdminPodcast";
 
 class App extends Component {
     render() {
@@ -32,6 +36,25 @@ class App extends Component {
                                        path="/"
                                        render={() => <GenreList/>}
                                 />
+                                <Route exact
+                                       path="/admin"
+                                       render={() => <Dashboard/>}
+                                />
+                                <Route exact
+                                       path="/admin/category-list"
+                                       render={() => <CategoryList/>}
+                                />
+
+                                <Route exact
+                                       path="/admin/podcast-list"
+                                       render={() => <AdminPodcastList/>}
+                                />
+
+                                <Route exact
+                                       path="/admin/categories/:id/podcasts"
+                                       render={(props) => <AdminPodcastList {...props}/>}
+                                />
+
                                 <Route path="/genre/:id/"
                                        render={(props) => <PodcastList {...props}/>}/>
                                 <Route path="/podcast/:podcastId"
@@ -46,9 +69,9 @@ class App extends Component {
                                        render={() => <Register/>}/>
                             </main>
                             {/*<ReactPlayer url="https://bit.ly/2Q4Ej4K"*/}
-                                         {/*className="react-player fixed-bottom"*/}
-                                         {/*controls*/}
-                                         {/*playbackRate={1}/>*/}
+                            {/*className="react-player fixed-bottom"*/}
+                            {/*controls*/}
+                            {/*playbackRate={1}/>*/}
                             <Footer/>
                         </div>
                     </div>

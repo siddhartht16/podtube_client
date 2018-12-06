@@ -1,0 +1,73 @@
+export default class AdminService {
+
+
+    static syncAllCategories = () => {
+        return fetch('http://localhost:8080/api/sync/categories', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+
+    static getAllCategories = () => {
+        return fetch('http://localhost:8080/api/categories', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+
+    static getPodcastForCategory = (categoryId) => {
+        return fetch('http://localhost:8080/api/categories/'+categoryId+'/podcasts', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+    static syncPodcastForCategory = (categoryId) => {
+        return fetch('http://localhost:8080/api/sync/categories/'+categoryId+'/podcasts', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+
+    static getAllPodcasts = () => {
+        return fetch('http://localhost:8080/api/podcasts', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+}
