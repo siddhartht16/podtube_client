@@ -19,12 +19,12 @@ export default class PodcastList extends Component {
         this.setState({searchedPodcast: e.target.value});
     };
 
-    onSubscribe = () => {
-        alert("Subscribed successfully!");
+    onSubscribe = (podcast) => {
+        alert("Subscribed successfully for podcast id: " + podcast.id);
     };
 
-    onUnsubscribe = () => {
-        alert("unSubscribed successfully!");
+    onUnsubscribe = (podcast) => {
+        alert("unSubscribed successfully for podcast id: " + podcast.id);
     };
 
     componentDidMount() {
@@ -65,8 +65,8 @@ export default class PodcastList extends Component {
                                     {this.state.podcasts.map((podcast) =>
                                         <Podcast podcastId={podcast.id}
                                                  title={podcast.title}
-                                                 onSubscribe = {this.onSubscribe}
-                                                 onUnsubscribe = {this.onUnsubscribe}
+                                                 onSubscribe = {()=> this.onSubscribe(podcast)}
+                                                 onUnsubscribe = {() => this.onUnsubscribe(podcast)}
                                                  subscribed={podcast.subscribed}
                                                  genreId={this.state.genreId}/>)
                                     }

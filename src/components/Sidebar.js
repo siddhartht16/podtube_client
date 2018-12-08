@@ -6,7 +6,7 @@ export default class Sidebar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            active:'categories'
+            active: 'categories'
         }
     }
 
@@ -15,7 +15,7 @@ export default class Sidebar extends Component {
 
     changeActiveClassForLink = (linkName) => {
         this.setState({
-            active:linkName
+            active: linkName
         });
     };
 
@@ -49,7 +49,13 @@ export default class Sidebar extends Component {
                     <li><a href=""><i className="fa fa-history icon" aria-hidden="true"/>Recently Played</a></li>
                     <li><a href=""><i className="fa fa-bookmark icon" aria-hidden="true"/>Bookmarks</a></li>
                     <li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>Latest Podcasts</a></li>
-                    {/*<li><Link to="/profile"><i className="fa fa-user icon" aria-hidden="true"/>Profile</Link></li>*/}
+                    <li>
+                        <Link to="/profile"
+                              className={"" + this.state.active === 'profile' ? 'active' : null}
+                              onClick={() => this.changeActiveClassForLink('profile')}>
+                            <i className="fa fa-user icon" aria-hidden="true"/>Profile
+                        </Link>
+                    </li>
                 </ul>
             </div>
         )

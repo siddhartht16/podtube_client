@@ -8,7 +8,7 @@ import PodcastSearchList from "./components/PodcastSearchList";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
-import Profile from "./components/Profile";
+import Profile from "./components/Auth/Profile";
 import ReactPlayer from 'react-player'
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
@@ -23,8 +23,8 @@ import Subscription from "./components/Subscription";
 class App extends Component {
 
     render() {
-        const pb100 = {
-            paddingBottom: '100px'
+        const pb80 = {
+            paddingBottom: '80px'
         };
         return (
             <Router>
@@ -34,7 +34,7 @@ class App extends Component {
                             <div className="col-md-2 sidebar">
                                 <Sidebar/>
                             </div>
-                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb100}>
+                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb80}>
                                 <Header/>
                                 <Route exact
                                        path="/"

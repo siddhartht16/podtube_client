@@ -1,6 +1,5 @@
-
 export default class UserService {
-    static registerUser = (usercredentials) =>{
+    static registerUser = (usercredentials) => {
         return fetch('http://localhost:8080/api/register', {
             method: 'POST',
             credentials: 'include',
@@ -14,7 +13,7 @@ export default class UserService {
             });
     };
 
-    static loginUser = (usercredentials) =>{
+    static loginUser = (usercredentials) => {
         return fetch('http://localhost:8080/api/login', {
             method: 'POST',
             credentials: 'include',
@@ -22,6 +21,19 @@ export default class UserService {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(usercredentials)
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
+
+    static fetchProfileForUser = () => {
+        return fetch('http://localhost:8080/api/profile', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             .then(response => {
                 return response.json()
