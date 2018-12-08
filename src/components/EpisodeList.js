@@ -26,7 +26,7 @@ export default class EpisodeList extends Component {
                 {this.state.episodeList === null ? <p className="mt-5">Loading...</p> :
                     <div className="episode-list">
                         <ul>
-                            {this.state.episodeList['episodes'].map((episode) =>
+                            {this.state.episodeList.map((episode) =>
                                 <Episode id={episode.id}
                                          title={episode.title}
                                          description={episode.description}

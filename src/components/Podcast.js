@@ -1,12 +1,18 @@
 import React from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
+import "./PodcastList.style.css";
 
-const Podcast = ({podcastId, title}) =>
+const Podcast = ({podcastId, onSubscribe, onUnsubscribe, subscribed, title}) =>
     <div>
         <li key={podcastId}>
-            <Link to={`/podcast/${podcastId}/`}>{title}</Link>
+            <Link to={`/podcast/${podcastId}/episodes`}>{title}</Link>
+            {
+                subscribed === true ?
+                    <button className="btn__alt sub float-right" onClick={onUnsubscribe}>Unsubscribe</button> :
+                    <button className="btn__alt unsub float-right" onClick={onSubscribe}>Subscribe</button>
+            }
         </li>
-    </div>
+    </div>;
 
 
 export default Podcast

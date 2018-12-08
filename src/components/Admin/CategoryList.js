@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import AdminService from '../../services/AdminService';
 import Category from "./Category";
 

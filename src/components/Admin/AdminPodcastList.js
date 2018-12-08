@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import AdminService from '../../services/AdminService';
 import AdminPodcast from "./AdminPodcast";
 
@@ -17,7 +16,10 @@ export default class AdminPodcastList extends Component {
 
     componentDidMount() {
         AdminService.getPodcastForCategory(this.state.categoryId).then(
-            podcasts => this.setState({podcasts: podcasts})
+            podcasts => {
+                console.log(podcasts);
+                this.setState({podcasts: podcasts})
+            }
         )
     }
 

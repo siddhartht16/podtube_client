@@ -15,6 +15,11 @@
     transition: all .1s ease-out;
 }
 
+.no-data {
+    font-size: 13px;
+    color: #ccc;
+}
+
 /* Header */
 .App-header {
     height: 80px;

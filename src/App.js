@@ -16,8 +16,12 @@ import Dashboard from "./components/Admin/Dashboard";
 import CategoryList from "./components/Admin/CategoryList";
 import AdminPodcastList from "./components/Admin/AdminPodcastList";
 import AdminPodcast from "./components/Admin/AdminPodcast";
+import AdminLogin from "./components/Admin/AdminLogin";
+import AdminPodcastDetail from "./components/Admin/AdminPodcastDetail";
+import Subscription from "./components/Subscription";
 
 class App extends Component {
+
     render() {
         const pb100 = {
             paddingBottom: '100px'
@@ -31,41 +35,62 @@ class App extends Component {
                                 <Sidebar/>
                             </div>
                             <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb100}>
-                                <Header text="Header"/>
+                                <Header/>
                                 <Route exact
                                        path="/"
                                        render={() => <GenreList/>}
                                 />
+
+                                <Route exact
+                                       path="/categories"
+                                       render={() => <GenreList/>}
+                                />
+
                                 <Route exact
                                        path="/admin"
                                        render={() => <Dashboard/>}
                                 />
-                                <Route exact
-                                       path="/admin/category-list"
-                                       render={() => <CategoryList/>}
+                                <Route
+                                    path="/admin/login"
+                                    render={() => <AdminLogin/>}
+                                />
+                                <Route
+                                    path="/admin/category-list"
+                                    render={() => <CategoryList/>}
+                                />
+                                <Route
+                                    path="/admin/podcast-list"
+                                    render={() => <AdminPodcastList/>}
                                 />
 
-                                <Route exact
-                                       path="/admin/podcast-list"
-                                       render={() => <AdminPodcastList/>}
+                                <Route
+                                    path="/admin/categories/:id/podcasts"
+                                    render={(props) => <AdminPodcastList {...props}/>}
                                 />
 
-                                <Route exact
-                                       path="/admin/categories/:id/podcasts"
-                                       render={(props) => <AdminPodcastList {...props}/>}
+                                <Route
+                                    path="/admin/podcasts/:id/episodes"
+                                    render={(props) => <AdminPodcastDetail  {...props}/>}
                                 />
 
-                                <Route path="/genre/:id/"
+                                <Route path="/category/:id/podcasts"
                                        render={(props) => <PodcastList {...props}/>}/>
-                                <Route path="/podcast/:podcastId"
+                                <Route path="/podcast/:podcastId/episodes"
                                        render={(props) => <EpisodeList {...props}/>}/>
                                 <Route path="/search/:searchTerm"
                                        render={(props) => <PodcastSearchList {...props}/>}/>
+
+                                <Route path="/subscriptions"
+                                       exact
+                                       render={() => <Subscription/>}/>
                                 <Route path="/profile"
+                                       exact
                                        render={() => <Profile/>}/>
                                 <Route path="/login"
+                                       exact
                                        render={() => <Login/>}/>
                                 <Route path="/register"
+                                       exact
                                        render={() => <Register/>}/>
                             </main>
                             {/*<ReactPlayer url="https://bit.ly/2Q4Ej4K"*/}

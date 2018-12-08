@@ -12,6 +12,31 @@
 }
 
 .episode-wrapper {
-    padding: 20px;
+    padding: 15px;
     border-bottom: 1px solid #242527;
+}
+
+/* Episode */
+.episode-thumbnail {
+    width: 200px;
+    height: 200px;
+}
+
+.episode-description {
+    font-size: 13px;
+}
+
+.episode-description p {
+    margin: 0;
+}
+
+.episode-description img {
+    display: none;
+}
+
+.episode-play:before,
+.episode-bookmark:before{
+    color: white;
+    cursor: pointer;
+    font-size: 1.5rem;
 }

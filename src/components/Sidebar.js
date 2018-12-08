@@ -1,16 +1,23 @@
 import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import PodcastIcon from '../assests/podcast-icon.png';
+
 export default class Sidebar extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {}
+        this.state = {
+            active:'categories'
+        }
     }
 
     componentDidMount() {
-
     }
+
+    changeActiveClassForLink = (linkName) => {
+        this.setState({
+            active:linkName
+        });
+    };
 
     render() {
         return (
@@ -23,9 +30,21 @@ export default class Sidebar extends Component {
                 </h3>
                 <ul className="sidebar-list">
                     <li>
-                        <a href="#" className="active">
-                            <i className="fa fa-search icon" aria-hidden="true"/>Categories</a></li>
-                    <li><a href="#"><i className="fa fa-plus-circle icon" aria-hidden="true"/>Subscriptions</a></li>
+                        <Link to="/categories"
+                              onClick={() => this.changeActiveClassForLink('categories')}
+                              className={"" + this.state.active === 'categories' ? 'active' : null}>
+                            <i className="fa fa-search icon" aria-hidden="true"/>
+                            Categories
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/subscriptions"
+                              className={"" + this.state.active === 'subscriptions' ? 'active' : null}
+                              onClick={() => this.changeActiveClassForLink('subscriptions')}>
+                            <i className="fa fa-plus-circle icon" aria-hidden="true"/>
+                            Subscriptions
+                        </Link>
+                    </li>
                     <li><a href="#"><i className="fa fa-play-circle icon" aria-hidden="true"/>Playlist</a></li>
                     <li><a href=""><i className="fa fa-history icon" aria-hidden="true"/>Recently Played</a></li>
                     <li><a href=""><i className="fa fa-bookmark icon" aria-hidden="true"/>Bookmarks</a></li>

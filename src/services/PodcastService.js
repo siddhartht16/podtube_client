@@ -2,13 +2,12 @@ import * as urls from "../common/urls";
 
 export default class PodcastService {
 
-    static findAllGenre = () => {
-        return fetch(urls.get_genre_url(), {
+    static findAllCategories = () => {
+        return fetch('http://localhost:8080/api/categories', {
             method: 'GET',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Mashape-Key': 'KIGieSKrRimshAGZ3rLFadB6Vu99p1xwkuijsnN5epxiNhLSez'
             },
         })
             .then(response => {
@@ -16,13 +15,12 @@ export default class PodcastService {
             });
     };
 
-    static findPodcastForGenre = (genre_id) => {
-        return fetch(urls.get_genre_best_podcasts_url(genre_id), {
+    static findPodcastForCategory = (categoryId) => {
+        return fetch('http://localhost:8080/api/categories/' + categoryId + '/podcasts', {
             method: 'GET',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Mashape-Key': 'KIGieSKrRimshAGZ3rLFadB6Vu99p1xwkuijsnN5epxiNhLSez'
             },
         })
             .then(response => {
@@ -31,12 +29,11 @@ export default class PodcastService {
     };
 
     static findEpisodesForPodcast = (podcast_id) => {
-        return fetch(urls.get_podcast_episodes_url(podcast_id), {
+        return fetch('http://localhost:8080/api/podcasts/' + podcast_id + '/episodes', {
             method: 'GET',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Mashape-Key': 'KIGieSKrRimshAGZ3rLFadB6Vu99p1xwkuijsnN5epxiNhLSez'
             },
         })
             .then(response => {
@@ -57,7 +54,6 @@ export default class PodcastService {
                 return response.json()
             });
     }
-
 
 
 }

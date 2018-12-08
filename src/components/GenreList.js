@@ -9,25 +9,32 @@ export default class GenreList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            genre: null,
+            categories: null,
         }
     }
 
     componentDidMount() {
-        PodcastService.findAllGenre()
-            .then(data => {
-                console.log(data);
-                this.setState({genre: data})});
+        PodcastService.findAllCategories()
+            .then(categories => {
+                this.setState({categories: categories})
+            });
     }
+
+    shortenTitle = (title) => {
+        let short = title.replace(/(.{10})..+/, "$1...");
+        return short;
+    };
 
     render() {
         return (
             <div>
-                {this.state.genre === null ? <p className="mt-5">Loading...</p> :
+                {this.state.categories === null ? <p className="mt-5">Loading...</p> :
                     <div className="genre-list">
                         <ul>
-                            {this.state.genre['genres'].map((genre) =>
-                                <Genre id={genre.id} name={genre.name}/>)
+                            {this.state.categories.map((genre) =>
+                                <Genre id={genre.id}
+                                       fullTitle={genre.title}
+                                       title={this.shortenTitle(genre.title)}/>)
                             }
                         </ul>
                     </div>
