@@ -3,14 +3,13 @@ import PodcastService from '../services/PodcastService';
 import Podcast from "./Podcast";
 import "./PodcastList.style.css";
 import {Link} from 'react-router-dom'
-import SubscriptionService from "../services/SubscriptionService";
 
 export default class PodcastList extends Component {
     constructor(props) {
         super(props);
-
+        const categoryId = this.props.match ? this.props.match.params.id : null;
         this.state = {
-            categoryId: this.props.match.params.id,
+            categoryId: categoryId,
             podcasts: null,
             searchedPodcast: ''
         }
@@ -20,14 +19,13 @@ export default class PodcastList extends Component {
         this.setState({searchedPodcast: e.target.value});
     };
 
-
     componentDidMount() {
-        console.log(this.state.categoryId);
-        PodcastService.findPodcastForCategory(this.state.categoryId)
-            .then(data => {
-                console.log(data);
-                this.setState({podcasts: data})
-            });
+        if (this.state.categoryId !== null) {
+            PodcastService.findPodcastForCategory(this.state.categoryId)
+                .then(data => {
+                    this.setState({podcasts: data})
+                });
+        }
     }
 
     render() {
@@ -53,11 +51,13 @@ export default class PodcastList extends Component {
                             </span>
                         </div>
                         <h3 className="mt-3">Select a podcast to view episodes</h3>
+
                         <div className="podcast-list">
                             {this.state.podcasts && this.state.podcasts.length ?
                                 <ul>
                                     {this.state.podcasts.map((podcast) =>
                                         <Podcast podcast={podcast}
+                                                 subComp={false}
                                                  genreId={this.state.genreId}/>)
                                     }
                                 </ul> :

@@ -11,12 +11,11 @@ export default class Sidebar extends Component {
     }
 
     componentDidMount() {
+
     }
 
     changeActiveClassForLink = (linkName) => {
-        this.setState({
-            active: linkName
-        });
+        this.setState({active: linkName});
     };
 
     render() {

@@ -12,8 +12,8 @@ export default class SubscriptionService {
                 if (response.ok) {
                     return response.json()
                 }
-                else{
-                   return response.status;
+                else {
+                    return response.status;
                 }
             });
     };
@@ -30,9 +30,29 @@ export default class SubscriptionService {
                 if (response.ok) {
                     return response.json()
                 }
-                else{
+                else {
                     return response.status;
                 }
             });
     };
+
+    static getAllUserSubscription = () => {
+        return fetch('http://localhost:8080/api/subscription', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else {
+                    return response.status;
+                }
+            });
+    };
+
+
 }

@@ -15,37 +15,35 @@ export default class Podcast extends Component {
     }
 
     onSubscribe = (podcast_id) => {
-        // alert("Subscribed successfully for podcast id: " + podcast_id);
         SubscriptionService.subscribeUser(podcast_id)
             .then(podcast => {
-                if (podcast === 401 || podcast === 400) {
+                if (podcast === 401) {
                     this.setState({
                         error: true
                     })
                 }
                 else {
-                    this.setState({podcast: podcast})
+                    this.setState({podcast: podcast, error: false})
                 }
             }).catch(err => {
             console.log(err);
-        })
+        });
+        alert("Subscribed successfully for podcast id: " + podcast_id);
     };
 
     onUnsubscribe = (podcast_id) => {
-        // alert("unSubscribed successfully for podcast id: " + podcast_id);
         SubscriptionService.unSubscribeUser(podcast_id)
             .then(podcast => {
-                if (podcast === 401 || podcast === 400) {
-                    this.setState({
-                        error: true
-                    })
+                if (podcast === 401) {
+                    this.setState({error: true})
                 }
                 else {
-                    this.setState({podcast: podcast})
+                    this.setState({podcast: podcast, error: false})
                 }
             }).catch(err => {
             console.log(err);
         })
+        alert("unSubscribed successfully for podcast id: " + podcast_id);
     };
 
     render() {
@@ -58,41 +56,20 @@ export default class Podcast extends Component {
                 <li key={this.state.podcast.id}>
                     <Link to={`/podcast/${this.state.podcast.id}/episodes`}>{this.state.podcast.title}</Link>
                     {
-                        this.state.podcast.subscribed === true ?
-                            <button className="btn__alt sub float-right"
-                                    onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
-                            <button className="btn__alt unsub float-right"
-                                    onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
+                        this.props.subComp === false ?
+                            <span>
+                                {this.state.podcast.subscribed === true ?
+                                    <button className="btn__alt sub float-right"
+                                            onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
+                                    <button className="btn__alt unsub float-right"
+                                            onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
+                                }
+                            </span> : null
                     }
+
                 </li>
+
             </div>
         )
     }
-
 }
-
-
-// const Podcast = ({podcastId, onSubscribe, onUnsubscribe, subscribed, title}) =>
-{/*<div>*/
-}
-{/*<li key={podcastId}>*/
-}
-{/*<Link to={`/podcast/${podcastId}/episodes`}>{title}</Link>*/
-}
-{/*{*/
-}
-{/*subscribed === true ?*/
-}
-{/*<button className="btn__alt sub float-right" onClick={onUnsubscribe}>Unsubscribe</button> :*/
-}
-{/*<button className="btn__alt unsub float-right" onClick={onSubscribe}>Subscribe</button>*/
-}
-{/*}*/
-}
-{/*</li>*/
-}
-{/*</div>;*/
-}
-//
-//
-// export default Podcast

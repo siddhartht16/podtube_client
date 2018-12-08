@@ -36,7 +36,12 @@ export default class UserService {
             },
         })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
             });
     };
 
@@ -48,8 +53,5 @@ export default class UserService {
                 'Content-Type': 'application/json',
             },
         })
-            .then(response => {
-                return response.json()
-            });
     };
 }

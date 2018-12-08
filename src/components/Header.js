@@ -1,25 +1,29 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import UserService from "../services/UserService";
+
 export default class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            loggedOut: false
+        }
     }
 
     logoutUser = () => {
-      UserService.logoutUser()
-          .then(data => {
-              console.log("User logged out")
-          })
+        UserService.logoutUser();
+        console.log("User logged out");
+        this.setState({
+            loggedOut: true
+        })
     };
 
-    componentDidMount() {
-
-    }
-
     render() {
+        // const loggedOut = this.state.loggedOut;
+        // if (loggedOut === true) {
+        //     return <Redirect to="/login"/>
+        // }
         return (
             <header className="App-header">
                 <div className="row">
