@@ -38,5 +38,18 @@ export default class UserService {
             .then(response => {
                 return response.json()
             });
-    }
+    };
+
+    static logoutUser = () => {
+        return fetch('http://localhost:8080/api/logout', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                return response.json()
+            });
+    };
 }

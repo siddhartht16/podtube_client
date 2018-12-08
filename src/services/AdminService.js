@@ -1,6 +1,5 @@
 export default class AdminService {
 
-
     static syncAllCategories = () => {
         return fetch('http://localhost:8080/api/sync/categories', {
             method: 'POST',

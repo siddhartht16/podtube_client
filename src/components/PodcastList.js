@@ -3,6 +3,7 @@ import PodcastService from '../services/PodcastService';
 import Podcast from "./Podcast";
 import "./PodcastList.style.css";
 import {Link} from 'react-router-dom'
+import SubscriptionService from "../services/SubscriptionService";
 
 export default class PodcastList extends Component {
     constructor(props) {
@@ -19,13 +20,6 @@ export default class PodcastList extends Component {
         this.setState({searchedPodcast: e.target.value});
     };
 
-    onSubscribe = (podcast) => {
-        alert("Subscribed successfully for podcast id: " + podcast.id);
-    };
-
-    onUnsubscribe = (podcast) => {
-        alert("unSubscribed successfully for podcast id: " + podcast.id);
-    };
 
     componentDidMount() {
         console.log(this.state.categoryId);
@@ -63,11 +57,7 @@ export default class PodcastList extends Component {
                             {this.state.podcasts && this.state.podcasts.length ?
                                 <ul>
                                     {this.state.podcasts.map((podcast) =>
-                                        <Podcast podcastId={podcast.id}
-                                                 title={podcast.title}
-                                                 onSubscribe = {()=> this.onSubscribe(podcast)}
-                                                 onUnsubscribe = {() => this.onUnsubscribe(podcast)}
-                                                 subscribed={podcast.subscribed}
+                                        <Podcast podcast={podcast}
                                                  genreId={this.state.genreId}/>)
                                     }
                                 </ul> :
