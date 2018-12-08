@@ -38,8 +38,7 @@ class App extends Component {
                                 <Header/>
                                 <Route exact
                                        path="/"
-                                       render={() => <GenreList/>}
-                                />
+                                       render={() => <GenreList/>}/>
 
                                 <Route exact
                                        path="/categories"
@@ -48,50 +47,53 @@ class App extends Component {
 
                                 <Route exact
                                        path="/admin"
-                                       render={() => <Dashboard/>}
-                                />
+                                       render={() => <Dashboard/>}/>
+
                                 <Route
                                     path="/admin/login"
-                                    render={() => <AdminLogin/>}
-                                />
+                                    render={() => <AdminLogin/>}/>
+
                                 <Route
                                     path="/admin/category-list"
-                                    render={() => <CategoryList/>}
-                                />
+                                    render={() => <CategoryList/>}/>
+
                                 <Route
                                     path="/admin/podcast-list"
-                                    render={() => <AdminPodcastList/>}
-                                />
+                                    render={() => <AdminPodcastList/>}/>
 
                                 <Route
                                     path="/admin/categories/:id/podcasts"
-                                    render={(props) => <AdminPodcastList {...props}/>}
-                                />
+                                    render={(props) => <AdminPodcastList {...props}/>}/>
 
                                 <Route
                                     path="/admin/podcasts/:id/episodes"
-                                    render={(props) => <AdminPodcastDetail  {...props}/>}
-                                />
+                                    render={(props) => <AdminPodcastDetail  {...props}/>}/>
 
                                 <Route path="/category/:id/podcasts"
                                        render={(props) => <PodcastList {...props}/>}/>
+
                                 <Route path="/podcast/:podcastId/episodes"
                                        render={(props) => <EpisodeList {...props}/>}/>
+
                                 <Route path="/search/:searchTerm"
                                        render={(props) => <PodcastSearchList {...props}/>}/>
 
                                 <Route path="/subscriptions"
                                        exact
                                        render={() => <Subscription/>}/>
+
                                 <Route path="/profile"
                                        exact
                                        render={() => <Profile/>}/>
+
                                 <Route path="/login"
                                        exact
                                        render={() => <Login/>}/>
+
                                 <Route path="/register"
                                        exact
                                        render={() => <Register/>}/>
+
                             </main>
                             {/*<ReactPlayer url="https://bit.ly/2Q4Ej4K"*/}
                             {/*className="react-player fixed-bottom"*/}
