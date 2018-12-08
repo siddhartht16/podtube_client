@@ -40,30 +40,35 @@ export default class Register extends Component {
     };
 
     registerUser = () => {
-        let userObject = {
-            'firstname': this.state.firstname,
-            'lastname': this.state.lastname,
-            'username': this.state.username,
-            'password': this.state.password,
-            'userRole': 'USER'
-        };
-        UserService.registerUser(userObject).then(
-            data => {
-                console.log(data);
-            }
-        )
+
+        if (this.state.password.length === 0 ||
+            this.state.username.length === 0 ||
+            this.state.firstname.length === 0 ||
+            this.state.lastname.length === 0) {
+            return false;
+        }
+        else {
+            let userObject = {
+                'firstname': this.state.firstname,
+                'lastname': this.state.lastname,
+                'username': this.state.username,
+                'password': this.state.password,
+                'userRole': 'USER'
+            };
+            UserService.registerUser(userObject).then(
+                data => {
+                    console.log(data);
+                }
+            )
+        }
     };
 
-
-    componentDidMount() {
-
-    }
 
     render() {
         return (
             <div className="row mt-3">
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
-                    <form className="form" method="" action="">
+                    <form className="form">
                         <div className="card card-auth">
                             <div className="card-header ">
                                 <h3 className="header text-center">Register</h3>
@@ -76,6 +81,7 @@ export default class Register extends Component {
                                            value={this.state.firstname}
                                            onChange={this.onChangeFirstName}
                                            placeholder="First Name"
+                                           required
                                            className="form-control input-fld"/>
                                 </div>
                                 <div className="form-group">
@@ -85,6 +91,7 @@ export default class Register extends Component {
                                            id="lastname"
                                            onChange={this.onChangeLastName}
                                            value={this.state.lastname}
+                                           required
                                            className="form-control input-fld"/>
                                 </div>
                                 <div className="form-group">
@@ -94,6 +101,7 @@ export default class Register extends Component {
                                            onChange={this.onChangeUsername}
                                            value={this.state.username}
                                            placeholder="Enter Username"
+                                           required
                                            className="form-control input-fld"/>
                                 </div>
                                 <div className="form-group">
@@ -103,13 +111,15 @@ export default class Register extends Component {
                                            onChange={this.onChangePassword}
                                            value={this.state.password}
                                            placeholder="Password"
+                                           required
                                            className="form-control input-fld"/>
                                 </div>
                             </div>
                             <div className="card-footer">
                                 <button type="submit"
                                         onClick={this.registerUser}
-                                        className="btn btn-warning">Sign Up</button>
+                                        className="btn btn-warning">Sign Up
+                                </button>
                                 <div className="register-promt mt-4">
                                     <p className="text-center">Already have an account ? </p>
                                     <button className="btn btn__alt">

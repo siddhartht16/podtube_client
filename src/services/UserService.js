@@ -12,5 +12,19 @@ export default class UserService {
             .then(response => {
                 return response.json()
             });
+    };
+
+    static loginUser = (usercredentials) =>{
+        return fetch('http://localhost:8080/api/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(usercredentials)
+        })
+            .then(response => {
+                return response.json()
+            });
     }
 }
