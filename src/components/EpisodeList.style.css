@@ -76,3 +76,28 @@
     font-weight: 500;
     font-size: 14px;
 }
+
+.podcast-comments-btn {
+    background-color: #76b852;
+    border-radius: 20px;
+    border: 0;
+    color: white;
+    font-weight: 600;
+    padding: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.btn__alt {
+    border-radius: 2px;
+}
+
+.podcast-comments-btn:active, .podcast-comments-btn:focus {
+    outline: 0;
+}
+
+.comment-wrapper {
+    overflow-y: scroll;
+    height: 220px;
+    margin-bottom: 20px;
+}

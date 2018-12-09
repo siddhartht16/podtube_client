@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link, Redirect} from 'react-router-dom'
 import "./PodcastList.style.css";
 import SubscriptionService from "../services/SubscriptionService";
+import PodcastIcon2 from "../assests/podcast-icon.png";
 
 
 export default class Podcast extends Component {
@@ -55,7 +56,7 @@ export default class Podcast extends Component {
             <div>
                 <li key={this.state.podcast.id}>
                     <Link to={`/podcast/${this.state.podcast.id}/episodes`}>
-                        <img src={this.state.podcast.logo_url} className="podcast-thumbnail"/>
+                        <img src={this.state.podcast.logo_url === 'null' ? PodcastIcon2 : this.state.podcast.logo_url} className="podcast-thumbnail"/>
                         {this.state.podcast.title}
                     </Link>
                     {
