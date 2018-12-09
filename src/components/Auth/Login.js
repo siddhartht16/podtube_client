@@ -10,19 +10,22 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
-            isLoggedIn: false
+            isLoggedIn: false,
+            error: false
         };
     }
 
     onChangeUsername = (e) => {
         this.setState({
             username: e.target.value,
+            error: false
         });
     };
 
     onChangePassword = (e) => {
         this.setState({
             password: e.target.value,
+            error: false
         });
     };
 
@@ -43,22 +46,46 @@ export default class Login extends Component {
 
             UserService.loginUser(userObject)
                 .then(data => {
-                    if(data === 401 || data === 400){
-                        alert("Error");
-                    }
-                    else{
+                    if (data === 401 || data === 400) {
                         this.setState({
-                            isLoggedIn:true
+                            error: true
+                        })
+                    }
+                    else {
+                        this.setState({
+                            isLoggedIn: true
                         })
                     }
                 })
         }
     };
 
+    redirectAfterLogin = () => {
+        setTimeout(function () {
+            window.location = '/categories'
+        }, 2000)
+    };
+
     render() {
+        const isLoggedIn = this.state.isLoggedIn;
+        if (isLoggedIn === true) {
+            this.redirectAfterLogin()
+        }
         return (
             <div className="row mt-3">
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
+                    {
+                        this.state.isLoggedIn === true ?
+                            <div className="alert alert-success" role="alert">
+                                Successfully loggedIn. Please wait while we redirect you....
+                            </div> : null
+                    }
+                    {
+                        this.state.error === true ?
+                            <div className="alert alert-danger" role="alert">
+                                Some error occurred while logging In. Please try again
+                            </div> : null
+                    }
                     <form className="form">
                         <div className="card card-auth">
                             <div className="card-header ">
