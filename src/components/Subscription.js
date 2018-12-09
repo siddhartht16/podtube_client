@@ -8,22 +8,22 @@ export default class Subscription extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSubscribed:false,
-            subscribedPodcasts:null,
+            isSubscribed: false,
+            subscribedPodcasts: null,
         }
     }
 
     componentDidMount() {
         SubscriptionService.getAllUserSubscription()
             .then(res => {
-                if(res === 401){
+                if (res === 401) {
                     this.setState({
-                        isSubscribed:true
+                        isSubscribed: true
                     })
                 }
-                else{
+                else {
                     this.setState({
-                        subscribedPodcasts:res
+                        subscribedPodcasts: res
                     })
                 }
 
@@ -32,20 +32,32 @@ export default class Subscription extends Component {
 
 
     render() {
+        const subCount = {
+            marginBottom: '15px',
+            color: '#7f858f',
+            fontWeight: 500,
+            fontSize: '14px',
+            lineHeight: '20px'
+        };
         return (
             <div>
                 <h3 className="mt-3">Subscriptions</h3>
                 {
                     this.state.isSubscribed === true ?
-                        <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your subscriptions</p> :
+                        <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your subscriptions
+                        </p> :
                         <div className="podcast-list">
                             {
-                                this.state.subscribedPodcasts === null ? <p><i>Loading...</i></p>:
-                                    <ul>
-                                        {this.state.subscribedPodcasts.map((podcastObj) =>
-                                            <Podcast podcast={podcastObj['podcast']} subComp={true}/>)
-                                        }
-                                    </ul>
+                                this.state.subscribedPodcasts === null ? <p><i>Loading...</i></p> :
+                                    <div>
+                                        <p style={subCount}>Total Subscription
+                                            : {this.state.subscribedPodcasts.length}</p>
+                                        <ul>
+                                            {this.state.subscribedPodcasts.map((podcastObj) =>
+                                                <Podcast podcast={podcastObj['podcast']} subComp={true}/>)
+                                            }
+                                        </ul>
+                                    </div>
                             }
                         </div>
                 }

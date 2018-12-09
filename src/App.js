@@ -19,6 +19,7 @@ import AdminPodcast from "./components/Admin/AdminPodcast";
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminPodcastDetail from "./components/Admin/AdminPodcastDetail";
 import Subscription from "./components/Subscription";
+import Logout from "./components/Auth/Logout";
 
 class App extends Component {
 
@@ -89,6 +90,10 @@ class App extends Component {
                                 <Route path="/login"
                                        exact
                                        render={() => <Login/>}/>
+
+                                <Route path="/logout"
+                                       exact
+                                       render={() => <Logout/>}/>
 
                                 <Route path="/register"
                                        exact

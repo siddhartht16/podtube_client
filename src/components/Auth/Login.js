@@ -10,6 +10,7 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            isLoggedIn: false
         };
     }
 
@@ -42,7 +43,14 @@ export default class Login extends Component {
 
             UserService.loginUser(userObject)
                 .then(data => {
-                    console.log(data);
+                    if(data === 401 || data === 400){
+                        alert("Error");
+                    }
+                    else{
+                        this.setState({
+                            isLoggedIn:true
+                        })
+                    }
                 })
         }
     };
@@ -79,8 +87,8 @@ export default class Login extends Component {
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <button type="submit"
-                                        className="btn btn-warning"
+                                <button className="btn btn-warning"
+                                        type="button"
                                         onClick={this.loginUser}>
                                     Login
                                 </button>

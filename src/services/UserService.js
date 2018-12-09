@@ -9,7 +9,12 @@ export default class UserService {
             body: JSON.stringify(usercredentials)
         })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
             });
     };
 
@@ -23,7 +28,12 @@ export default class UserService {
             body: JSON.stringify(usercredentials)
         })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
             });
     };
 
