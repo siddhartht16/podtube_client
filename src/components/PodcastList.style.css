@@ -4,6 +4,13 @@
     width: 100%
 }
 
+.podcast-thumbnail {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
 .podcast-list ul {
     list-style: none;
     padding: 0;

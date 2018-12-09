@@ -42,7 +42,7 @@ export default class Podcast extends Component {
                 }
             }).catch(err => {
             console.log(err);
-        })
+        });
         alert("unSubscribed successfully for podcast id: " + podcast_id);
     };
 
@@ -54,17 +54,21 @@ export default class Podcast extends Component {
         return (
             <div>
                 <li key={this.state.podcast.id}>
-                    <Link to={`/podcast/${this.state.podcast.id}/episodes`}>{this.state.podcast.title}</Link>
+                    <Link to={`/podcast/${this.state.podcast.id}/episodes`}>
+                        <img src={this.state.podcast.logo_url} className="podcast-thumbnail"/>
+                        {this.state.podcast.title}
+                    </Link>
                     {
                         this.props.subComp === false ?
+
                             <span>
-                                {this.state.podcast.subscribed === true ?
-                                    <button className="btn__alt sub float-right"
-                                            onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
-                                    <button className="btn__alt unsub float-right"
-                                            onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
-                                }
-                            </span> : null
+                                    {this.state.podcast.subscribed === true ?
+                                        <button className="btn__alt sub float-right"
+                                                onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
+                                        <button className="btn__alt unsub float-right"
+                                                onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
+                                    }
+                                </span> : null
                     }
 
                 </li>

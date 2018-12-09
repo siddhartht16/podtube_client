@@ -23,6 +23,8 @@ export default class PodcastList extends Component {
         if (this.state.categoryId !== null) {
             PodcastService.findPodcastForCategory(this.state.categoryId)
                 .then(data => {
+                    console.log("Podcast data");
+                    console.log(data);
                     this.setState({podcasts: data})
                 });
         }

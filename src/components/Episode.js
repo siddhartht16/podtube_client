@@ -8,19 +8,20 @@ export default class Episode extends Component {
         this.state = {}
     }
 
+
     render() {
         return (
             <div className="episode-wrapper mb-3">
                 <div className="row">
-                    <div className="col-md-3">
+                    <div className="col-md-2">
                         {
                             this.props.thumbnail !== "" ?
                                 <img src={this.props.thumbnail} className="episode-thumbnail"/> :
                                 <img src={this.props.PodcastImg} className="episode-thumbnail"/>
                         }
                     </div>
-                    <div className="col-md-9">
-                        <h2>{this.props.title}</h2>
+                    <div className="col-md-10">
+                        <h4>{this.props.title}</h4>
                         <div dangerouslySetInnerHTML={{__html: this.props.description}}
                              className="episode-description"/>
                         <div className="row mt-3">
@@ -32,7 +33,7 @@ export default class Episode extends Component {
                                 />
                             </div>
                             <div className="col-md-1">
-                                <span className="fa fa-bookmark episode-bookmark" title="Bookmark Episode"/>
+                                <span className="fa fa-star episode-bookmark" title="Bookmark Episode"/>
                             </div>
                         </div>
                     </div>
