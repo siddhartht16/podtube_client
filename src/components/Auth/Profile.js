@@ -11,7 +11,8 @@ export default class Profile extends Component {
             userId: userId,
             userProfile: null,
             isLoggedOut: false,
-            comments: null
+            comments: null,
+            error: false
         }
     }
 
@@ -33,7 +34,11 @@ export default class Profile extends Component {
         let userId = this.state.userId !== null ? this.state.userId : 1;
         UserService.getCommentForUser(userId)
             .then(data => {
-                console.log(data);
+                if (data === 400) {
+                    this.setState({
+                        error: true
+                    })
+                }
                 this.setState({
                     comments: data
                 })
@@ -74,6 +79,10 @@ export default class Profile extends Component {
                                                         <label className="control-label">Username</label>
                                                         <p id="profile-username">{this.state.userProfile.username}</p>
                                                     </div>
+                                                    <div>
+                                                        <button className="btn btn__alt"
+                                                                type="button">Follow {this.state.userProfile.username}</button>
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -106,9 +115,10 @@ export default class Profile extends Component {
                                                 <form role="form">
                                                     <div className="form-group">
                                                         {this.state.comments === null ? <p><i>Loading...</i></p> :
-                                                            <ul>{this.state.comments.length === 0 ?
+                                                            <ul>{this.state.error.length === 0 ?
                                                                 <p><i>No comments given by this user</i></p> : null}
                                                                 {
+                                                                    this.state.error === false &&
                                                                     this.state.comments.map((comment) =>
                                                                         <Comment comment={comment}
                                                                                  date={this.formatCommentDate(comment.createdOn)}

@@ -23,6 +23,7 @@ export default class EpisodeList extends Component {
     componentDidMount() {
         PodcastService.findEpisodesForPodcast(this.state.podcastId)
             .then(data => {
+                console.log(data);
                 this.setState({
                     episodeList: data,
                     podcastDetails: data.length !== 0 ? data[0].podcast : null
@@ -127,6 +128,7 @@ export default class EpisodeList extends Component {
                                              title={episode.title}
                                              description={episode.description}
                                              thumbnail={episode.thumbnail}
+                                             pubDate={episode.pubDate}
                                              PodcastImg={PodcastIcon}
                                              getEpisodeAudio={() => this.getEpisodeAudio(episode.enclosureLink)}
                                              audioLength={episode.audio_length}/>)

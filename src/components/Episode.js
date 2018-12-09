@@ -8,10 +8,23 @@ export default class Episode extends Component {
         this.state = {}
     }
 
+    formatEpisodeDate = (date) => {
+        var newDate = (new Date(date));
+        const monthNames = ["January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        let formatedDate = newDate.getDate() + ' ' + monthNames[(newDate.getMonth())] + ' ' + newDate.getFullYear();
+        return formatedDate;
+    };
+
+    componentDidMount(){
+        this.formatEpisodeDate();
+    }
+
 
     render() {
         return (
-            <div className="episode-wrapper mb-3">
+            <div className="episode-wrapper mb-2">
                 <div className="row">
                     <div className="col-md-2">
                         {
@@ -19,11 +32,10 @@ export default class Episode extends Component {
                                 <img src={this.props.thumbnail} className="episode-thumbnail"/> :
                                 <img src={this.props.PodcastImg} className="episode-thumbnail"/>
                         }
+                        <p className="episode-pub-date">{this.formatEpisodeDate(this.props.pubDate)}</p>
                     </div>
                     <div className="col-md-10">
-                        <h4>{this.props.title}</h4>
-                        <div dangerouslySetInnerHTML={{__html: this.props.description}}
-                             className="episode-description"/>
+                        <h5>{this.props.title}</h5>
                         <div className="row mt-3">
                             <div className="col-md-1">
                                 <a className="fa fa-play-circle episode-play"
