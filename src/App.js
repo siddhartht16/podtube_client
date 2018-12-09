@@ -86,6 +86,10 @@ class App extends Component {
                                        exact
                                        render={() => <Profile/>}/>
 
+                                <Route path="/profile/:id"
+                                       exact
+                                       render={(props) => <Profile {...props}/>}/>
+
                                 <Route path="/login"
                                        exact
                                        render={() => <Login/>}/>

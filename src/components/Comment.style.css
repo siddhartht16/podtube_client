@@ -10,7 +10,7 @@
     font-weight: 600;
 }
 
-.comment-body .comment-username {
+.comment-body .comment-username a {
     font-size: 13px;
     color: #767676;
     font-style: italic;
