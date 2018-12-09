@@ -66,6 +66,7 @@ export default class CommentWrapper extends Component {
                                                 {
                                                     this.state.comments.map((comment) =>
                                                         <Comment comment={comment}
+                                                                 proComp={false}
                                                                  date={this.formatCommentDate(comment.createdOn)}/>)
                                                 }
                                             </ul>

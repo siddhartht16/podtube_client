@@ -64,4 +64,22 @@ export default class UserService {
             },
         })
     };
+
+    static getCommentForUser = (user_id) => {
+        return fetch('http://localhost:8080/api/user/'+ user_id +'/comment', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
+            });
+    };
 }

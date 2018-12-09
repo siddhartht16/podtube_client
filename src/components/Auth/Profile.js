@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import UserService from "../../services/UserService";
 import {Link} from "react-router-dom";
+import Comment from "../Comment";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -9,14 +10,14 @@ export default class Profile extends Component {
         this.state = {
             userId: userId,
             userProfile: null,
-            isLoggedOut: false
+            isLoggedOut: false,
+            comments: null
         }
     }
 
     componentDidMount() {
         UserService.fetchProfileForUser()
             .then(data => {
-                console.log(data);
                     if (data === 401) {
                         this.setState({isLoggedOut: true})
                     }
@@ -25,7 +26,25 @@ export default class Profile extends Component {
                     }
                 }
             );
+        this.getCommentForUser();
     }
+
+    getCommentForUser = () => {
+        let userId = this.state.userId !== null ? this.state.userId : 1;
+        UserService.getCommentForUser(userId)
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    comments: data
+                })
+            })
+    };
+
+    formatCommentDate = (date) => {
+        var newDate = (new Date(date));
+        let formatedDate = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' + newDate.getFullYear();
+        return formatedDate;
+    };
 
     render() {
         return (
@@ -77,6 +96,26 @@ export default class Profile extends Component {
                                                                 to="/subscriptions" className="text-green">subscriptions
                                                             </Link>
                                                         </p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-12 mt-4">
+                                            <div className="profile-body">
+                                                <p className="text-green">Comments and Ratings</p>
+                                                <form role="form">
+                                                    <div className="form-group">
+                                                        {this.state.comments === null ? <p><i>Loading...</i></p> :
+                                                            <ul>{this.state.comments.length === 0 ?
+                                                                <p><i>No comments given by this user</i></p> : null}
+                                                                {
+                                                                    this.state.comments.map((comment) =>
+                                                                        <Comment comment={comment}
+                                                                                 date={this.formatCommentDate(comment.createdOn)}
+                                                                                 proComp={true}/>)
+                                                                }
+                                                            </ul>
+                                                        }
                                                     </div>
                                                 </form>
                                             </div>
