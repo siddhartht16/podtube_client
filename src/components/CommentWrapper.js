@@ -16,30 +16,31 @@ export default class CommentWrapper extends Component {
     onChangeComment = (e) => {
         this.setState({
             commentBody: e.target.value,
+            error: false
         });
     };
 
     onCreateComment = () => {
-        let comment = {
-            'comment': this.state.commentBody
-        };
+        let comment = {'comment': this.state.commentBody};
         CommentService.createCommentForPodcast(this.props.podcastId, comment)
             .then(data => {
-                console.log(data);
-            })
+                if (data === 401) {
+                    this.setState({
+                        error: true
+                    })
+                }
+            });
     };
 
     formatCommentDate = (date) => {
         var newDate = (new Date(date));
-        let formatedDate = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear();
+        let formatedDate = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' + newDate.getFullYear();
         return formatedDate;
     };
 
     componentDidMount = () => {
         CommentService.findCommentsForPodcast(this.props.podcastId)
             .then(data => {
-                console.log("Comments");
-                console.log(data);
                 this.setState({
                     comments: data
                 })
@@ -59,20 +60,25 @@ export default class CommentWrapper extends Component {
                             this.props.isCommentForm === false ?
                                 <div>
                                     <div>
-                                        {
-                                            this.state.comments === null ? <p><i>Loading...</i></p> :
-                                                <ul>
-                                                    {
-                                                        this.state.comments.map((comment) =>
-                                                           <Comment comment={comment}
-                                                                    date={this.formatCommentDate(comment.createdOn)}/>
-                                                        )
-                                                    }
-                                                </ul>
+                                        {this.state.comments === null ? <p><i>Loading...</i></p> :
+                                            <ul>{this.state.comments.length === 0 ?
+                                                <p><i>No comments for this podcast</i></p> : null}
+                                                {
+                                                    this.state.comments.map((comment) =>
+                                                        <Comment comment={comment}
+                                                                 date={this.formatCommentDate(comment.createdOn)}/>)
+                                                }
+                                            </ul>
                                         }
                                     </div>
                                 </div> :
                                 <div>
+                                    {
+                                        this.state.error === true ?
+                                            <div className="alert alert-danger" role="alert">
+                                                Please log in before commenting
+                                            </div> : null
+                                    }
                                     <form className="form">
                                         <div className="form-group">
                                             <p>Write Comment</p>

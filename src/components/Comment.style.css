@@ -1,5 +1,7 @@
-.comment-body {
-
+.comment-body li{
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
 }
 
 .comment-body p {

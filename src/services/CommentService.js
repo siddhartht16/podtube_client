@@ -24,7 +24,12 @@ export default class CommentService {
             body: JSON.stringify(commentObj)
         })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
             });
     };
 }
