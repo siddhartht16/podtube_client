@@ -9,7 +9,6 @@ import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Footer from "./components/Footer";
 import Profile from "./components/Auth/Profile";
-import ReactPlayer from 'react-player'
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Dashboard from "./components/Admin/Dashboard";
@@ -100,11 +99,7 @@ class App extends Component {
                                        render={() => <Register/>}/>
 
                             </main>
-                            {/*<ReactPlayer url="https://bit.ly/2Q4Ej4K"*/}
-                            {/*className="react-player fixed-bottom"*/}
-                            {/*controls*/}
-                            {/*playbackRate={1}/>*/}
-                            <Footer/>
+                            {/*<Footer/>*/}
                         </div>
                     </div>
                 </div>
