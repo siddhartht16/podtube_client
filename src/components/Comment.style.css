@@ -1,0 +1,22 @@
+.comment-body {
+
+}
+
+.comment-body p {
+    font-size: 14px;
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.comment-body .comment-username {
+    font-size: 13px;
+    color: #767676;
+    font-style: italic;
+    margin-left: 10px;
+
+}
+
+.comment-body .comment-date {
+    font-size: 13px;
+    color: #767676;
+}

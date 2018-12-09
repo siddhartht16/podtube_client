@@ -21,3 +21,9 @@ body {
 .help-text a:hover {
   color: #1ED760;
 }
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

@@ -1,12 +1,50 @@
 import React, {Component} from 'react';
-import "./EpisodeList.style.css";
+import "./Comment.style.css";
+import CommentService from "../services/CommentService";
+import Comment from "./Comment";
 
 export default class CommentWrapper extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            commentBody: '',
+            comments: null
+        }
     }
+
+    onChangeComment = (e) => {
+        this.setState({
+            commentBody: e.target.value,
+        });
+    };
+
+    onCreateComment = () => {
+        let comment = {
+            'comment': this.state.commentBody
+        };
+        CommentService.createCommentForPodcast(this.props.podcastId, comment)
+            .then(data => {
+                console.log(data);
+            })
+    };
+
+    formatCommentDate = (date) => {
+        var newDate = (new Date(date));
+        let formatedDate = (newDate.getMonth() + 1) + '/' + newDate.getDate() + '/' +  newDate.getFullYear();
+        return formatedDate;
+    };
+
+    componentDidMount = () => {
+        CommentService.findCommentsForPodcast(this.props.podcastId)
+            .then(data => {
+                console.log("Comments");
+                console.log(data);
+                this.setState({
+                    comments: data
+                })
+            })
+    };
 
 
     render() {
@@ -20,31 +58,35 @@ export default class CommentWrapper extends Component {
                         {
                             this.props.isCommentForm === false ?
                                 <div>
-                                    <h5 className="card-title">Special title treatment</h5>
-                                    <p className="card-text">With supporting text below as a natural lead-in
-                                        to additional content.</p>
-                                    <p className="card-text">With supporting text below as a natural lead-in
-                                        to additional content.</p>
-                                    <p className="card-text">With supporting text below as a natural lead-in
-                                        to additional content.</p>
-                                    <p className="card-text">With supporting text below as a natural lead-in
-                                        to additional content.</p>
-
-                                    <a href="#" className="btn btn-primary">Go somewhere</a>
+                                    <div>
+                                        {
+                                            this.state.comments === null ? <p><i>Loading...</i></p> :
+                                                <ul>
+                                                    {
+                                                        this.state.comments.map((comment) =>
+                                                           <Comment comment={comment}
+                                                                    date={this.formatCommentDate(comment.createdOn)}/>
+                                                        )
+                                                    }
+                                                </ul>
+                                        }
+                                    </div>
                                 </div> :
                                 <div>
                                     <form className="form">
                                         <div className="form-group">
                                             <p>Write Comment</p>
                                             <textarea id="comment-text"
+                                                      onChange={this.onChangeComment}
+                                                      value={this.state.commentBody}
                                                       className="form-control"/>
                                             <button type="button"
+                                                    onClick={this.onCreateComment}
                                                     className="mt-2 podcast-comments-btn btn__alt">Submit
                                             </button>
                                         </div>
                                     </form>
                                 </div>
-
                         }
                     </div>
                 </div>

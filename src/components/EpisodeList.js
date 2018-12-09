@@ -102,12 +102,14 @@ export default class EpisodeList extends Component {
                                         this.state.showComments === true ?
                                             <CommentWrapper
                                                 isCommentForm={false}
+                                                podcastId={this.state.podcastId}
                                                 title="Comments"/> : null
                                     }
                                     {
                                         this.state.showCommentAddForm === true ?
                                             <CommentWrapper
                                                 isCommentForm={true}
+                                                podcastId={this.state.podcastId}
                                                 title="Add Comment"/> : null
                                     }
 
