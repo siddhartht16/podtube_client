@@ -11,15 +11,20 @@ export default class PodcastSearchList extends Component {
         searchTerm = searchTerm.replace('%20', ' ');
         this.state = {
             searchTerm: searchTerm,
-            podcastList: null
+            podcastList: null,
+            error: false
         }
     }
 
     componentDidMount = () => {
         PodcastService.searchPodcastList(this.state.searchTerm)
             .then(data => {
-                console.log(data);
-                this.setState({podcastList: data})
+                if (data === 500 || data === 400) {
+                    this.setState({error: true})
+                }
+                else {
+                    this.setState({podcastList: data})
+                }
             });
     };
 
@@ -28,14 +33,19 @@ export default class PodcastSearchList extends Component {
             <div>
                 {this.state.podcastList === null ? <p className="mt-5"><i>Loading...</i></p> :
                     <div className="podcast-list">
-                        <h3 className="mt-3">Select a podcast to view episodes</h3>
-                        <ul>
-                            {this.state.podcastList.map((podcast) =>
-                                <Podcast
-                                    subComp={false}
-                                    podcast={podcast}/>)
-                            }
-                        </ul>
+                        {
+                            this.state.error === true ? <p>There was a problem loading the podcasts.</p> :
+                                <div>
+                                    <h3 className="mt-3">Select a podcast to view episodes</h3>
+                                    <ul>
+                                        {this.state.podcastList.map((podcast) =>
+                                            <Podcast
+                                                subComp={false}
+                                                podcast={podcast}/>)
+                                        }
+                                    </ul>
+                                </div>
+                        }
                     </div>
                 }
             </div>

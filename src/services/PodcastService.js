@@ -50,7 +50,12 @@ export default class PodcastService {
             },
         })
             .then(response => {
-                return response.json()
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
             });
     }
 
