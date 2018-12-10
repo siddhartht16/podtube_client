@@ -62,7 +62,7 @@ export default class CommentWrapper extends Component {
                                     <div>
                                         {this.state.comments === null ? <p><i>Loading...</i></p> :
                                             <ul>{this.state.comments.length === 0 ?
-                                                <p><i>No comments for this podcast</i></p> : null}
+                                                <span className="help-text">No comments for this podcast</span> : null}
                                                 {
                                                     this.state.comments.map((comment) =>
                                                         <Comment comment={comment}

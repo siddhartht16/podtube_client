@@ -12,6 +12,8 @@ body {
 .help-text {
   font-size: 13px;
   font-style: italic;
+  font-weight: 500;
+  color: #060606;
 }
 
 .help-text a {

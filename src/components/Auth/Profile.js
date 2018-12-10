@@ -117,8 +117,8 @@ export default class Profile extends Component {
                                                 <form role="form">
                                                     <div className="form-group">
                                                         {this.state.comments === null ? <p><i>Loading...</i></p> :
-                                                            <ul>{this.state.error.length === 0 ?
-                                                                <p><i>No comments given by this user</i></p> : null}
+                                                            <ul>{this.state.comments.length === 0 ?
+                                                                <span className="help-text">No comments given by this user</span> : null}
                                                                 {
                                                                     this.state.error === false &&
                                                                     this.state.comments.map((comment) =>
