@@ -8,7 +8,7 @@ export default class Subscription extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSubscribed: false,
+            isLoggedOut: false,
             subscribedPodcasts: null,
         }
     }
@@ -18,7 +18,7 @@ export default class Subscription extends Component {
             .then(res => {
                 if (res === 401) {
                     this.setState({
-                        isSubscribed: true
+                        isLoggedOut: true
                     })
                 }
                 else {
@@ -43,7 +43,7 @@ export default class Subscription extends Component {
             <div>
                 <h3 className="mt-3">Subscriptions</h3>
                 {
-                    this.state.isSubscribed === true ?
+                    this.state.isLoggedOut === true ?
                         <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your subscriptions
                         </p> :
                         <div className="podcast-list">

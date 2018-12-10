@@ -19,6 +19,7 @@ import AdminLogin from "./components/Admin/AdminLogin";
 import AdminPodcastDetail from "./components/Admin/AdminPodcastDetail";
 import Subscription from "./components/Subscription";
 import Logout from "./components/Auth/Logout";
+import Bookmarks from "./components/Bookmarks";
 
 class App extends Component {
 
@@ -81,6 +82,10 @@ class App extends Component {
                                 <Route path="/subscriptions"
                                        exact
                                        render={() => <Subscription/>}/>
+
+                                <Route path="/bookmarks"
+                                       exact
+                                       render={() => <Bookmarks/>}/>
 
                                 <Route path="/profile"
                                        exact

@@ -5,7 +5,9 @@ export default class Episode extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            isBookmarked: false,
+        }
     }
 
     formatEpisodeDate = (date) => {
@@ -17,7 +19,19 @@ export default class Episode extends Component {
         return formatedDate;
     };
 
-    componentDidMount(){
+    bookmarkEpisode = () => {
+        this.setState({
+            isBookmarked: true,
+        })
+    };
+
+    unMarkEpisode = () => {
+        this.setState({
+            isBookmarked: false,
+        })
+    };
+
+    componentDidMount() {
         this.formatEpisodeDate();
     }
 
@@ -45,7 +59,15 @@ export default class Episode extends Component {
                                 />
                             </div>
                             <div className="col-md-1">
-                                <span className="fa fa-star episode-bookmark" title="Bookmark Episode"/>
+                                {
+                                    this.state.isBookmarked === false ?
+                                        <span className="fa fa-star episode-bookmark"
+                                              onClick={this.bookmarkEpisode}
+                                              title="Bookmark Episode"/> :
+                                        <span className="fa fa-star episode-bookmark yellow"
+                                              onClick={this.unMarkEpisode}
+                                              title="Unmark Episode"/>
+                                }
                             </div>
                         </div>
                     </div>
