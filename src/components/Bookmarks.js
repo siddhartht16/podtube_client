@@ -55,7 +55,7 @@ export default class Bookmarks extends Component {
                 <h3 className="mt-3">Bookmarks</h3>
                 {
                     this.state.isLoggedOut === true ?
-                        <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your bookmarks
+                        <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your bookmarks
                         </p> :
                         <div className="podcast-list">
                             {

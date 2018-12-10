@@ -60,25 +60,3 @@
     transition: all .1s ease-out;
     color: #76b852;
 }
-
-/* Podcast */
-.btn__alt {
-    background-color: #76b852;
-    border: 0;
-    border-radius: 5px;
-    color: white;
-    padding: 5px;
-    font-size: 13px;
-    font-weight: 600;
-    transition: all .1s ease-out;
-    cursor: pointer;
-}
-
-.btn__alt:focus, .btn__alt:active {
-    outline: 0;
-}
-
-.btn__alt:hover {
-    background-color: #1ED760;
-    transition: all .1s ease-out;
-}

@@ -34,7 +34,7 @@ export default class AdminPodcastDetail extends Component {
         return (
             <div>
                 <div className="sync-btn-wrapper pt-2 pb-2">
-                    <button className="btn btn-primary" onClick={this.syncEpisodes}>Sync Episodes</button>
+                    <button className="btn btn__alt" onClick={this.syncEpisodes}>Sync Episodes</button>
                 </div>
                 <div className="podcast-list">
                     {this.state.episodes === null ? <p className="mt-5">Loading...</p> :

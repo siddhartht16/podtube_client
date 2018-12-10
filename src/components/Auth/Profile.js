@@ -137,7 +137,7 @@ export default class Profile extends Component {
                         </div> :
                         <div>
                             <h3 className="mt-3">Profile</h3>
-                            <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your Profile</p>
+                            <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your Profile</p>
                         </div>
                 }
             </div>

@@ -27,7 +27,7 @@ export default class CategoryList extends Component {
         return (
             <div>
                 <div className="sync-btn-wrapper pt-2 pb-2">
-                    <button className="btn btn-primary" onClick={this.syncCategories}>Sync Categories</button>
+                    <button className="btn btn__alt" onClick={this.syncCategories}>Sync Categories</button>
                 </div>
                 <div className="podcast-list">
                     {this.state.categories === null ? <p className="mt-5">Loading...</p> :

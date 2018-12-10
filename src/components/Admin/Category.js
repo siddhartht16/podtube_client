@@ -3,12 +3,10 @@ import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 
 const Category = ({id, title}) =>
     <div>
-        <Link to={`/admin/categories/${id}/podcasts`}>
-            <li key={id}>
-                {title}
-            </li>
-        </Link>
-    </div>
+        <li key={id}>
+            <Link to={`/admin/categories/${id}/podcasts`}>{title} </Link>
+        </li>
+    </div>;
 
 
 export default Category

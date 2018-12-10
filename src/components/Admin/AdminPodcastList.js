@@ -45,7 +45,7 @@ export default class AdminPodcastList extends Component {
                 <div className="sync-btn-wrapper pt-2 pb-2">
                     {
                         this.state.categoryId !== null ?
-                            <button className="btn btn-primary" onClick={this.syncPodcasts}>Sync Podcast</button> : null
+                            <button className="btn btn__alt" onClick={this.syncPodcasts}>Sync Podcast</button> : null
                     }
                 </div>
                 <div className="podcast-list">
@@ -54,7 +54,9 @@ export default class AdminPodcastList extends Component {
                         <div>
                             <ul>
                                 {this.state.categoryId !== null && this.state.podcasts.map((podcast) =>
-                                    <AdminPodcast id={podcast.id} title={podcast.title}/>)
+                                    <AdminPodcast id={podcast.id}
+                                                  logo={podcast.logo_url}
+                                                  title={podcast.title}/>)
                                 }
                             </ul>
                         </div>
@@ -64,7 +66,9 @@ export default class AdminPodcastList extends Component {
                         <div>
                             <ul>
                                 {this.state.categoryId === null && this.state.allPodcasts.map((podcast) =>
-                                    <AdminPodcast id={podcast.id} title={podcast.title}/>)
+                                    <AdminPodcast logo={podcast.logo_url}
+                                                  id={podcast.id}
+                                                  title={podcast.title}/>)
                                 }
                             </ul>
                         </div>

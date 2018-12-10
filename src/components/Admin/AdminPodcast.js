@@ -1,14 +1,17 @@
 import React from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import PodcastIcon2 from "../../assests/podcast-icon.png";
 
-const AdminPodcast = ({id, title}) =>
+const AdminPodcast = ({id, logo, title}) =>
     <div>
-        <Link to={`/admin/podcasts/${id}/episodes`}>
-            <li key={id}>
+        <li key={id}>
+            <Link to={`/admin/podcasts/${id}/episodes`}>
+                <img src={logo === 'null' ? PodcastIcon2 : logo}
+                     className="podcast-thumbnail"/>
                 {title}
-            </li>
-        </Link>
-    </div>
+            </Link>
+        </li>
+    </div>;
 
 
 export default AdminPodcast
