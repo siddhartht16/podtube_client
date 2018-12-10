@@ -12,6 +12,7 @@ export default class Register extends Component {
             password: '',
             firstname: '',
             lastname: '',
+            email: '',
             isRegistered: false,
             error: false
         };
@@ -27,6 +28,13 @@ export default class Register extends Component {
     onChangePassword = (e) => {
         this.setState({
             password: e.target.value,
+            error: false
+        });
+    };
+
+    onChangeEmail = (e) => {
+        this.setState({
+            email: e.target.value,
             error: false
         });
     };
@@ -47,15 +55,14 @@ export default class Register extends Component {
 
     registerUser = () => {
         if (this.state.username.length === 0 ||
-            this.state.password.length === 0 ||
-            this.state.firstname.length === 0 ||
-            this.state.lastname.length === 0) {
+            this.state.password.length === 0) {
             return false;
         }
         else {
             let userObject = {
                 'username': this.state.username,
                 'password': this.state.password,
+                'email': this.state.email,
                 'firstname': this.state.firstname,
                 'lastname': this.state.lastname,
             };
@@ -127,6 +134,16 @@ export default class Register extends Component {
                                            id="lastname"
                                            onChange={this.onChangeLastName}
                                            value={this.state.lastname}
+                                           required
+                                           className="form-control input-fld"/>
+                                </div>
+                                <div className="form-group">
+                                    <label>Email</label>
+                                    <input type="email"
+                                           placeholder="Email Address"
+                                           id="lastname"
+                                           onChange={this.onChangeEmail}
+                                           value={this.state.email}
                                            required
                                            className="form-control input-fld"/>
                                 </div>

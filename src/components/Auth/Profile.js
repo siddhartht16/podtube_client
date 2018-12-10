@@ -78,6 +78,11 @@ export default class Profile extends Component {
                                                     </div>
 
                                                     <div className="form-group">
+                                                        <label className="control-label">Email Address</label>
+                                                        <p id="profile-email">{this.state.userProfile.email}</p>
+                                                    </div>
+
+                                                    <div className="form-group">
                                                         <label className="control-label">Username</label>
                                                         <p id="profile-username">{this.state.userProfile.username}</p>
                                                     </div>
