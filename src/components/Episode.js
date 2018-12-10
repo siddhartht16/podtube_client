@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./EpisodeList.style.css";
+import BookmarkService from "../services/BookmarkService";
 
 export default class Episode extends Component {
 
@@ -20,15 +21,21 @@ export default class Episode extends Component {
     };
 
     bookmarkEpisode = () => {
-        this.setState({
-            isBookmarked: true,
-        })
+        let bookmarkObj = {"episode_id": this.props.id};
+        console.log(bookmarkObj);
+        BookmarkService.createUserBookmark(bookmarkObj)
+            .then(data => {
+                console.log(data);
+                this.setState({
+                    isBookmarked: true,
+                })
+            })
     };
 
     unMarkEpisode = () => {
         this.setState({
             isBookmarked: false,
-        })
+        });
     };
 
     componentDidMount() {
