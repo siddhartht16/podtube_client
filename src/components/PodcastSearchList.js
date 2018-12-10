@@ -11,26 +11,29 @@ export default class PodcastSearchList extends Component {
         searchTerm = searchTerm.replace('%20', ' ');
         this.state = {
             searchTerm: searchTerm,
-            podcastList:null
+            podcastList: null
         }
     }
 
     componentDidMount = () => {
         PodcastService.searchPodcastList(this.state.searchTerm)
-            .then(data => {console.log(data);
-                            this.setState({podcastList: data})});
+            .then(data => {
+                console.log(data);
+                this.setState({podcastList: data})
+            });
     };
 
     render() {
         return (
             <div>
-                {this.state.podcastList === null ? <h4 className="text-center mt-5"><i>Loading...</i></h4> :
-                    <div>
-                        <h2 className="mt-3">Select your Podcast from the list:</h2>
+                {this.state.podcastList === null ? <p className="mt-5"><i>Loading...</i></p> :
+                    <div className="podcast-list">
+                        <h3 className="mt-3">Select a podcast to view episodes</h3>
                         <ul>
-                            {this.state.podcastList['results'].map((podcast) =>
-                                <Podcast podcastId={podcast.id}
-                                         title={podcast.title_original}/>)
+                            {this.state.podcastList.map((podcast) =>
+                                <Podcast
+                                    subComp={false}
+                                    podcast={podcast}/>)
                             }
                         </ul>
                     </div>

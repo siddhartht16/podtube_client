@@ -56,7 +56,8 @@ export default class Podcast extends Component {
             <div>
                 <li key={this.state.podcast.id}>
                     <Link to={`/podcast/${this.state.podcast.id}/episodes`}>
-                        <img src={this.state.podcast.logo_url === 'null' ? PodcastIcon2 : this.state.podcast.logo_url} className="podcast-thumbnail"/>
+                        <img src={this.state.podcast.logo_url === 'null' ? PodcastIcon2 : this.state.podcast.logo_url}
+                             className="podcast-thumbnail"/>
                         {this.state.podcast.title}
                     </Link>
                     {

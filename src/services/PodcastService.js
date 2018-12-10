@@ -41,13 +41,12 @@ export default class PodcastService {
             });
     };
 
-    static searchPodcastList = (podcast_name) => {
-        return fetch(urls.get_search_by_title_url(podcast_name), {
+    static searchPodcastList = (search_term) => {
+        return fetch('http://localhost:8080/api/search/' + search_term, {
             method: 'GET',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'X-Mashape-Key': 'KIGieSKrRimshAGZ3rLFadB6Vu99p1xwkuijsnN5epxiNhLSez'
             },
         })
             .then(response => {

@@ -23,8 +23,8 @@ export default class PodcastList extends Component {
         if (this.state.categoryId !== null) {
             PodcastService.findPodcastForCategory(this.state.categoryId)
                 .then(data => {
-                    console.log("Podcast data");
-                    console.log(data);
+                    // console.log("Podcast data");
+                    // console.log(data);
                     this.setState({podcasts: data})
                 });
         }
@@ -46,8 +46,7 @@ export default class PodcastList extends Component {
                             <Link to={`/search/${this.state.searchedPodcast}`}>
                                 <span className="fa fa-search search-icon"
                                       role="button"
-                                      title="Search"
-                                      onClick={this.onSubmitPodcastName}>
+                                      title="Search">
                                 </span>
                             </Link>
                             </span>
