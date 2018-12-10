@@ -171,11 +171,11 @@ export default class Register extends Component {
                             <div className="card-footer">
                                 <button onClick={this.registerUser}
                                         type="button"
-                                        className="btn btn-warning">Sign Up
+                                        className="btn btn__cta">Sign Up
                                 </button>
                                 <div className="register-promt mt-4">
                                     <p className="text-center">Already have an account ? </p>
-                                    <button className="btn btn__alt">
+                                    <button className="btn btn__alt2">
                                         <Link to="/login">
                                             Sign in on PodTube
                                         </Link>

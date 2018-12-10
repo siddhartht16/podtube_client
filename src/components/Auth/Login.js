@@ -114,7 +114,7 @@ export default class Login extends Component {
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <button className="btn btn-warning"
+                                <button className="btn btn__cta"
                                         type="button"
                                         onClick={this.loginUser}>
                                     Login
@@ -124,7 +124,7 @@ export default class Login extends Component {
                                 </p>
                                 <div className="register-promt">
                                     <p className="text-center">Don't have an account ? </p>
-                                    <button className="btn btn__alt"><Link to="/register">
+                                    <button className="btn btn__alt2"><Link to="/register">
                                         Sign up on PodTube
                                     </Link>
                                     </button>

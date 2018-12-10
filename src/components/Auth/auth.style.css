@@ -21,22 +21,6 @@
     box-shadow:none
 }
 
-.card-footer button {
-    border-radius: 25px;
-    background-color: #76b852;
-    width: 100%;
-    border-color: transparent;
-    color: white;
-    font-weight: bold;
-    transition: all .1s ease-out;
-}
-
-.card-footer button:hover{
-    background-color: #1ED760;
-    transition: all .1s ease-out;
-    border-color: transparent;
-}
-
 .forgot-password {
     color: #76b852;
     font-size: 13px;
@@ -54,23 +38,23 @@
     font-size: 15px;
 }
 
-.register-promt .btn__alt {
+.register-promt .btn__alt2 {
     background-color: transparent;
     border-color: #76b852;
 }
 
-.register-promt .btn__alt a {
+.register-promt .btn__alt2 a {
     color: white;
     width: 100%;
     display: inline-block;
     padding: 5px;
 }
 
-.register-promt .btn__alt a:hover {
+.register-promt .btn__alt2 a:hover {
     text-decoration: none;
 }
 
-.register-promt .btn__alt:hover {
+.register-promt .btn__alt2:hover {
     background-color: transparent;
     border-color: #1ED760;
 }

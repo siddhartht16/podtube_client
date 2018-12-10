@@ -20,6 +20,7 @@ import AdminPodcastDetail from "./components/Admin/AdminPodcastDetail";
 import Subscription from "./components/Subscription";
 import Logout from "./components/Auth/Logout";
 import Bookmarks from "./components/Bookmarks";
+import EditProfile from "./components/Auth/EditProfile";
 
 class App extends Component {
 
@@ -92,8 +93,11 @@ class App extends Component {
                                        render={() => <Profile/>}/>
 
                                 <Route path="/profile/:id"
-                                       exact
                                        render={(props) => <Profile {...props}/>}/>
+
+                                <Route path="/update/profile"
+                                       render={() => <EditProfile/>}/>
+
 
                                 <Route path="/login"
                                        exact

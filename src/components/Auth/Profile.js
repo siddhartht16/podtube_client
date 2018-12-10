@@ -87,8 +87,15 @@ export default class Profile extends Component {
                                                         <p id="profile-username">{this.state.userProfile.username}</p>
                                                     </div>
                                                     <div>
-                                                        <button className="btn btn__alt"
-                                                                type="button">Follow {this.state.userProfile.username}</button>
+                                                        <button className="btn__cta btn" type="button">
+                                                            <Link to="/update/profile">Edit Profile</Link>
+                                                        </button>
+
+                                                        <button className="btn btn__cta mt-3"
+                                                                type="button">Follow &nbsp;
+                                                            {this.state.userProfile.username}
+                                                        </button>
+
                                                     </div>
                                                 </form>
                                             </div>
@@ -142,7 +149,8 @@ export default class Profile extends Component {
                         </div> :
                         <div>
                             <h3 className="mt-3">Profile</h3>
-                            <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your Profile</p>
+                            <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your
+                                Profile</p>
                         </div>
                 }
             </div>
