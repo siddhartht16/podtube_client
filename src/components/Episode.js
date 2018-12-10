@@ -21,7 +21,7 @@ export default class Episode extends Component {
     };
 
     bookmarkEpisode = () => {
-        let bookmarkObj = {"episode_id": this.props.id};
+        let bookmarkObj = {'episode_id': this.props.id};
         console.log(bookmarkObj);
         BookmarkService.createUserBookmark(bookmarkObj)
             .then(data => {

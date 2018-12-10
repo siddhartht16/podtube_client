@@ -37,4 +37,22 @@ export default class BookmarkService {
             });
     };
 
+    static deleteUserBookmark = (bookmark_id) => {
+        return fetch('http://localhost:8080/api/bookmarks/' + bookmark_id, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else {
+                    return response.status;
+                }
+            });
+    };
+
 }

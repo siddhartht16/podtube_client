@@ -29,10 +29,10 @@ export default class Podcast extends Component {
             }).catch(err => {
             console.log(err);
         });
-        alert("Subscribed successfully for podcast id: " + podcast_id);
     };
 
     onUnsubscribe = (podcast_id) => {
+        window.location.reload();
         SubscriptionService.unSubscribeUser(podcast_id)
             .then(podcast => {
                 if (podcast === 401) {
@@ -44,7 +44,6 @@ export default class Podcast extends Component {
             }).catch(err => {
             console.log(err);
         });
-        alert("unSubscribed successfully for podcast id: " + podcast_id);
     };
 
     render() {
@@ -62,19 +61,18 @@ export default class Podcast extends Component {
                     </Link>
                     {
                         this.props.subComp === false ?
-
                             <span>
-                                    {this.state.podcast.subscribed === true ?
-                                        <button className="btn__alt sub float-right"
-                                                onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
-                                        <button className="btn__alt unsub float-right"
-                                                onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
-                                    }
-                                </span> : null
+                                {this.state.podcast.subscribed === true ?
+                                    <button className="btn__alt sub float-right"
+                                            onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button> :
+                                    <button className="btn__alt unsub float-right"
+                                            onClick={() => this.onSubscribe(this.state.podcast.id)}>Subscribe</button>
+                                }
+                            </span> :
+                            <button className="btn__alt sub float-right"
+                                    onClick={() => this.onUnsubscribe(this.state.podcast.id)}>Unsubscribe</button>
                     }
-
                 </li>
-
             </div>
         )
     }

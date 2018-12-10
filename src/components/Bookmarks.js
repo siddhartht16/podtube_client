@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import SubscriptionService from "../services/SubscriptionService";
 import BookmarkService from "../services/BookmarkService";
-import Podcast from "./Podcast";
+import PodcastIcon from '../assests/podcast-icon2.jpg';
+import Episode from "./Episode";
 
 export default class Bookmarks extends Component {
 
@@ -32,6 +33,14 @@ export default class Bookmarks extends Component {
             })
     }
 
+    getEpisodeAudio = (audioURL) => {
+        if (audioURL.length === 0 || typeof audioURL === "undefined" || audioURL === null) {
+            alert("No MP3 link for this episode")
+        }
+        else {
+            this.setState({episodeURL: audioURL})
+        }
+    };
 
     render() {
         const subCount = {
@@ -48,10 +57,27 @@ export default class Bookmarks extends Component {
                     this.state.isLoggedOut === true ?
                         <p className="help-text mt-3">Please <Link to="/login">Log In</Link> to see your bookmarks
                         </p> :
-                        <div>
-                            Bookmarks go here
+                        <div className="podcast-list">
+                            {
+                                this.state.bookmarks === null ? <p><i>Loading...</i></p> :
+                                    <div>
+                                        <p style={subCount}>Total Bookmarked Episodes
+                                            : {this.state.bookmarks.length}</p>
+                                        <ul>
+                                            {this.state.bookmarks.map((episode) =>
+                                                <Episode id={episode.id}
+                                                         title={episode.title}
+                                                         description={episode.description}
+                                                         thumbnail={episode.thumbnail}
+                                                         pubDate={episode.pubDate}
+                                                         PodcastImg={PodcastIcon}
+                                                         getEpisodeAudio={() => this.getEpisodeAudio(episode.enclosureLink)}
+                                                         audioLength={episode.audio_length}/>)
+                                            }
+                                        </ul>
+                                    </div>
+                            }
                         </div>
-
                 }
             </div>
         )
