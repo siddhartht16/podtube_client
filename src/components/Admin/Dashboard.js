@@ -14,8 +14,7 @@ export default class Dashboard extends Component {
     render() {
         return (
             <div>
-               <h2 className="text-center">Welcome To PodTube Admin</h2>
-                <h4>Statistics</h4>
+               <h3 className="mt-3">Welcome To PodTube Admin</h3>
                 <p>Users: </p>
                 <p>Categories: </p>
                 <p>Poscasts: </p>

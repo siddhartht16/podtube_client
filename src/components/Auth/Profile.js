@@ -31,6 +31,8 @@ export default class Profile extends Component {
     }
 
     getCommentForUser = () => {
+        //Way to find the actual userId of the loggedIn user
+        // Temp set it as 1 so work things
         let userId = this.state.userId !== null ? this.state.userId : 1;
         UserService.getCommentForUser(userId)
             .then(data => {

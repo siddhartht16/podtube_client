@@ -93,4 +93,25 @@ export default class AdminService {
             });
     };
 
+    static loginAdmin = (admincredentials) => {
+        return fetch('http://localhost:8080/admin/login', {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(admincredentials)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
+            });
+    };
+
+
+
 }

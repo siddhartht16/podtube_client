@@ -43,15 +43,15 @@ class App extends Component {
 
                                 <Route exact
                                        path="/categories"
-                                       render={() => <GenreList/>}
-                                />
+                                       render={() => <GenreList/>}/>
 
-                                <Route exact
-                                       path="/admin"
+                                <Route
+                                       path="/admin/dashboard"
                                        render={() => <Dashboard/>}/>
 
                                 <Route
-                                    path="/admin/login"
+                                    exact
+                                    path="/admin"
                                     render={() => <AdminLogin/>}/>
 
                                 <Route
