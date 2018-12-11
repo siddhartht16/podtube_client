@@ -6,6 +6,9 @@ import * as utils from "../common/utils";
 export default class Header extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            searchedPodcast: ''
+        }
     }
 
     logoutUser = () => {
@@ -14,12 +17,31 @@ export default class Header extends Component {
         console.log("User logged out");
     };
 
+    getSearchedPodcastName = (e) => {
+        this.setState({searchedPodcast: e.target.value});
+    };
+
     render() {
         return (
             <header className="App-header">
                 <div className="row">
                     <div className="col-md-10">
-                        <h2>{this.props.text}</h2>
+                        <div className="input-group mt-3">
+                            <input type="text"
+                                   className="search-podcast"
+                                   value={this.state.searchedPodcast}
+                                   placeholder="Search Podcasts"
+                                   onChange={this.getSearchedPodcastName}/>
+                            <span className="input-group-btn">
+                                 <Link to={`/search/${this.state.searchedPodcast}`}>
+                                <span className="fa fa-search search-icon"
+                                      role="button"
+                                      title="Search">
+                                </span>
+                                </Link>
+
+                            </span>
+                        </div>
                     </div>
                     <div className="col-md-2">
                         <Link

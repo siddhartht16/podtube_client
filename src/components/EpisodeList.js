@@ -10,6 +10,7 @@ import CommentWrapper from "./CommentWrapper";
 export default class EpisodeList extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             podcastId: this.props.podcastId, //.params.podcastId,
             episodeList: null,
@@ -151,21 +152,16 @@ export default class EpisodeList extends Component {
                             <ul>
                                 {this.state.episodeList.map(episode => (
                                     <Episode
-                                        id={episode.id}
+                                        episode={episode}
                                         podcastDetails={
                                             this.state.podcastDetails
                                         }
-                                        title={episode.title}
-                                        description={episode.description}
-                                        thumbnail={episode.thumbnail}
-                                        pubDate={episode.pubDate}
                                         PodcastImg={PodcastIcon}
                                         getEpisodeAudio={() =>
                                             this.getEpisodeAudio(
                                                 episode.enclosureLink
                                             )
                                         }
-                                        audioLength={episode.audio_length}
                                     />
                                 ))}
                             </ul>

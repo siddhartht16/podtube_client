@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 import BookmarkService from "../services/BookmarkService";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
 import Episode from "./Episode";
+import ReactPlayer from "react-player";
 
 export default class Bookmarks extends Component {
     constructor(props) {
         super(props);
         this.state = {
             bookmarks: null,
-            isLoggedOut: false
+            isLoggedOut: false,
+            episode: null,
+            episodeURL: ""
         };
     }
 
@@ -72,20 +75,23 @@ export default class Bookmarks extends Component {
                                     {this.state.bookmarks.map(episode => (
                                         <Episode
                                             id={episode.id}
-                                            title={episode.title}
-                                            description={episode.description}
-                                            thumbnail={episode.thumbnail}
-                                            pubDate={episode.pubDate}
+                                            episode={episode.episode}
                                             PodcastImg={PodcastIcon}
                                             getEpisodeAudio={() =>
                                                 this.getEpisodeAudio(
-                                                    episode.enclosureLink
+                                                    episode.episode
+                                                        .enclosureLink
                                                 )
                                             }
-                                            audioLength={episode.audio_length}
                                         />
                                     ))}
                                 </ul>
+                                <ReactPlayer
+                                    url={this.state.episodeURL}
+                                    className="react-player fixed-bottom"
+                                    controls
+                                    playbackRate={1}
+                                />
                             </div>
                         )}
                     </div>
@@ -93,4 +99,4 @@ export default class Bookmarks extends Component {
             </div>
         );
     }
-}
+} //Bookmarks..

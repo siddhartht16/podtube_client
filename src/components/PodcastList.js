@@ -39,6 +39,9 @@ export default class PodcastList extends Component {
                     <p className="mt-5">Loading...</p>
                 ) : (
                     <div>
+                        <h3 className="mt-3">
+                            Select a podcast to view episodes
+                        </h3>
                         <div className="input-group mt-3">
                             <input
                                 type="text"

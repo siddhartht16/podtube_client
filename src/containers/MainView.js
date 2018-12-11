@@ -87,6 +87,11 @@ export default class MainView extends Component {
         let result = null;
 
         switch (this.state.context) {
+            // Root
+            case appContexts.HOME_CONTEXT_CONST:
+                result = <CategoryList />;
+                break;
+
             // "/categories"
             case appContexts.CATEGORIES_CONTEXT_CONST:
                 result = <CategoryList />;

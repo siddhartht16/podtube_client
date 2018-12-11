@@ -6,7 +6,7 @@ import Podcast from "./Podcast";
 export default class PodcastSearchList extends Component {
     constructor(props) {
         super(props);
-        // let searchTerm = props.match.params.searchTerm;
+        console.log(props);
         let searchTerm = props.searchTerm;
         this.state = {
             searchTerm: searchTerm,

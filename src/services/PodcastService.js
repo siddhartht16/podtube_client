@@ -42,9 +42,8 @@ export default class PodcastService {
     };
 
     static searchPodcastList = search_term => {
-        return fetch("http://localhost:8080/api/search/" + search_term, {
+        return fetch("https://gpodder.net/search.json?q=" + search_term, {
             method: "GET",
-            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
             }

@@ -25,6 +25,9 @@ export default class Sidebar extends Component {
         let result = "";
 
         switch (this.state.appContext) {
+            case contexts.HOME_CONTEXT_CONST:
+                result = constants.CATEGORIES_LINK;
+                break;
             case contexts.CATEGORIES_CONTEXT_CONST:
                 result = constants.CATEGORIES_LINK;
                 break;
@@ -52,9 +55,7 @@ export default class Sidebar extends Component {
     } //getLinkForAppContext..
 
     isActiveLink(link) {
-        console.log("INput: " + link);
         const appContextLink = this.getLinkForAppContext(this.state.appContext);
-        console.log("appContextLink: " + appContextLink);
         console.log(appContextLink === link);
         return appContextLink === link;
     } //isActiveLink..

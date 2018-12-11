@@ -18,14 +18,13 @@ export default class BookmarkService {
             });
     };
 
-    static createUserBookmark = (bookmarkObj) => {
-        return fetch('http://localhost:8080/api/bookmarks', {
+    static createUserBookmark = (episode_id) => {
+        return fetch('http://localhost:8080/api/bookmarks/episode/'+episode_id, {
             method: 'POST',
             credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(bookmarkObj)
         })
             .then(response => {
                 if (response.ok) {
@@ -38,7 +37,7 @@ export default class BookmarkService {
     };
 
     static deleteUserBookmark = (bookmark_id) => {
-        return fetch('http://localhost:8080/api/bookmarks/' + bookmark_id, {
+        return fetch('http://localhost:8080/api/bookmarks/episode/'+bookmark_id, {
             method: 'DELETE',
             credentials: 'include',
             headers: {
