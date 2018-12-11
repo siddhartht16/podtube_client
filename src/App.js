@@ -1,120 +1,161 @@
-import React, {Component} from 'react';
-import GenreList from "./components/GenreList";
-import PodcastList from "./components/PodcastList";
-import './App.css';
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
-import EpisodeList from "./components/EpisodeList";
-import PodcastSearchList from "./components/PodcastSearchList";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
-import Profile from "./components/Auth/Profile";
-import Login from "./components/Auth/Login";
-import Register from "./components/Auth/Register";
-import Dashboard from "./components/Admin/Dashboard";
-import CategoryList from "./components/Admin/CategoryList";
-import AdminPodcastList from "./components/Admin/AdminPodcastList";
-import AdminPodcast from "./components/Admin/AdminPodcast";
-import AdminLogin from "./components/Admin/AdminLogin";
-import AdminPodcastDetail from "./components/Admin/AdminPodcastDetail";
-import Subscription from "./components/Subscription";
-import Logout from "./components/Auth/Logout";
-import Bookmarks from "./components/Bookmarks";
-import EditProfile from "./components/Auth/EditProfile";
+import React, { Component } from "react";
+import MainView from "./containers/MainView";
+import "./App.css";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminCategoryList from "./admin/AdminCategoryList";
+import AdminPodcastList from "./admin/AdminPodcastList";
+import AdminLogin from "./admin/AdminLogin";
+import AdminPodcastDetail from "./admin/AdminPodcastDetail";
+import Logout from "./auth/Logout";
+import * as contexts from "./common/contexts";
 
 class App extends Component {
-
     render() {
         const pb80 = {
-            paddingBottom: '80px'
+            paddingBottom: "80px"
         };
         return (
             <Router>
                 <div className="App">
-                    <div className="container-fluid">
-                        <div className="row">
-                            <div className="col-md-2 sidebar">
-                                <Sidebar/>
-                            </div>
-                            <main className="col-md-9 ml-sm-auto col-lg-10 px-4" style={pb80}>
-                                <Header/>
-                                <Route exact
-                                       path="/"
-                                       render={() => <GenreList/>}/>
+                    <Route exact path="/admin" render={() => <AdminLogin />} />
 
-                                <Route exact
-                                       path="/categories"
-                                       render={() => <GenreList/>}/>
+                    <Route
+                        path="/admin/dashboard"
+                        render={() => <AdminDashboard />}
+                    />
 
-                                <Route
-                                       path="/admin/dashboard"
-                                       render={() => <Dashboard/>}/>
+                    <Route
+                        path="/admin/category-list"
+                        render={() => <AdminCategoryList />}
+                    />
 
-                                <Route
-                                    exact
-                                    path="/admin"
-                                    render={() => <AdminLogin/>}/>
+                    <Route
+                        path="/admin/podcast-list"
+                        render={() => <AdminPodcastList />}
+                    />
 
-                                <Route
-                                    path="/admin/category-list"
-                                    render={() => <CategoryList/>}/>
+                    <Route
+                        path="/admin/categories/:id/podcasts"
+                        render={props => <AdminPodcastList {...props} />}
+                    />
 
-                                <Route
-                                    path="/admin/podcast-list"
-                                    render={() => <AdminPodcastList/>}/>
+                    <Route
+                        path="/admin/podcasts/:id/episodes"
+                        render={props => <AdminPodcastDetail {...props} />}
+                    />
 
-                                <Route
-                                    path="/admin/categories/:id/podcasts"
-                                    render={(props) => <AdminPodcastList {...props}/>}/>
+                    <Route path="/login" exact render={() => <Login />} />
 
-                                <Route
-                                    path="/admin/podcasts/:id/episodes"
-                                    render={(props) => <AdminPodcastDetail  {...props}/>}/>
+                    <Route path="/logout" exact render={() => <Logout />} />
 
-                                <Route path="/category/:id/podcasts"
-                                       render={(props) => <PodcastList {...props}/>}/>
+                    <Route path="/register" exact render={() => <Register />} />
 
-                                <Route path="/podcast/:podcastId/episodes"
-                                       render={(props) => <EpisodeList {...props}/>}/>
+                    <Route
+                        exact
+                        path="/"
+                        render={() => (
+                            <MainView context={contexts.HOME_CONTEXT_CONST} />
+                        )}
+                    />
 
-                                <Route path="/search/:searchTerm"
-                                       render={(props) => <PodcastSearchList {...props}/>}/>
+                    <Route
+                        exact
+                        path="/categories"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.CATEGORIES_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/subscriptions"
-                                       exact
-                                       render={() => <Subscription/>}/>
+                    <Route
+                        path="/category/:id/podcasts"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.CATEGORY_CONTEXT_CONST}
+                                subContext={contexts.PODCASTS_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/bookmarks"
-                                       exact
-                                       render={() => <Bookmarks/>}/>
+                    <Route
+                        path="/podcast/:podcastId/episodes"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.PODCAST_CONTEXT_CONST}
+                                subContext={contexts.EPISODES_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/profile"
-                                       exact
-                                       render={() => <Profile/>}/>
+                    <Route
+                        path="/search/:searchTerm"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.SEARCH_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/profile/:id"
-                                       render={(props) => <Profile {...props}/>}/>
+                    <Route
+                        path="/subscriptions"
+                        exact
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.SUBSCRIPTIONS_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/update/profile"
-                                       render={() => <EditProfile/>}/>
+                    <Route
+                        path="/bookmarks"
+                        exact
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.BOOKMARKS_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
+                    <Route
+                        path="/profile"
+                        exact
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.PROFILE_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/login"
-                                       exact
-                                       render={() => <Login/>}/>
+                    <Route
+                        path="/profile/:id"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.PROFILE_CONTEXT_CONST}
+                            />
+                        )}
+                    />
 
-                                <Route path="/logout"
-                                       exact
-                                       render={() => <Logout/>}/>
-
-                                <Route path="/register"
-                                       exact
-                                       render={() => <Register/>}/>
-
-                            </main>
-                            {/*<Footer/>*/}
-                        </div>
-                    </div>
+                    <Route
+                        path="/editProfile"
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.EDIT_PROFILE_CONTEXT_CONST}
+                            />
+                        )}
+                    />
                 </div>
             </Router>
         );

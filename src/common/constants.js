@@ -18,3 +18,12 @@ export const QP_SORT = "sort";
 // Query param values
 export const QP_SORT_RECENT_VALUE = "recent_first";
 export const QP_SORT_OLDEST_VALUE = "oldest_first";
+
+//Sidebar link constants
+export const CATEGORIES_LINK = "categories";
+export const PODCASTS_LINK = "podcasts";
+export const SUBSCRIPTIONS_LINK = "subscriptions";
+export const BOOKMARKS_LINK = "bookmarks";
+export const HISTORY_LINK = "history";
+export const PROFILE_LINK = "profile";
+export const PLAYLIST_LINK = "playlists";

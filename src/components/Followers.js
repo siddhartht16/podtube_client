@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const Followers = ({count}) =>
+const Followers = ({ count }) => (
     <div>
         <p id="profile-followers">{count}</p>
-    </div>;
+    </div>
+);
 
-
-export default Followers
+export default Followers;
