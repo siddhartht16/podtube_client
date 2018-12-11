@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import PodcastService from "../services/PodcastService";
 import Podcast from "./Podcast";
 import "./PodcastList.style.css";
-import { Link } from "react-router-dom";
 
 export default class PodcastList extends Component {
     constructor(props) {
@@ -24,8 +23,8 @@ export default class PodcastList extends Component {
         if (this.state.categoryId !== null) {
             PodcastService.findPodcastForCategory(this.state.categoryId).then(
                 data => {
-                    // console.log("Podcast data");
-                    // console.log(data);
+                    // utils.logToConsole("Podcast data");
+                    // utils.logToConsole(data);
                     this.setState({ podcasts: data });
                 }
             );
@@ -46,13 +45,16 @@ export default class PodcastList extends Component {
                             {this.state.podcasts &&
                             this.state.podcasts.length ? (
                                 <ul>
-                                    {this.state.podcasts.map(podcast => (
-                                        <Podcast
-                                            podcast={podcast}
-                                            subComp={false}
-                                            genreId={this.state.genreId}
-                                        />
-                                    ))}
+                                    {this.state.podcasts.map(
+                                        (podcast, index) => (
+                                            <Podcast
+                                                key={index}
+                                                podcast={podcast}
+                                                subComp={false}
+                                                genreId={this.state.genreId}
+                                            />
+                                        )
+                                    )}
                                 </ul>
                             ) : (
                                 <i className="mt-3 no-data">

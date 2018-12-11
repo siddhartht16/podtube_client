@@ -6,11 +6,12 @@ import Episode from "./Episode";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
 import ReactPlayer from "react-player";
 import CommentWrapper from "./CommentWrapper";
+import * as utils from "../common/utils";
 
 export default class EpisodeList extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        utils.logToConsole(props);
         this.state = {
             podcastId: this.props.podcastId, //.params.podcastId,
             episodeList: null,
@@ -24,7 +25,7 @@ export default class EpisodeList extends Component {
     componentDidMount() {
         PodcastService.findEpisodesForPodcast(this.state.podcastId).then(
             data => {
-                console.log(data);
+                utils.logToConsole(data);
                 this.setState({
                     episodeList: data,
                     podcastDetails: data.length !== 0 ? data[0].podcast : null
@@ -150,20 +151,23 @@ export default class EpisodeList extends Component {
                                 </p>
                             </div>
                             <ul>
-                                {this.state.episodeList.map(episode => (
-                                    <Episode
-                                        episode={episode}
-                                        podcastDetails={
-                                            this.state.podcastDetails
-                                        }
-                                        PodcastImg={PodcastIcon}
-                                        getEpisodeAudio={() =>
-                                            this.getEpisodeAudio(
-                                                episode.enclosureLink
-                                            )
-                                        }
-                                    />
-                                ))}
+                                {this.state.episodeList.map(
+                                    (episode, index) => (
+                                        <Episode
+                                            key={index}
+                                            episode={episode}
+                                            podcastDetails={
+                                                this.state.podcastDetails
+                                            }
+                                            PodcastImg={PodcastIcon}
+                                            getEpisodeAudio={() =>
+                                                this.getEpisodeAudio(
+                                                    episode.enclosureLink
+                                                )
+                                            }
+                                        />
+                                    )
+                                )}
                             </ul>
                         </div>
                         <ReactPlayer

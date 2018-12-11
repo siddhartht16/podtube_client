@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "./AdminDashboard.style.css";
 import AdminService from "../services/AdminService";
+import * as utils from "../common/utils";
 
 export default class AdminDashboard extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ export default class AdminDashboard extends Component {
 
     componentDidMount() {
         AdminService.getApplicationStats().then(stats => {
-            // console.log(stats);
+            utils.logToConsole(stats);
             this.setState({
                 appStats: stats
             });

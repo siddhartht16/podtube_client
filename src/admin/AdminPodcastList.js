@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AdminService from "../services/AdminService";
 import AdminPodcast from "./AdminPodcast";
+import * as utils from "../common/utils";
 
 export default class AdminPodcastList extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export default class AdminPodcastList extends Component {
         if (this.state.categoryId !== null) {
             AdminService.getPodcastForCategory(this.state.categoryId).then(
                 podcasts => {
-                    console.log(podcasts);
+                    utils.logToConsole(podcasts);
                     this.setState({ podcasts: podcasts });
                 }
             );

@@ -3,6 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./PodcastList.style.css";
 import SubscriptionService from "../services/SubscriptionService";
 import PodcastIcon2 from "../assests/podcast-icon.png";
+import * as utils from "../common/utils";
 
 export default class Podcast extends Component {
     constructor(props) {
@@ -25,7 +26,7 @@ export default class Podcast extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
+                utils.logToConsole(err);
             });
     };
 
@@ -40,9 +41,15 @@ export default class Podcast extends Component {
                 }
             })
             .catch(err => {
-                console.log(err);
+                utils.logToConsole(err);
             });
     };
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (nextProps.podcast !== this.state.podcast) {
+            this.setState({ podcast: nextProps.podcast });
+        }
+    }
 
     render() {
         const error = this.state.error;
@@ -51,7 +58,9 @@ export default class Podcast extends Component {
         }
         return (
             <div>
-                <li key={this.state.podcast.id}>
+                <li
+                // key={this.state.podcast.id}
+                >
                     <Link to={`/podcast/${this.state.podcast.id}/episodes`}>
                         <img
                             src={

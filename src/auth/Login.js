@@ -35,7 +35,7 @@ export default class Login extends Component {
     };
 
     getUserId = () => {
-        console.log(utils.getUserIdFromLocal());
+        utils.logToConsole(utils.getUserIdFromLocal());
     };
 
     loginUser = () => {

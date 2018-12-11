@@ -15,14 +15,22 @@ export default class Header extends Component {
     logoutUser = () => {
         UserService.logoutUser();
         utils.clearUserDataFromLocal();
-        console.log("User logged out");
+        utils.logToConsole("User logged out");
     };
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        utils.logToConsole("Header props, ", nextProps);
+        if (this.state.searchedPodcast !== nextProps.searchTerm) {
+            this.setState({ searchedPodcast: nextProps.searchTerm });
+        }
+    }
 
     getSearchedPodcastName = e => {
         this.setState({ searchedPodcast: e.target.value });
     };
 
     render() {
+        utils.logToConsole("Header render", this.state.searchedPodcast);
         return (
             <header className="App-header">
                 <div className="row">

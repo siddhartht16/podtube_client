@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./EpisodeList.style.css";
 import BookmarkService from "../services/BookmarkService";
+import * as utils from "../common/utils";
 
 export default class Episode extends Component {
     constructor(props) {
@@ -55,7 +56,7 @@ export default class Episode extends Component {
         window.location.reload();
         BookmarkService.deleteUserBookmark(this.state.episode.id).then(
             episode => {
-                console.log(episode);
+                utils.logToConsole(episode);
                 if (episode === 401) {
                     this.setState({
                         error: true
@@ -76,20 +77,6 @@ export default class Episode extends Component {
             <div className="episode-wrapper mb-2">
                 <div className="row">
                     <div className="col-md-2">
-                        {this.props.thumbnail !== "" ? (
-                            <img
-                                src={this.props.thumbnail}
-                                className="episode-thumbnail"
-                            />
-                        ) : (
-                            <img
-                                src={this.props.PodcastImg}
-                                className="episode-thumbnail"
-                            />
-                        )}
-                        <p className="episode-pub-date">
-                            {this.formatEpisodeDate(this.props.pubDate)}
-                        </p>
                         {this.state.episode.thumbnail !== "" ? (
                             <img
                                 src={this.state.episode.thumbnail}
@@ -118,19 +105,6 @@ export default class Episode extends Component {
                             </div>
                             <div className="col-md-1">
                                 {this.state.episode.bookmarked === false ? (
-                                    <span
-                                        className="fa fa-star episode-bookmark"
-                                        onClick={this.bookmarkEpisode}
-                                        title="Bookmark Episode"
-                                    />
-                                ) : (
-                                    <span
-                                        className="fa fa-star episode-bookmark yellow"
-                                        onClick={this.unMarkEpisode}
-                                        title="Unmark Episode"
-                                    />
-                                )}
-                                {this.state.isBookmarked === false ? (
                                     <span
                                         className="fa fa-star episode-bookmark"
                                         onClick={this.bookmarkEpisode}

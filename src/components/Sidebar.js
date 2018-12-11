@@ -50,13 +50,12 @@ export default class Sidebar extends Component {
                 break;
         }
 
-        // console.log(result);
+        // utils.logToConsole(result);
         return result;
     } //getLinkForAppContext..
 
     isActiveLink(link) {
         const appContextLink = this.getLinkForAppContext(this.state.appContext);
-        console.log(appContextLink === link);
         return appContextLink === link;
     } //isActiveLink..
 

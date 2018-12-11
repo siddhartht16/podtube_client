@@ -12,6 +12,7 @@ import Bookmarks from "../components/Bookmarks";
 import Profile from "../auth/Profile";
 import EditProfile from "../auth/EditProfile";
 import CategoryList from "../components/CategoryList";
+import * as utils from "../common/utils";
 
 export default class MainView extends Component {
     constructor(props) {
@@ -82,6 +83,22 @@ export default class MainView extends Component {
     }
 
     componentDidMount() {}
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        utils.logToConsole("MainView componentWillReceiveProps", nextProps);
+        if (
+            this.state.context === appContexts.SEARCH_CONTEXT_CONST &&
+            this.state.context === nextProps.context &&
+            !_.isEmpty(nextProps.match) &&
+            !_.isEmpty(nextProps.match.params) &&
+            !_.isEmpty(nextProps.match.params.searchTerm)
+        ) {
+            const searchTerm = !_.isEmpty(nextProps.match.params.searchTerm)
+                ? nextProps.match.params.searchTerm
+                : this.state.contextParam;
+            this.setState({ contextParam: searchTerm });
+        }
+    }
 
     getMainElement() {
         let result = null;

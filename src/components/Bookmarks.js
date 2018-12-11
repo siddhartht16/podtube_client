@@ -4,6 +4,7 @@ import BookmarkService from "../services/BookmarkService";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
 import Episode from "./Episode";
 import ReactPlayer from "react-player";
+import * as utils from "../common/utils";
 
 export default class Bookmarks extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ export default class Bookmarks extends Component {
 
     componentDidMount() {
         BookmarkService.getAllUserBookmarks().then(res => {
-            console.log(res);
+            utils.logToConsole(res);
             if (res === 401) {
                 this.setState({
                     isLoggedOut: true

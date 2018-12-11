@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AdminService from "../services/AdminService";
 import AdminEpisode from "./AdminEpisode";
+import * as utils from "../common/utils";
 
 export default class AdminPodcastDetail extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class AdminPodcastDetail extends Component {
     componentDidMount() {
         AdminService.getEpisodesForPodcast(this.state.podcastId).then(
             episodes => {
-                console.log(episodes);
+                utils.logToConsole(episodes);
                 this.setState({ episodes: episodes });
             }
         );

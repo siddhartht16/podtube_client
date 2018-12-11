@@ -25,7 +25,7 @@ export default class Profile extends Component {
 
     componentDidMount() {
         UserService.fetchProfileForUser().then(data => {
-            console.log(data);
+            utils.logToConsole(data);
             if (data === 401) {
                 this.setState({ isLoggedOut: true });
             } else {

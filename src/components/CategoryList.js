@@ -30,8 +30,9 @@ export default class CategoryList extends Component {
                 ) : (
                     <div className="genre-list">
                         <ul>
-                            {this.state.categories.map(genre => (
+                            {this.state.categories.map((genre, index) => (
                                 <Category
+                                    key={index}
                                     id={genre.id}
                                     fullTitle={genre.title}
                                     title={this.shortenTitle(genre.title)}

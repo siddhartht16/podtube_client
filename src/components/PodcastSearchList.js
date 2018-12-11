@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PodcastService from "../services/PodcastService";
 import Podcast from "./Podcast";
+import * as utils from "../common/utils";
 
 export default class PodcastSearchList extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
+        // utils.logToConsole(props);
         let searchTerm = props.searchTerm;
+        utils.logToConsole("PodcastSearchList constructor", searchTerm);
         this.state = {
             searchTerm: searchTerm,
             podcastList: null,
@@ -23,11 +25,18 @@ export default class PodcastSearchList extends Component {
         if (this.state.searchTerm.length > 0) {
             PodcastService.searchPodcastList(this.state.searchTerm).then(
                 data => {
-                    console.log(data);
+                    utils.logToConsole(data);
                     if (data === 500 || data === 400 || data.length === 0) {
                         this.setState({ error: true });
                     } else {
-                        this.setState({ podcastList: data });
+                        utils.logToConsole("setting new data");
+                        this.setState(
+                            { podcastList: data } //,
+                            //     () => {
+                            //     utils.logToConsole("Force rerender");
+                            //     this.forceUpdate();
+                            // }
+                        );
                     }
                 }
             );
@@ -38,14 +47,18 @@ export default class PodcastSearchList extends Component {
 
     componentWillReceiveProps(nextProps, nextContext) {
         const newSearchTerm = nextProps.searchTerm;
+        utils.logToConsole("new search term", newSearchTerm);
         if (this.state.searchTerm !== newSearchTerm) {
-            console.log("setting new state");
-            this.setState({ searchTerm: newSearchTerm });
-            this.makeSearchRequest();
+            utils.logToConsole("setting new state");
+            this.setState({ searchTerm: newSearchTerm }, () => {
+                utils.logToConsole("Sending new request for, ", newSearchTerm);
+                this.makeSearchRequest();
+            });
         }
     }
 
     render() {
+        utils.logToConsole("Render.....", this.state.podcastList);
         return (
             <div>
                 {this.state.podcastList === null ? (
@@ -58,8 +71,12 @@ export default class PodcastSearchList extends Component {
                             Select a podcast to view episodes
                         </h3>
                         <ul>
-                            {this.state.podcastList.map(podcast => (
-                                <Podcast subComp={false} podcast={podcast} />
+                            {this.state.podcastList.map((podcast, index) => (
+                                <Podcast
+                                    key={index}
+                                    subComp={false}
+                                    podcast={podcast}
+                                />
                             ))}
                         </ul>
                     </div>
