@@ -1,8 +1,10 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import PodcastIcon from "../assests/podcast-icon.png";
 import * as contexts from "../common/contexts";
 import * as constants from "../common/constants";
+import UserService from "../services/UserService";
+import * as utils from "../common/utils";
 
 export default class Sidebar extends Component {
     constructor(props) {
@@ -11,14 +13,17 @@ export default class Sidebar extends Component {
         const appContext = props.appContext ? props.appContext : "";
         this.state = {
             appContext: appContext,
-            active: ""
+            active: "",
+            isLoggedIn: false,
         };
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        this.checkIfUserIsLoggedIn();
+    }
 
     changeActiveClassForLink = linkName => {
-        this.setState({ active: linkName });
+        this.setState({active: linkName});
     };
 
     getLinkForAppContext() {
@@ -60,12 +65,36 @@ export default class Sidebar extends Component {
         return appContextLink === link;
     } //isActiveLink..
 
+    checkIfUserIsLoggedIn = () => {
+        if (localStorage.getItem("user_id") !== null) {
+            this.setState({
+                isLoggedIn: true
+            })
+        }
+    };
+
+    logoutUser = () => {
+        UserService.logoutUser();
+        utils.clearUserDataFromLocal();
+        console.log("User logged out");
+    };
+
+    // componentWillReceiveProps(nextProps, nextContext) {
+    //     utils.logToConsole("pw", nextProps.mediaUrl);
+    //     if (this.state.mediaUrl !== nextProps.mediaUrl) {
+    //         this.setState({
+    //             mediaUrl: nextProps.mediaUrl,
+    //             episode: nextProps.episode
+    //         });
+    //     }
+    // }
+
     render() {
         return (
             <div>
                 <h3 className="mb-5 app-name">
                     <Link to="/">
-                        <img src={PodcastIcon} className="home-logo" />
+                        <img src={PodcastIcon} className="home-logo"/>
                         PodTube
                     </Link>
                 </h3>
@@ -114,7 +143,7 @@ export default class Sidebar extends Component {
                             }
                             // onClick={() => this.changeActiveClassForLink('bookmarks')}
                         >
-                            <i className="fa fa-star icon" aria-hidden="true" />
+                            <i className="fa fa-star icon" aria-hidden="true"/>
                             Bookmarks
                         </Link>
                     </li>
@@ -147,9 +176,22 @@ export default class Sidebar extends Component {
                             }
                             // onClick={() => this.changeActiveClassForLink('profile')}
                         >
-                            <i className="fa fa-user icon" aria-hidden="true" />
+                            <i className="fa fa-user icon" aria-hidden="true"/>
                             Profile
                         </Link>
+                    </li>
+                    <li>
+                        {
+                            this.state.isLoggedIn === true ?
+                                <Link className="logout" onClick={this.logoutUser} to="/login">
+                                    <i className="fa fa-sign-out icon" aria-hidden="true"/>
+                                    Logout
+                                </Link> :
+                                <Link className="logout" to="/login">
+                                    <i className="fa fa-sign-in icon" aria-hidden="true"/>
+                                    Login
+                                </Link>
+                        }
                     </li>
                 </ul>
             </div>

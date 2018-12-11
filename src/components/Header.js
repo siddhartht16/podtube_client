@@ -12,12 +12,6 @@ export default class Header extends Component {
         };
     }
 
-    logoutUser = () => {
-        UserService.logoutUser();
-        utils.clearUserDataFromLocal();
-        console.log("User logged out");
-    };
-
     getSearchedPodcastName = e => {
         this.setState({ searchedPodcast: e.target.value });
     };
@@ -26,7 +20,7 @@ export default class Header extends Component {
         return (
             <header className="App-header">
                 <div className="row">
-                    <div className="col-md-10">
+                    <div className="col-md-12">
                         <div className="input-group mt-3">
                             <input
                                 type="text"
@@ -48,21 +42,7 @@ export default class Header extends Component {
                             </span>
                         </div>
                     </div>
-                    <div className="col-md-2">
-                        <Link
-                            className="logout"
-                            onClick={this.logoutUser}
-                            to="/categories"
-                        >
-                            Logout
-                        </Link>
-                        <Link className="logout" to="/login">
-                            Login
-                        </Link>
-                        <Link to="/register" className="logout">
-                            Register
-                        </Link>
-                    </div>
+
                 </div>
             </header>
         );
