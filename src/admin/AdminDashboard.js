@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import "./AdminDashboard.style.css";
 import AdminService from "../services/AdminService";
 
@@ -9,7 +9,7 @@ export default class AdminDashboard extends Component {
 
         this.state = {
             appStats: null,
-            isLoggedIn: false,
+            isLoggedIn: false
         };
     }
 
@@ -33,81 +33,100 @@ export default class AdminDashboard extends Component {
             <div className="container-fluid mt-5">
                 <div className="admin-dashboard-wrapper">
                     <h3 className="mt-3">PodTube Admin</h3>
-                    {this.state.isLoggedIn === false ?
-                        <p className="help-text text-white mt-3">Please <Link to="/admin">Log In</Link> to see the dashboard
-                            bookmarks</p>
-                        : <div>
-                            {this.state.appStats === null ? <p>Loading...</p> :
+                    {this.state.isLoggedIn === false ? (
+                        <p className="help-text text-white mt-3">
+                            Please <Link to="/admin">Log In</Link> to see the
+                            dashboard bookmarks
+                        </p>
+                    ) : (
+                        <div>
+                            {this.state.appStats === null ? (
+                                <p>Loading...</p>
+                            ) : (
                                 <div className="row mt-3">
                                     <div className="col-md-3">
                                         <div className="admin-card">
                                             <p>
-                                                <span className="fa fa-user icon"/>
+                                                <span className="fa fa-user icon" />
                                             </p>
                                             <p>
                                                 Users:{" "}
                                                 <span className="count">
-                                        {this.state.appStats.noOfTotalUsers}
-                                    </span>
+                                                    {
+                                                        this.state.appStats
+                                                            .noOfTotalUsers
+                                                    }
+                                                </span>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="col-md-3">
                                         <div className="admin-card">
                                             <p>
-                                                <span className="fa fa-list icon"/>
+                                                <span className="fa fa-list icon" />
                                             </p>
                                             <p>
                                                 Categories:{" "}
                                                 <span className="count">
-                                        {this.state.appStats.noOfCategories}
-                                    </span>
+                                                    {
+                                                        this.state.appStats
+                                                            .noOfCategories
+                                                    }
+                                                </span>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="col-md-3">
                                         <div className="admin-card">
                                             <p>
-                                                <span className="fa fa-podcast icon"/>
+                                                <span className="fa fa-podcast icon" />
                                             </p>
                                             <p>
                                                 Podcasts:{" "}
                                                 <span className="count">
-                                        {this.state.appStats.noOfPodcasts}
-                                    </span>
+                                                    {
+                                                        this.state.appStats
+                                                            .noOfPodcasts
+                                                    }
+                                                </span>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="col-md-3">
                                         <div className="admin-card">
                                             <p>
-                                                <span className="fa fa-tv icon"/>
+                                                <span className="fa fa-tv icon" />
                                             </p>
                                             <p>
                                                 Episodes:{" "}
                                                 <span className="count">
-                                        {this.state.appStats.noOfEpisodes}
-                                    </span>
+                                                    {
+                                                        this.state.appStats
+                                                            .noOfEpisodes
+                                                    }
+                                                </span>
                                             </p>
                                         </div>
                                     </div>
                                     <div className="col-md-12">
-                                        <br/>
+                                        <br />
                                         <p>
                                             <Link to="/admin/category-list">
                                                 Categories
                                             </Link>
                                         </p>
                                         <p>
-                                            <Link to="/admin/podcast-list">Podcasts</Link>
+                                            <Link to="/admin/podcast-list">
+                                                Podcasts
+                                            </Link>
                                         </p>
                                     </div>
                                 </div>
-                            }
+                            )}
                         </div>
-                    }
+                    )}
                 </div>
             </div>
-        )
+        );
     }
 }

@@ -1,6 +1,6 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import UserService from "../services/UserService";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default class EditProfile extends Component {
     constructor(props) {
@@ -20,59 +20,60 @@ export default class EditProfile extends Component {
     componentDidMount() {
         UserService.fetchProfileForUser().then(data => {
             if (data === 401) {
-                this.setState({isLoggedOut: true});
+                this.setState({ isLoggedOut: true });
             } else {
-                this.setState({
-                    userProfile: data,
-                }, ()=>{
-                   this.setState({
-                       password: this.state.userProfile.user.password,
-                       firstname: this.state.userProfile.user.firstname,
-                       lastname: this.state.userProfile.user.lastname,
-                       email: this.state.userProfile.user.email,
-                   })
-                });
+                this.setState(
+                    {
+                        userProfile: data
+                    },
+                    () => {
+                        this.setState({
+                            password: this.state.userProfile.user.password,
+                            firstname: this.state.userProfile.user.firstname,
+                            lastname: this.state.userProfile.user.lastname,
+                            email: this.state.userProfile.user.email
+                        });
+                    }
+                );
             }
         });
     }
 
     onChangePassword = e => {
         this.setState({
-            password: e.target.value,
+            password: e.target.value
         });
     };
 
     onChangeEmail = e => {
         this.setState({
-            email: e.target.value,
+            email: e.target.value
         });
     };
 
     onChangeFirstName = e => {
         this.setState({
-            firstname: e.target.value,
+            firstname: e.target.value
         });
     };
 
     onChangeLastName = e => {
         this.setState({
-            lastname: e.target.value,
+            lastname: e.target.value
         });
     };
 
     onUpdateUserProfile = () => {
         let userObj = {
-            'password': this.state.password,
-            'firstname': this.state.firstname,
-            'lastname': this.state.lastname,
-            'email': this.state.email,
+            password: this.state.password,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
+            email: this.state.email
         };
-        UserService.updateUserProfile(userObj)
-            .then(data => {
-                window.location.reload();
-            })
+        UserService.updateUserProfile(userObj).then(data => {
+            window.location.reload();
+        });
     };
-
 
     render() {
         return (
@@ -95,7 +96,10 @@ export default class EditProfile extends Component {
                                                 <input
                                                     id="profile-username"
                                                     readOnly
-                                                    value={this.state.userProfile.user.username}
+                                                    value={
+                                                        this.state.userProfile
+                                                            .user.username
+                                                    }
                                                     className="form-control"
                                                 />
                                             </div>
@@ -107,7 +111,9 @@ export default class EditProfile extends Component {
                                                 <input
                                                     id="profile-password"
                                                     value={this.state.password}
-                                                    onChange={this.onChangePassword}
+                                                    onChange={
+                                                        this.onChangePassword
+                                                    }
                                                     className="form-control"
                                                 />
                                             </div>
@@ -119,10 +125,10 @@ export default class EditProfile extends Component {
                                                 <input
                                                     id="profile-firstname"
                                                     className="form-control"
-                                                    onChange={this.onChangeFirstName}
-                                                    value={
-                                                        this.state.firstname
+                                                    onChange={
+                                                        this.onChangeFirstName
                                                     }
+                                                    value={this.state.firstname}
                                                 />
                                             </div>
 
@@ -133,7 +139,9 @@ export default class EditProfile extends Component {
                                                 <input
                                                     id="profile-lastname"
                                                     value={this.state.lastname}
-                                                    onChange={this.onChangeLastName}
+                                                    onChange={
+                                                        this.onChangeLastName
+                                                    }
                                                     className="form-control"
                                                 />
                                             </div>
@@ -145,17 +153,20 @@ export default class EditProfile extends Component {
                                                 <input
                                                     id="profile-email"
                                                     className="form-control"
-                                                    onChange={this.onChangeEmail}
-                                                    value={
-                                                        this.state.email
+                                                    onChange={
+                                                        this.onChangeEmail
                                                     }
+                                                    value={this.state.email}
                                                 />
                                             </div>
                                             <div className="mt-4">
                                                 <button
-                                                    onClick={this.onUpdateUserProfile}
+                                                    onClick={
+                                                        this.onUpdateUserProfile
+                                                    }
                                                     className="btn btn__cta"
-                                                    type="button">
+                                                    type="button"
+                                                >
                                                     Save profile
                                                 </button>
                                             </div>

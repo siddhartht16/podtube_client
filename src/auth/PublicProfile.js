@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserService from "../services/UserService";
-import {Redirect, Link} from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import Followers from "../components/Followers";
 import Following from "../components/Following";
@@ -19,7 +19,7 @@ export default class PublicProfile extends Component {
             isLoggedOut: false,
             comments: null,
             error: false,
-            follow: '',
+            follow: "",
             loggedInUserId: loggedInUserId
         };
     }
@@ -27,60 +27,75 @@ export default class PublicProfile extends Component {
     componentDidMount() {
         if (this.state.userId !== null) {
             console.log("Parameter in URL : " + this.state.userId);
-            UserService.fetchPublicProfileForUser(this.state.userId).then(data => {
-                console.log(data);
-                if (data === 401) {
-                    this.setState({isLoggedOut: true});
-                } else {
-                    this.setState({userProfile: data});
+            UserService.fetchPublicProfileForUser(this.state.userId).then(
+                data => {
+                    console.log(data);
+                    if (data === 401) {
+                        this.setState({ isLoggedOut: true });
+                    } else {
+                        this.setState({ userProfile: data });
+                    }
                 }
-            });
+            );
         }
     }
 
     onFollowUserHandler = () => {
-        FollowService.followUser(this.state.userId)
-            .then(data => {
-                console.log(data);
-                this.setState({userProfile: data, follow: 'true'});
-            })
+        FollowService.followUser(this.state.userId).then(data => {
+            console.log(data);
+            this.setState({ userProfile: data, follow: "true" });
+        });
     };
 
     onUnfollowUserHandler = () => {
-        FollowService.unFollowUser(this.state.userId)
-            .then(data => {
-                console.log(data);
-                this.setState({userProfile: data, follow: 'false'});
-            })
+        FollowService.unFollowUser(this.state.userId).then(data => {
+            console.log(data);
+            this.setState({ userProfile: data, follow: "false" });
+        });
     };
 
     formatCommentDate = date => {
         var newDate = new Date(date);
-        let formatedDate = newDate.getMonth() + 1 + "/" + newDate.getDate() + "/" + newDate.getFullYear();
+        let formatedDate =
+            newDate.getMonth() +
+            1 +
+            "/" +
+            newDate.getDate() +
+            "/" +
+            newDate.getFullYear();
         return formatedDate;
     };
 
     render() {
         if (this.state.loggedInUserId === this.state.userId) {
-            return <Redirect to="/profile"/>
+            return <Redirect to="/profile" />;
         }
         return (
             <div>
                 {this.state.isLoggedOut === false ? (
                     <div className="profile-wrapper">
                         <h4 className="profile-header">Account Overview</h4>
-                        {this.state.userProfile === null ? <i>Loading...</i>
-                            :
+                        {this.state.userProfile === null ? (
+                            <i>Loading...</i>
+                        ) : (
                             <div className="row mt-3">
                                 <div className="col-md-12">
-                                    {this.state.follow === 'true' ? (
-                                        <div className="alert alert-success" role="alert">
-                                            Sucessfully Followed {this.state.userProfile.username}.
+                                    {this.state.follow === "true" ? (
+                                        <div
+                                            className="alert alert-success"
+                                            role="alert"
+                                        >
+                                            Sucessfully Followed{" "}
+                                            {this.state.userProfile.username}.
                                         </div>
                                     ) : null}
-                                    {this.state.follow === 'false' ? (
-                                        <div className="alert alert-success" role="alert">
-                                            Sucessfully Unfollowed {this.state.userProfile.username}.
+                                    {this.state.follow === "false" ? (
+                                        <div
+                                            className="alert alert-success"
+                                            role="alert"
+                                        >
+                                            Sucessfully Unfollowed{" "}
+                                            {this.state.userProfile.username}.
                                         </div>
                                     ) : null}
                                     <div className="profile-body">
@@ -91,7 +106,10 @@ export default class PublicProfile extends Component {
                                                     Username
                                                 </label>
                                                 <p id="profile-username">
-                                                    {this.state.userProfile.username}
+                                                    {
+                                                        this.state.userProfile
+                                                            .username
+                                                    }
                                                 </p>
                                             </div>
 
@@ -100,7 +118,10 @@ export default class PublicProfile extends Component {
                                                     First name
                                                 </label>
                                                 <p id="profile-firstname">
-                                                    {this.state.userProfile.firstname ? (this.state.userProfile.firstname
+                                                    {this.state.userProfile
+                                                        .firstname ? (
+                                                        this.state.userProfile
+                                                            .firstname
                                                     ) : (
                                                         <span>---</span>
                                                     )}
@@ -112,55 +133,88 @@ export default class PublicProfile extends Component {
                                                     Last name
                                                 </label>
                                                 <p id="profile-lastname">
-                                                    {this.state.userProfile.lastname ? (
-                                                        this.state.userProfile.lastname
+                                                    {this.state.userProfile
+                                                        .lastname ? (
+                                                        this.state.userProfile
+                                                            .lastname
                                                     ) : (
                                                         <span>---</span>
                                                     )}
                                                 </p>
                                             </div>
-                                            <div>{
-                                                this.state.userProfile.followed === true ?
+                                            <div>
+                                                {this.state.userProfile
+                                                    .followed === true ? (
                                                     <button
                                                         className="btn btn__cta"
-                                                        onClick={this.onUnfollowUserHandler}
-                                                        type="button">
+                                                        onClick={
+                                                            this
+                                                                .onUnfollowUserHandler
+                                                        }
+                                                        type="button"
+                                                    >
                                                         Unfollow &nbsp;
-                                                        {this.state.userProfile.username}
-                                                    </button> :
+                                                        {
+                                                            this.state
+                                                                .userProfile
+                                                                .username
+                                                        }
+                                                    </button>
+                                                ) : (
                                                     <button
                                                         className="btn btn__cta"
-                                                        onClick={this.onFollowUserHandler}
-                                                        type="button">
+                                                        onClick={
+                                                            this
+                                                                .onFollowUserHandler
+                                                        }
+                                                        type="button"
+                                                    >
                                                         Follow &nbsp;
-                                                        {this.state.userProfile.username}
+                                                        {
+                                                            this.state
+                                                                .userProfile
+                                                                .username
+                                                        }
                                                     </button>
-                                            }
-
+                                                )}
                                             </div>
                                         </form>
                                     </div>
                                 </div>
                                 <div className="col-md-12 mt-3">
                                     <div className="profile-body">
-                                        <p className="text-green">Subscribed Podcasts</p>
+                                        <p className="text-green">
+                                            Subscribed Podcasts
+                                        </p>
                                         <div className="form-group">
-                                            {
-                                                this.state.userProfile.subscribedPodcasts.length === 0 ?
-                                                    <span className="help-text">No subscribed podcasts</span> :
-                                                    <ul>
-                                                        {
-                                                            this.state.userProfile.subscribedPodcasts.map((sub, index) =>
-                                                                <li key={index}>
-                                                                    <p><Link className="text-dark"
-                                                                        to={`/podcast/${sub.id}/episodes`}>{sub.title}
+                                            {this.state.userProfile
+                                                .subscribedPodcasts.length ===
+                                            0 ? (
+                                                <span className="help-text">
+                                                    No subscribed podcasts
+                                                </span>
+                                            ) : (
+                                                <ul>
+                                                    {this.state.userProfile.subscribedPodcasts.map(
+                                                        (sub, index) => (
+                                                            <li key={index}>
+                                                                <p>
+                                                                    <Link
+                                                                        className="text-dark"
+                                                                        to={`/podcast/${
+                                                                            sub.id
+                                                                        }/episodes`}
+                                                                    >
+                                                                        {
+                                                                            sub.title
+                                                                        }
                                                                     </Link>
-                                                                    </p>
-                                                                </li>
-                                                            )
-                                                        }
-                                                    </ul>
-                                            }
+                                                                </p>
+                                                            </li>
+                                                        )
+                                                    )}
+                                                </ul>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -211,7 +265,7 @@ export default class PublicProfile extends Component {
                                 {/*</div>*/}
                                 {/*</div>*/}
                             </div>
-                        }
+                        )}
                     </div>
                 ) : (
                     <div>

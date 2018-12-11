@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserService from "../services/UserService";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import Followers from "../components/Followers";
 import Following from "../components/Following";
@@ -27,19 +27,24 @@ export default class Profile extends Component {
         UserService.fetchProfileForUser().then(data => {
             console.log(data);
             if (data === 401) {
-                this.setState({isLoggedOut: true});
+                this.setState({ isLoggedOut: true });
             } else {
-                this.setState({userProfile: data});
+                this.setState({ userProfile: data });
             }
         });
     }
 
     formatCommentDate = date => {
         var newDate = new Date(date);
-        let formatedDate = newDate.getMonth() + 1 + "/" + newDate.getDate() + "/" + newDate.getFullYear();
+        let formatedDate =
+            newDate.getMonth() +
+            1 +
+            "/" +
+            newDate.getDate() +
+            "/" +
+            newDate.getFullYear();
         return formatedDate;
     };
-
 
     render() {
         return (
@@ -61,7 +66,8 @@ export default class Profile extends Component {
                                                 </label>
                                                 <p id="profile-username">
                                                     {
-                                                        this.state.userProfile.user.username
+                                                        this.state.userProfile
+                                                            .user.username
                                                     }
                                                 </p>
                                             </div>
@@ -73,7 +79,8 @@ export default class Profile extends Component {
                                                 <p id="profile-firstname">
                                                     {this.state.userProfile.user
                                                         .firstname ? (
-                                                        this.state.userProfile.user.firstname
+                                                        this.state.userProfile
+                                                            .user.firstname
                                                     ) : (
                                                         <span>---</span>
                                                     )}
@@ -87,7 +94,8 @@ export default class Profile extends Component {
                                                 <p id="profile-lastname">
                                                     {this.state.userProfile.user
                                                         .lastname ? (
-                                                        this.state.userProfile.user.lastname
+                                                        this.state.userProfile
+                                                            .user.lastname
                                                     ) : (
                                                         <span>---</span>
                                                     )}
@@ -111,8 +119,11 @@ export default class Profile extends Component {
                                             <div>
                                                 <button
                                                     className="btn__cta btn mb-3"
-                                                    type="button">
-                                                    <Link to="/editProfile">Edit Profile</Link>
+                                                    type="button"
+                                                >
+                                                    <Link to="/editProfile">
+                                                        Edit Profile
+                                                    </Link>
                                                 </button>
                                             </div>
                                         </form>
@@ -122,9 +133,14 @@ export default class Profile extends Component {
                                     <div className="profile-body fixed-minHeight">
                                         <p className="text-green">Followers</p>
                                         <div className="form-group">
-                                            <ul>{this.state.userProfile.followers.map(user => (
-                                                <Followers user={user}/>
-                                            ))}
+                                            <ul>
+                                                {this.state.userProfile.followers.map(
+                                                    user => (
+                                                        <Followers
+                                                            user={user}
+                                                        />
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                     </div>
@@ -133,9 +149,13 @@ export default class Profile extends Component {
                                         <p className="text-green">Following</p>
                                         <div className="form-group">
                                             <ul>
-                                                {this.state.userProfile.following.map(user => (
-                                                    <Following user={user}/>
-                                                ))}
+                                                {this.state.userProfile.following.map(
+                                                    user => (
+                                                        <Following
+                                                            user={user}
+                                                        />
+                                                    )
+                                                )}
                                             </ul>
                                         </div>
                                     </div>
@@ -147,20 +167,30 @@ export default class Profile extends Component {
                                             <div className="form-group">
                                                 <ul>
                                                     {this.state.userProfile
-                                                        .comments.length === 0 ? (
+                                                        .comments.length ===
+                                                    0 ? (
                                                         <span className="help-text">
-                                                            No comments given by you yet
+                                                            No comments given by
+                                                            you yet
                                                         </span>
                                                     ) : null}
-                                                    {this.state.error === false &&
-                                                    this.state.userProfile.comments.map(
-                                                        comment => (
-                                                            <Comment
-                                                                comment={comment}
-                                                                date={this.formatCommentDate(comment.createdOn)}
-                                                                proComp={true}/>
-                                                        )
-                                                    )}
+                                                    {this.state.error ===
+                                                        false &&
+                                                        this.state.userProfile.comments.map(
+                                                            comment => (
+                                                                <Comment
+                                                                    comment={
+                                                                        comment
+                                                                    }
+                                                                    date={this.formatCommentDate(
+                                                                        comment.createdOn
+                                                                    )}
+                                                                    proComp={
+                                                                        true
+                                                                    }
+                                                                />
+                                                            )
+                                                        )}
                                                 </ul>
                                             </div>
                                         </form>

@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PodcastIcon from "../assests/podcast-icon.png";
 import * as contexts from "../common/contexts";
 import * as constants from "../common/constants";
@@ -14,7 +14,7 @@ export default class Sidebar extends Component {
         this.state = {
             appContext: appContext,
             active: "",
-            isLoggedIn: false,
+            isLoggedIn: false
         };
     }
 
@@ -23,7 +23,7 @@ export default class Sidebar extends Component {
     }
 
     changeActiveClassForLink = linkName => {
-        this.setState({active: linkName});
+        this.setState({ active: linkName });
     };
 
     getLinkForAppContext() {
@@ -69,7 +69,7 @@ export default class Sidebar extends Component {
         if (localStorage.getItem("user_id") !== null) {
             this.setState({
                 isLoggedIn: true
-            })
+            });
         }
     };
 
@@ -94,7 +94,7 @@ export default class Sidebar extends Component {
             <div>
                 <h3 className="mb-5 app-name">
                     <Link to="/">
-                        <img src={PodcastIcon} className="home-logo"/>
+                        <img src={PodcastIcon} className="home-logo" />
                         PodTube
                     </Link>
                 </h3>
@@ -143,7 +143,7 @@ export default class Sidebar extends Component {
                             }
                             // onClick={() => this.changeActiveClassForLink('bookmarks')}
                         >
-                            <i className="fa fa-star icon" aria-hidden="true"/>
+                            <i className="fa fa-star icon" aria-hidden="true" />
                             Bookmarks
                         </Link>
                     </li>
@@ -176,22 +176,32 @@ export default class Sidebar extends Component {
                             }
                             // onClick={() => this.changeActiveClassForLink('profile')}
                         >
-                            <i className="fa fa-user icon" aria-hidden="true"/>
+                            <i className="fa fa-user icon" aria-hidden="true" />
                             Profile
                         </Link>
                     </li>
                     <li>
-                        {
-                            this.state.isLoggedIn === true ?
-                                <Link className="logout" onClick={this.logoutUser} to="/login">
-                                    <i className="fa fa-sign-out icon" aria-hidden="true"/>
-                                    Logout
-                                </Link> :
-                                <Link className="logout" to="/login">
-                                    <i className="fa fa-sign-in icon" aria-hidden="true"/>
-                                    Login
-                                </Link>
-                        }
+                        {this.state.isLoggedIn === true ? (
+                            <Link
+                                className="logout"
+                                onClick={this.logoutUser}
+                                to="/login"
+                            >
+                                <i
+                                    className="fa fa-sign-out icon"
+                                    aria-hidden="true"
+                                />
+                                Logout
+                            </Link>
+                        ) : (
+                            <Link className="logout" to="/login">
+                                <i
+                                    className="fa fa-sign-in icon"
+                                    aria-hidden="true"
+                                />
+                                Login
+                            </Link>
+                        )}
                     </li>
                 </ul>
             </div>

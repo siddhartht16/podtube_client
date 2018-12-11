@@ -42,7 +42,6 @@ export default class Header extends Component {
                             </span>
                         </div>
                     </div>
-
                 </div>
             </header>
         );

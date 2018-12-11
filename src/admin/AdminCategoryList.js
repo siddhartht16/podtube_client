@@ -29,7 +29,8 @@ export default class AdminCategoryList extends Component {
                 <div className="sync-btn-wrapper pt-2 pb-2">
                     <button
                         className="btn btn__alt"
-                        onClick={this.syncCategories}>
+                        onClick={this.syncCategories}
+                    >
                         Sync Categories
                     </button>
                 </div>
