@@ -51,6 +51,22 @@ export default class UserService {
         });
     };
 
+    static fetchPublicProfileForUser = user_id => {
+        return fetch("http://localhost:8080/api/profile/" + parseInt(user_id), {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.status;
+            }
+        });
+    };
+
     static logoutUser = () => {
         return fetch(`${BASE_URL}api/logout`, {
             method: "POST",
@@ -68,6 +84,23 @@ export default class UserService {
             headers: {
                 "Content-Type": "application/json"
             }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.status;
+            }
+        });
+    };
+
+    static updateUserProfile = userObj => {
+        return fetch("http://localhost:8080/api/profile/", {
+            method: "PUT",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userObj)
         }).then(response => {
             if (response.ok) {
                 return response.json();

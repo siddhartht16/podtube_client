@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import UserService from "../services/UserService";
 import * as utils from "../common/utils";
 
 export default class Header extends Component {
@@ -11,12 +10,6 @@ export default class Header extends Component {
             searchedPodcast: searchTerm
         };
     }
-
-    logoutUser = () => {
-        UserService.logoutUser();
-        utils.clearUserDataFromLocal();
-        utils.logToConsole("User logged out");
-    };
 
     componentWillReceiveProps(nextProps, nextContext) {
         utils.logToConsole("Header props, ", nextProps);
@@ -34,7 +27,7 @@ export default class Header extends Component {
         return (
             <header className="App-header">
                 <div className="row">
-                    <div className="col-md-10">
+                    <div className="col-md-12">
                         <div className="input-group mt-3">
                             <input
                                 type="text"
@@ -55,21 +48,6 @@ export default class Header extends Component {
                                 </Link>
                             </span>
                         </div>
-                    </div>
-                    <div className="col-md-2">
-                        <Link
-                            className="logout"
-                            onClick={this.logoutUser}
-                            to="/categories"
-                        >
-                            Logout
-                        </Link>
-                        <Link className="logout" to="/login">
-                            Login
-                        </Link>
-                        <Link to="/register" className="logout">
-                            Register
-                        </Link>
                     </div>
                 </div>
             </header>

@@ -4,7 +4,6 @@ import PodcastService from "../services/PodcastService";
 import "./EpisodeList.style.css";
 import Episode from "./Episode";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
-import ReactPlayer from "react-player";
 import CommentWrapper from "./CommentWrapper";
 import * as utils from "../common/utils";
 import PlayerWrapper from "./PlayerWrapper";

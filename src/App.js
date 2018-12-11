@@ -153,7 +153,7 @@ class App extends Component {
                         render={props => (
                             <MainView
                                 {...props}
-                                context={contexts.PROFILE_CONTEXT_CONST}
+                                context={contexts.PUBLIC_PROFILE_CONTEXT_CONST}
                             />
                         )}
                     />

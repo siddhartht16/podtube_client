@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import "./PodcastList.style.css";
 import SubscriptionService from "../services/SubscriptionService";
 import PodcastIcon2 from "../assests/podcast-icon.png";

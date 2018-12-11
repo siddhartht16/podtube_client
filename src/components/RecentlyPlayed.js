@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
 import Episode from "./Episode";
-import ReactPlayer from "react-player";
-import BookmarkService from "../services/BookmarkService";
 import * as utils from "../common/utils";
 import RecentlyPlayedService from "../services/RecentlyPlayedService";
 import PlayerWrapper from "./PlayerWrapper";

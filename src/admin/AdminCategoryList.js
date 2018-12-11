@@ -25,7 +25,7 @@ export default class AdminCategoryList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid mt-5">
                 <div className="sync-btn-wrapper pt-2 pb-2">
                     <button
                         className="btn btn__alt"

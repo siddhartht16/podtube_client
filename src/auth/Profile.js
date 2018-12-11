@@ -10,7 +10,6 @@ import * as utils from "../common/utils";
 export default class Profile extends Component {
     constructor(props) {
         super(props);
-        // const userId = this.props.match ? this.props.match.params.id : null;
         const userId = this.props.userId ? this.props.userId : null;
         let loggedInUserId = utils.getUserIdFromLocal();
         this.state = {
@@ -56,7 +55,7 @@ export default class Profile extends Component {
                             <i>Loading...</i>
                         ) : (
                             <div className="row mt-3">
-                                <div className="col-md-6">
+                                <div className="col-md-12">
                                     <div className="profile-body">
                                         <p className="text-green">Profile</p>
                                         <form role="form">
@@ -117,82 +116,52 @@ export default class Profile extends Component {
                                                 </p>
                                             </div>
                                             <div>
-                                                {this.state.loggedInUserId ===
-                                                this.state.userId ? (
-                                                    <button
-                                                        className="btn__cta btn mb-3"
-                                                        type="button"
-                                                    >
-                                                        <Link to="/update/profile">
-                                                            Edit Profile
-                                                        </Link>
-                                                    </button>
-                                                ) : (
-                                                    <button
-                                                        className="btn btn__cta"
-                                                        type="button"
-                                                    >
-                                                        Follow &nbsp;
-                                                        {
-                                                            this.state
-                                                                .userProfile
-                                                                .user.username
-                                                        }
-                                                    </button>
-                                                )}
+                                                <button
+                                                    className="btn__cta btn mb-3"
+                                                    type="button"
+                                                >
+                                                    <Link to="/editProfile">
+                                                        Edit Profile
+                                                    </Link>
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <div className="profile-body">
-                                        <p className="text-green">
-                                            Follower Count
-                                        </p>
-                                        <form role="form">
-                                            <div className="form-group">
-                                                <Followers
-                                                    count={
-                                                        this.state.userProfile
-                                                            .followerCount
-                                                    }
-                                                />
-                                                <button
-                                                    className="btn btn__cta"
-                                                    type="button"
-                                                >
-                                                    See Followers
-                                                </button>
-                                            </div>
-                                        </form>
+                                <div className="col-md-12 mt-3">
+                                    <div className="profile-body fixed-minHeight">
+                                        <p className="text-green">Followers</p>
+                                        <div className="form-group">
+                                            <ul>
+                                                {this.state.userProfile.followers.map(
+                                                    user => (
+                                                        <Followers
+                                                            user={user}
+                                                        />
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div className="profile-body mt-4">
-                                        <p className="text-green">
-                                            Following Count
-                                        </p>
-                                        <form role="form">
-                                            <div className="form-group">
-                                                <Following
-                                                    count={
-                                                        this.state.userProfile
-                                                            .followeeCount
-                                                    }
-                                                />
-                                                <button
-                                                    className="btn btn__cta"
-                                                    type="button"
-                                                >
-                                                    See Following
-                                                </button>
-                                            </div>
-                                        </form>
+
+                                    <div className="profile-body fixed-minHeight mt-3">
+                                        <p className="text-green">Following</p>
+                                        <div className="form-group">
+                                            <ul>
+                                                {this.state.userProfile.following.map(
+                                                    user => (
+                                                        <Following
+                                                            user={user}
+                                                        />
+                                                    )
+                                                )}
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="col-md-12 mt-4">
-                                    <div className="profile-body">
-                                        <p className="text-green">
-                                            Comments and Ratings
-                                        </p>
+                                    <div className="profile-body fixed-minHeight">
+                                        <p className="text-green">Comments</p>
                                         <form role="form">
                                             <div className="form-group">
                                                 <ul>
@@ -201,7 +170,7 @@ export default class Profile extends Component {
                                                     0 ? (
                                                         <span className="help-text">
                                                             No comments given by
-                                                            this user{" "}
+                                                            you yet
                                                         </span>
                                                     ) : null}
                                                     {this.state.error ===

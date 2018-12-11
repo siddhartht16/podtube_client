@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PodcastService from "../services/PodcastService";
-import Podcast from "./Podcast";
 import * as utils from "../common/utils";
 import PodcastSearchItem from "./PodcastSearchItem";
 

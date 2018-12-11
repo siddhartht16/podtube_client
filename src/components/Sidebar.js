@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import PodcastIcon from "../assests/podcast-icon.png";
 import * as contexts from "../common/contexts";
 import * as constants from "../common/constants";
+import UserService from "../services/UserService";
+import * as utils from "../common/utils";
 
 export default class Sidebar extends Component {
     constructor(props) {
@@ -11,15 +13,14 @@ export default class Sidebar extends Component {
         const appContext = props.appContext ? props.appContext : "";
         this.state = {
             appContext: appContext,
-            active: ""
+            active: "",
+            isLoggedIn: false
         };
     }
 
-    componentDidMount() {}
-
-    changeActiveClassForLink = linkName => {
-        this.setState({ active: linkName });
-    };
+    componentDidMount() {
+        this.checkIfUserIsLoggedIn();
+    }
 
     getLinkForAppContext() {
         let result = "";
@@ -59,6 +60,20 @@ export default class Sidebar extends Component {
         return appContextLink === link;
     } //isActiveLink..
 
+    checkIfUserIsLoggedIn = () => {
+        if (localStorage.getItem("user_id") !== null) {
+            this.setState({
+                isLoggedIn: true
+            });
+        }
+    };
+
+    logoutUser = () => {
+        UserService.logoutUser();
+        utils.clearUserDataFromLocal();
+        console.log("User logged out");
+    };
+
     render() {
         return (
             <div>
@@ -72,7 +87,6 @@ export default class Sidebar extends Component {
                     <li>
                         <Link
                             to="/categories"
-                            // onClick={() => this.changeActiveClassForLink('categories')}
                             className={
                                 this.isActiveLink("categories") === true
                                     ? "active"
@@ -94,7 +108,6 @@ export default class Sidebar extends Component {
                                     ? "active"
                                     : null
                             }
-                            // onClick={() => this.changeActiveClassForLink('subscriptions')}
                         >
                             <i
                                 className="fa fa-plus-circle icon"
@@ -111,7 +124,6 @@ export default class Sidebar extends Component {
                                     ? "active"
                                     : null
                             }
-                            // onClick={() => this.changeActiveClassForLink('bookmarks')}
                         >
                             <i className="fa fa-star icon" aria-hidden="true" />
                             Bookmarks
@@ -134,7 +146,6 @@ export default class Sidebar extends Component {
                                     ? "active"
                                     : null
                             }
-                            // onClick={() => this.changeActiveClassForLink('bookmarks')}
                         >
                             <i
                                 className="fa fa-history icon"
@@ -143,7 +154,6 @@ export default class Sidebar extends Component {
                             Recently Played
                         </Link>
                     </li>
-                    {/*<li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>Latest Podcasts</a></li>*/}
                     <li>
                         <Link
                             to="/profile"
@@ -152,11 +162,33 @@ export default class Sidebar extends Component {
                                     ? "active"
                                     : null
                             }
-                            // onClick={() => this.changeActiveClassForLink('profile')}
                         >
                             <i className="fa fa-user icon" aria-hidden="true" />
                             Profile
                         </Link>
+                    </li>
+                    <li>
+                        {this.state.isLoggedIn === true ? (
+                            <Link
+                                className="logout"
+                                onClick={this.logoutUser}
+                                to="/login"
+                            >
+                                <i
+                                    className="fa fa-sign-out icon"
+                                    aria-hidden="true"
+                                />
+                                Logout
+                            </Link>
+                        ) : (
+                            <Link className="logout" to="/login">
+                                <i
+                                    className="fa fa-sign-in icon"
+                                    aria-hidden="true"
+                                />
+                                Login
+                            </Link>
+                        )}
                     </li>
                 </ul>
             </div>

@@ -14,6 +14,7 @@ import EditProfile from "../auth/EditProfile";
 import CategoryList from "../components/CategoryList";
 import * as utils from "../common/utils";
 import RecentlyPlayed from "../components/RecentlyPlayed";
+import PublicProfile from "../auth/PublicProfile";
 
 export default class MainView extends Component {
     constructor(props) {
@@ -72,6 +73,11 @@ export default class MainView extends Component {
                 }
                 break;
             case appContexts.PROFILE_CONTEXT_CONST:
+                if (!_.isEmpty(params)) {
+                    result.contextParam = parseInt(params.id, 10);
+                }
+                break;
+            case appContexts.PUBLIC_PROFILE_CONTEXT_CONST:
                 if (!_.isEmpty(params)) {
                     result.contextParam = parseInt(params.id, 10);
                 }
@@ -150,6 +156,10 @@ export default class MainView extends Component {
             // "/profile"
             case appContexts.PROFILE_CONTEXT_CONST:
                 result = <Profile userId={this.state.contextParam} />;
+                break;
+
+            case appContexts.PUBLIC_PROFILE_CONTEXT_CONST:
+                result = <PublicProfile userId={this.state.contextParam} />;
                 break;
 
             // "/editProfile"
