@@ -40,7 +40,7 @@ class App extends Component {
                                 <Header/>
                                 <Route exact
                                        path="/"
-                                       render={() => <GenreList/>}/>
+                                       render={(props) => <GenreList {...props}/>}/>
 
                                 <Route exact
                                        path="/categories"

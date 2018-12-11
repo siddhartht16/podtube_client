@@ -1,7 +1,7 @@
-export default class BookmarkService {
+export default class RecentlyPlayedService {
 
-    static getAllUserBookmarks = () => {
-        return fetch('http://localhost:8080/api/bookmarks', {
+    static getHistoryForUser = () => {
+        return fetch('http://localhost:8080/api/history', {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -18,8 +18,8 @@ export default class BookmarkService {
             });
     };
 
-    static createUserBookmark = (episode_id) => {
-        return fetch('http://localhost:8080/api/bookmarks/episode/'+episode_id, {
+    static createUserHistoryItem = (episode_id) => {
+        return fetch('http://localhost:8080/api/history/episode/' + episode_id, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -36,8 +36,8 @@ export default class BookmarkService {
             });
     };
 
-    static deleteUserBookmark = (bookmark_id) => {
-        return fetch('http://localhost:8080/api/bookmarks/episode/'+bookmark_id, {
+    static deleteHistoryItem = (bookmark_id) => {
+        return fetch('http://localhost:8080/api/history/episode/' + bookmark_id, {
             method: 'DELETE',
             credentials: 'include',
             headers: {

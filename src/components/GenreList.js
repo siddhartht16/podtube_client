@@ -8,6 +8,7 @@ export default class GenreList extends Component {
 
     constructor(props) {
         super(props);
+        console.log(props);
         this.state = {
             categories: null,
         }

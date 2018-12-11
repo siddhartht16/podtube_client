@@ -7,7 +7,8 @@ export default class Episode extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isBookmarked: false,
+            episode: props.episode,
+            error: false,
         }
     }
 
@@ -21,21 +22,33 @@ export default class Episode extends Component {
     };
 
     bookmarkEpisode = () => {
-        let bookmarkObj = {'episode_id': this.props.id};
-        console.log(bookmarkObj);
-        BookmarkService.createUserBookmark(bookmarkObj)
-            .then(data => {
-                console.log(data);
-                this.setState({
-                    isBookmarked: true,
-                })
+        BookmarkService.createUserBookmark(this.state.episode.id)
+            .then(episode => {
+                if (episode === 401) {
+                    this.setState({
+                        error: true
+                    })
+                }
+                else {
+                    this.setState({episode: episode, error: false})
+                }
             })
     };
 
     unMarkEpisode = () => {
-        this.setState({
-            isBookmarked: false,
-        });
+        window.location.reload();
+        BookmarkService.deleteUserBookmark(this.state.episode.id)
+            .then(episode => {
+                console.log(episode);
+                if (episode === 401) {
+                    this.setState({
+                        error: true
+                    })
+                }
+                else {
+                    this.setState({episode: episode, error: false})
+                }
+            });
     };
 
     componentDidMount() {
@@ -49,14 +62,14 @@ export default class Episode extends Component {
                 <div className="row">
                     <div className="col-md-2">
                         {
-                            this.props.thumbnail !== "" ?
-                                <img src={this.props.thumbnail} className="episode-thumbnail"/> :
+                            this.state.episode.thumbnail !== "" ?
+                                <img src={this.state.episode.thumbnail} className="episode-thumbnail"/> :
                                 <img src={this.props.PodcastImg} className="episode-thumbnail"/>
                         }
-                        <p className="episode-pub-date">{this.formatEpisodeDate(this.props.pubDate)}</p>
+                        <p className="episode-pub-date">{this.formatEpisodeDate(this.state.episode.pubDate)}</p>
                     </div>
                     <div className="col-md-10">
-                        <h5>{this.props.title}</h5>
+                        <h5>{this.state.episode.title}</h5>
                         <div className="row mt-3">
                             <div className="col-md-1">
                                 <a className="fa fa-play-circle episode-play"
@@ -67,7 +80,7 @@ export default class Episode extends Component {
                             </div>
                             <div className="col-md-1">
                                 {
-                                    this.state.isBookmarked === false ?
+                                    this.state.episode.bookmarked === false ?
                                         <span className="fa fa-star episode-bookmark"
                                               onClick={this.bookmarkEpisode}
                                               title="Bookmark Episode"/> :

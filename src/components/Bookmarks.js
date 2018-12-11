@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
-import SubscriptionService from "../services/SubscriptionService";
 import BookmarkService from "../services/BookmarkService";
 import PodcastIcon from '../assests/podcast-icon2.jpg';
 import Episode from "./Episode";
+import ReactPlayer from "react-player";
 
 export default class Bookmarks extends Component {
 
@@ -11,7 +11,9 @@ export default class Bookmarks extends Component {
         super(props);
         this.state = {
             bookmarks: null,
-            isLoggedOut: false
+            isLoggedOut: false,
+            episode: null,
+            episodeURL: '',
         }
     }
 
@@ -33,7 +35,45 @@ export default class Bookmarks extends Component {
             })
     }
 
+    // updateBookMarkList = () => {
+    //     let bookmarkArr = this.state.bookmarks.filter(episode => this.state.episode.bookmarked !== episode.episode.bookmarked);
+    //     this.setState({
+    //         bookmarks: bookmarkArr
+    //     })
+    // };
+
+
+    // bookmarkEpisode = () => {
+    //     BookmarkService.createUserBookmark(episode_id)
+    //         .then(episode => {
+    //             if (episode === 401) {
+    //                 this.setState({
+    //                     error: true
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({episode: episode})
+    //             }
+    //         })
+    // };
+    //
+    // unMarkEpisode = () => {
+    //     BookmarkService.deleteUserBookmark(episode_id)
+    //         .then(episode => {
+    //             if (episode === 401) {
+    //                 this.setState({
+    //                     error: true
+    //                 })
+    //             }
+    //             else {
+    //                 this.setState({episode: episode})
+    //             }
+    //         });
+    // };
+
+
     getEpisodeAudio = (audioURL) => {
+        console.log(audioURL);
         if (audioURL.length === 0 || typeof audioURL === "undefined" || audioURL === null) {
             alert("No MP3 link for this episode")
         }
@@ -55,7 +95,8 @@ export default class Bookmarks extends Component {
                 <h3 className="mt-3">Bookmarks</h3>
                 {
                     this.state.isLoggedOut === true ?
-                        <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your bookmarks
+                        <p className="help-text text-white mt-3">Please <Link to="/login">Log In</Link> to see your
+                            bookmarks
                         </p> :
                         <div className="podcast-list">
                             {
@@ -66,16 +107,17 @@ export default class Bookmarks extends Component {
                                         <ul>
                                             {this.state.bookmarks.map((episode) =>
                                                 <Episode id={episode.id}
-                                                         title={episode.title}
-                                                         description={episode.description}
-                                                         thumbnail={episode.thumbnail}
-                                                         pubDate={episode.pubDate}
+                                                         episode={episode.episode}
                                                          PodcastImg={PodcastIcon}
-                                                         getEpisodeAudio={() => this.getEpisodeAudio(episode.enclosureLink)}
-                                                         audioLength={episode.audio_length}/>)
+                                                         getEpisodeAudio={() => this.getEpisodeAudio(episode.episode.enclosureLink)}/>)
                                             }
                                         </ul>
+                                        <ReactPlayer url={this.state.episodeURL}
+                                                     className="react-player fixed-bottom"
+                                                     controls
+                                                     playbackRate={1}/>
                                     </div>
+
                             }
                         </div>
                 }

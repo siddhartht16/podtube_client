@@ -15,10 +15,6 @@ export default class PodcastList extends Component {
         }
     }
 
-    getSearchedPodcastName = (e) => {
-        this.setState({searchedPodcast: e.target.value});
-    };
-
     componentDidMount() {
         if (this.state.categoryId !== null) {
             PodcastService.findPodcastForCategory(this.state.categoryId)
@@ -35,22 +31,6 @@ export default class PodcastList extends Component {
             <div>
                 {this.state.podcasts === null ? <p className="mt-5">Loading...</p> :
                     <div>
-                        <div className="input-group mt-3">
-                            <input type="text"
-                                   className="search-podcast"
-                                   value={this.state.searchedPodcast}
-                                   placeholder="Search Podcasts"
-                                   onChange={this.getSearchedPodcastName}/>
-                            <span className="input-group-btn">
-
-                            <Link to={`/search/${this.state.searchedPodcast}`}>
-                                <span className="fa fa-search search-icon"
-                                      role="button"
-                                      title="Search">
-                                </span>
-                            </Link>
-                            </span>
-                        </div>
                         <h3 className="mt-3">Select a podcast to view episodes</h3>
 
                         <div className="podcast-list">

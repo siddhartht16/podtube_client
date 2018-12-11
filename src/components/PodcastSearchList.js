@@ -7,6 +7,7 @@ import {Link} from "react-router-dom";
 export default class PodcastSearchList extends Component {
     constructor(props) {
         super(props);
+        console.log(props);
         let searchTerm = props.match.params.searchTerm;
         this.state = {
             searchTerm: searchTerm,
