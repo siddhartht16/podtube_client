@@ -15,6 +15,11 @@ export default class AdminLogin extends Component {
         this.loginAdmin = this.loginAdmin.bind(this);
     }
 
+    setUserIdInLocal = user => {
+        localStorage.setItem("user_id", user.id);
+    };
+
+
     componentDidMount = () => {};
 
     onChangeUsername = e => {
@@ -55,6 +60,7 @@ export default class AdminLogin extends Component {
                     this.setState({
                         isLoggedIn: true
                     });
+                    this.setUserIdInLocal(data);
                 }
             });
         }
