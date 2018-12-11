@@ -1,6 +1,8 @@
+import { BASE_URL } from "../common/constants";
+
 export default class FollowService {
     static followUser = user_id => {
-        return fetch("http://localhost:8080/api/follow/" + user_id, {
+        return fetch(`${BASE_URL}api/follow/${user_id}`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -12,7 +14,7 @@ export default class FollowService {
     };
 
     static unFollowUser = user_id => {
-        return fetch("http://localhost:8080/api/unfollow/" + user_id, {
+        return fetch(`${BASE_URL}api/unfollow/${user_id}`, {
             method: "POST",
             credentials: "include",
             headers: {

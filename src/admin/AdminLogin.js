@@ -19,7 +19,6 @@ export default class AdminLogin extends Component {
         localStorage.setItem("user_id", user.id);
     };
 
-
     componentDidMount = () => {};
 
     onChangeUsername = e => {

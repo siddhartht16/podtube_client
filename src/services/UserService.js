@@ -52,7 +52,7 @@ export default class UserService {
     };
 
     static fetchPublicProfileForUser = user_id => {
-        return fetch("http://localhost:8080/api/profile/" + parseInt(user_id), {
+        return fetch(`${BASE_URL}api/profile/` + parseInt(user_id), {
             method: "GET",
             credentials: "include",
             headers: {
@@ -94,7 +94,7 @@ export default class UserService {
     };
 
     static updateUserProfile = userObj => {
-        return fetch("http://localhost:8080/api/profile/", {
+        return fetch(`${BASE_URL}/api/profile/`, {
             method: "PUT",
             credentials: "include",
             headers: {
