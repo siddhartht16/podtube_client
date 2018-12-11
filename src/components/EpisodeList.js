@@ -7,6 +7,8 @@ import PodcastIcon from "../assests/podcast-icon2.jpg";
 import ReactPlayer from "react-player";
 import CommentWrapper from "./CommentWrapper";
 import * as utils from "../common/utils";
+import PlayerWrapper from "./PlayerWrapper";
+import _ from "lodash";
 
 export default class EpisodeList extends Component {
     constructor(props) {
@@ -15,7 +17,8 @@ export default class EpisodeList extends Component {
         this.state = {
             podcastId: this.props.podcastId, //.params.podcastId,
             episodeList: null,
-            episodeURL: null,
+            selectedEpisode: null,
+            selectedEpisodeURL: null,
             podcastDetails: null,
             showComments: false,
             showCommentAddForm: false
@@ -34,15 +37,17 @@ export default class EpisodeList extends Component {
         );
     }
 
-    getEpisodeAudio = audioURL => {
-        if (
-            audioURL.length === 0 ||
-            typeof audioURL === "undefined" ||
-            audioURL === null
-        ) {
-            alert("No MP3 link for this episode");
+    getEpisodeAudio = episode => {
+        const episodeMediaUrl = episode.enclosureLink;
+        if (_.isEmpty(episodeMediaUrl)) {
+            alert("No media found for this episode");
+            return;
         } else {
-            this.setState({ episodeURL: audioURL });
+            console.log(episodeMediaUrl);
+            this.setState({
+                selectedEpisodeURL: episodeMediaUrl,
+                selectedEpisode: episode
+            });
         }
     };
 
@@ -161,21 +166,23 @@ export default class EpisodeList extends Component {
                                             }
                                             PodcastImg={PodcastIcon}
                                             getEpisodeAudio={() =>
-                                                this.getEpisodeAudio(
-                                                    episode.enclosureLink
-                                                )
+                                                this.getEpisodeAudio(episode)
                                             }
                                         />
                                     )
                                 )}
                             </ul>
                         </div>
-                        <ReactPlayer
-                            url={this.state.episodeURL}
-                            className="react-player fixed-bottom"
-                            controls
-                            playbackRate={1}
+                        <PlayerWrapper
+                            mediaUrl={this.state.selectedEpisodeURL}
+                            episode={this.state.selectedEpisode}
                         />
+                        {/*<ReactPlayer*/}
+                        {/*url={this.state.episodeURL}*/}
+                        {/*className="react-player fixed-bottom"*/}
+                        {/*controls*/}
+                        {/*playbackRate={1}*/}
+                        {/*/>*/}
                     </div>
                 )}
             </div>

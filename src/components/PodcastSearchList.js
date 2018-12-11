@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PodcastService from "../services/PodcastService";
 import Podcast from "./Podcast";
 import * as utils from "../common/utils";
+import PodcastSearchItem from "./PodcastSearchItem";
 
 export default class PodcastSearchList extends Component {
     constructor(props) {
@@ -68,11 +69,11 @@ export default class PodcastSearchList extends Component {
                 ) : (
                     <div className="podcast-list">
                         <h3 className="mt-3">
-                            Select a podcast to view episodes
+                            Subscribe to a podcast to view its episodes
                         </h3>
                         <ul>
                             {this.state.podcastList.map((podcast, index) => (
-                                <Podcast
+                                <PodcastSearchItem
                                     key={index}
                                     subComp={false}
                                     podcast={podcast}

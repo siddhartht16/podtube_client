@@ -13,6 +13,7 @@ import Profile from "../auth/Profile";
 import EditProfile from "../auth/EditProfile";
 import CategoryList from "../components/CategoryList";
 import * as utils from "../common/utils";
+import RecentlyPlayed from "../components/RecentlyPlayed";
 
 export default class MainView extends Component {
     constructor(props) {
@@ -139,6 +140,11 @@ export default class MainView extends Component {
             // "/bookmarks"*/}
             case appContexts.BOOKMARKS_CONTEXT_CONST:
                 result = <Bookmarks />;
+                break;
+
+            // "/history"*/}
+            case appContexts.HISTORY_CONTEXT_CONST:
+                result = <RecentlyPlayed />;
                 break;
 
             // "/profile"

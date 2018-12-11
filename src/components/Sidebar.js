@@ -117,23 +117,31 @@ export default class Sidebar extends Component {
                             Bookmarks
                         </Link>
                     </li>
+                    {/*<li>*/}
+                    {/*<a href="#">*/}
+                    {/*<i*/}
+                    {/*className="fa fa-play-circle icon"*/}
+                    {/*aria-hidden="true"*/}
+                    {/*/>*/}
+                    {/*Playlist*/}
+                    {/*</a>*/}
+                    {/*</li>*/}
                     <li>
-                        <a href="#">
-                            <i
-                                className="fa fa-play-circle icon"
-                                aria-hidden="true"
-                            />
-                            Playlist
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
+                        <Link
+                            to="/history"
+                            className={
+                                this.isActiveLink("history") === true
+                                    ? "active"
+                                    : null
+                            }
+                            // onClick={() => this.changeActiveClassForLink('bookmarks')}
+                        >
                             <i
                                 className="fa fa-history icon"
                                 aria-hidden="true"
                             />
                             Recently Played
-                        </a>
+                        </Link>
                     </li>
                     {/*<li><a href=""><i className="fa fa-file icon" aria-hidden="true"/>Latest Podcasts</a></li>*/}
                     <li>

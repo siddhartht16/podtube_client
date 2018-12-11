@@ -5,7 +5,7 @@ import SubscriptionService from "../services/SubscriptionService";
 import PodcastIcon2 from "../assests/podcast-icon.png";
 import * as utils from "../common/utils";
 
-export default class Podcast extends Component {
+export default class PodcastSearchItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -14,8 +14,8 @@ export default class Podcast extends Component {
         };
     }
 
-    onSubscribe = podcast_id => {
-        SubscriptionService.subscribeUser(podcast_id)
+    onSubscribe = podcast_url => {
+        SubscriptionService.subscribeUserByUrl(podcast_url)
             .then(podcast => {
                 if (podcast === 401) {
                     this.setState({
@@ -61,17 +61,17 @@ export default class Podcast extends Component {
                 <li
                 // key={this.state.podcast.id}
                 >
-                    <Link to={`/podcast/${this.state.podcast.id}/episodes`}>
-                        <img
-                            src={
-                                this.state.podcast.logo_url === "null"
-                                    ? PodcastIcon2
-                                    : this.state.podcast.logo_url
-                            }
-                            className="podcast-thumbnail"
-                        />
-                        {this.state.podcast.title}
-                    </Link>
+                    {/*<Link to={`/podcast/${this.state.podcast.url}/episodes`}>*/}
+                    <img
+                        src={
+                            this.state.podcast.logo_url === "null"
+                                ? PodcastIcon2
+                                : this.state.podcast.logo_url
+                        }
+                        className="podcast-thumbnail"
+                    />
+                    {this.state.podcast.title}
+                    {/*</Link>*/}
                     {this.props.subComp === false ? (
                         <span>
                             {this.state.podcast.subscribed === true ? (
@@ -89,7 +89,7 @@ export default class Podcast extends Component {
                                 <button
                                     className="btn__alt unsub float-right"
                                     onClick={() =>
-                                        this.onSubscribe(this.state.podcast.id)
+                                        this.onSubscribe(this.state.podcast.url)
                                     }
                                 >
                                     Subscribe

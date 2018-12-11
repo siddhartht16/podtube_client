@@ -127,6 +127,17 @@ class App extends Component {
                     />
 
                     <Route
+                        path="/history"
+                        exact
+                        render={props => (
+                            <MainView
+                                {...props}
+                                context={contexts.HISTORY_CONTEXT_CONST}
+                            />
+                        )}
+                    />
+
+                    <Route
                         path="/profile"
                         exact
                         render={props => (

@@ -56,8 +56,9 @@ export default class Subscription extends Component {
                                 </p>
                                 <ul>
                                     {this.state.subscribedPodcasts.map(
-                                        podcastObj => (
+                                        (podcastObj, index) => (
                                             <Podcast
+                                                key={index}
                                                 podcast={podcastObj["podcast"]}
                                                 subComp={true}
                                             />
