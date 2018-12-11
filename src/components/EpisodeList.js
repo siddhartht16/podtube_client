@@ -26,15 +26,24 @@ export default class EpisodeList extends Component {
     }
 
     componentDidMount() {
-        PodcastService.findEpisodesForPodcast(this.state.podcastId).then(
-            data => {
-                utils.logToConsole(data);
-                this.setState({
-                    episodeList: data,
-                    podcastDetails: data.length !== 0 ? data[0].podcast : null
-                });
-            }
-        );
+        PodcastService.getPodcast(this.state.podcastId).then(data => {
+            utils.logToConsole(data);
+            this.setState(
+                {
+                    podcastDetails: data
+                },
+                () => {
+                    PodcastService.findEpisodesForPodcast(
+                        this.state.podcastId
+                    ).then(data => {
+                        utils.logToConsole(data);
+                        this.setState({
+                            episodeList: data
+                        });
+                    });
+                }
+            );
+        });
     }
 
     getEpisodeAudio = episode => {

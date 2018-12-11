@@ -48,4 +48,20 @@ export default class RecentlyPlayedService {
             }
         });
     };
+
+    static clearHistory = () => {
+        return fetch(`${BASE_URL}api/history/clear`, {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.status;
+            }
+        });
+    };
 }

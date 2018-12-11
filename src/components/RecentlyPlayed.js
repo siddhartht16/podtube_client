@@ -35,6 +35,17 @@ export default class RecentlyPlayed extends Component {
         });
     }
 
+    clearHistory = () => {
+        RecentlyPlayedService.clearHistory().then(res => {
+            utils.logToConsole(res);
+            if (!_.isEmpty(res) && res["success"] === true) {
+                this.setState({
+                    history: []
+                });
+            }
+        });
+    };
+
     getEpisodeAudio = episode => {
         const episodeMediaUrl = episode.enclosureLink;
         if (_.isEmpty(episodeMediaUrl)) {
@@ -77,6 +88,9 @@ export default class RecentlyPlayed extends Component {
                                     Recently played episodes:{" "}
                                     {this.state.history.length}
                                 </p>
+                                <button onClick={this.clearHistory}>
+                                    Clear
+                                </button>
                                 <ul>
                                     {this.state.history.map(episode => (
                                         <Episode
