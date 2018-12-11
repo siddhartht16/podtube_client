@@ -86,7 +86,11 @@ export default class RecentlyPlayed extends Component {
                                     Recently played episodes:{" "}
                                     {this.state.history.length}
                                 </p>
-                                <button onClick={this.clearHistory} type="button" className="btn__alt btn">
+                                <button
+                                    onClick={this.clearHistory}
+                                    type="button"
+                                    className="btn__alt btn"
+                                >
                                     Clear History
                                 </button>
                                 <ul>

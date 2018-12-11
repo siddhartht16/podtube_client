@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserService from "../services/UserService";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Comment from "../components/Comment";
 import Followers from "../components/Followers";
 import Following from "../components/Following";
@@ -26,9 +26,9 @@ export default class Profile extends Component {
         UserService.fetchProfileForUser().then(data => {
             utils.logToConsole(data);
             if (data === 401) {
-                this.setState({isLoggedOut: true});
+                this.setState({ isLoggedOut: true });
             } else {
-                this.setState({userProfile: data});
+                this.setState({ userProfile: data });
             }
         });
     }
@@ -132,13 +132,14 @@ export default class Profile extends Component {
                                     <div className="profile-body fixed-minHeight">
                                         <p className="text-green">Followers</p>
                                         <div className="form-group">
-                                            <ul>{this.state.userProfile
-                                                .followers.length ===
-                                            0 ? (
-                                                <span className="help-text">
-                                                            No users are following you
-                                                        </span>
-                                            ) : null}
+                                            <ul>
+                                                {this.state.userProfile
+                                                    .followers.length === 0 ? (
+                                                    <span className="help-text">
+                                                        No users are following
+                                                        you
+                                                    </span>
+                                                ) : null}
                                                 {this.state.userProfile.followers.map(
                                                     user => (
                                                         <Followers
@@ -155,11 +156,11 @@ export default class Profile extends Component {
                                         <div className="form-group">
                                             <ul>
                                                 {this.state.userProfile
-                                                    .following.length ===
-                                                0 ? (
+                                                    .following.length === 0 ? (
                                                     <span className="help-text">
-                                                            You are not following any users
-                                                        </span>
+                                                        You are not following
+                                                        any users
+                                                    </span>
                                                 ) : null}
                                                 {this.state.userProfile.following.map(
                                                     user => (
@@ -187,22 +188,22 @@ export default class Profile extends Component {
                                                         </span>
                                                     ) : null}
                                                     {this.state.error ===
-                                                    false &&
-                                                    this.state.userProfile.comments.map(
-                                                        comment => (
-                                                            <Comment
-                                                                comment={
-                                                                    comment
-                                                                }
-                                                                date={this.formatCommentDate(
-                                                                    comment.createdOn
-                                                                )}
-                                                                proComp={
-                                                                    true
-                                                                }
-                                                            />
-                                                        )
-                                                    )}
+                                                        false &&
+                                                        this.state.userProfile.comments.map(
+                                                            comment => (
+                                                                <Comment
+                                                                    comment={
+                                                                        comment
+                                                                    }
+                                                                    date={this.formatCommentDate(
+                                                                        comment.createdOn
+                                                                    )}
+                                                                    proComp={
+                                                                        true
+                                                                    }
+                                                                />
+                                                            )
+                                                        )}
                                                 </ul>
                                             </div>
                                         </form>
