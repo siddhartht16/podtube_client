@@ -81,13 +81,12 @@ export default class EpisodeList extends Component {
                         {
                             this.state.podcastDetails !== null ?
                                 <div className="podcast-details">
-                                    <h3>Podcast Details</h3>
+                                    <h3>{this.state.podcastDetails.title}</h3>
                                     <div className="row">
                                         <div className="col-md-3">
                                             <img src={this.state.podcastDetails.logo_url} className="podcast-img"/>
                                         </div>
                                         <div className="col-md-9">
-                                            <h5>{this.state.podcastDetails.title}</h5>
                                             <p>{this.state.podcastDetails.description}</p>
                                             <button className="podcast-comments-btn"
                                                     onClick={this.toggleCommentsSection}>Comments

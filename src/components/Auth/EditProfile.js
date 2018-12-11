@@ -90,7 +90,7 @@ export default class EditProfile extends Component {
                                                     </div>
                                                     <div className="mt-4">
                                                         <button className="btn btn__cta"
-                                                                type="button">Edit profile
+                                                                type="button">Save profile
                                                         </button>
                                                     </div>
                                                 </form>

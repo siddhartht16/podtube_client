@@ -38,7 +38,7 @@ export default class UserService {
     };
 
     static fetchProfileForUser = () => {
-        return fetch('http://localhost:8080/api/profile', {
+        return fetch('http://localhost:8080/api/selfprofile', {
             method: 'GET',
             credentials: 'include',
             headers: {

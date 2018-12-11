@@ -62,7 +62,8 @@
 /* Profile */
 .profile-wrapper {
     background-color: #F8F8F8;
-    padding: 50px 20px 20px;
+    padding: 40px;
+    padding-top: 50px;
 }
 
 .text-green {

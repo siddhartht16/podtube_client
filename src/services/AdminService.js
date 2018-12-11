@@ -112,6 +112,24 @@ export default class AdminService {
             });
     };
 
+    static getApplicationStats = () => {
+        return fetch('http://localhost:8080/admin/stats', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json()
+                }
+                else{
+                    return response.status;
+                }
+            });
+    };
+
 
 
 }

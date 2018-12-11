@@ -44,3 +44,13 @@ export function generateUniqueId() {
 export function logToConsole(caller, inputToLog) {
     console.log(caller, " => ", JSON.stringify(inputToLog, null, 4));
 } //logToConsole..
+
+
+export function getUserIdFromLocal() {
+    let user_id = localStorage.getItem('user_id');
+    return parseInt(user_id);
+}
+
+export function clearUserDataFromLocal() {
+    localStorage.removeItem("user_id");
+}

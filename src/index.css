@@ -61,6 +61,7 @@ ul {
   border-color: transparent;
   color: white;
   font-weight: bold;
+  font-size: 14px;
   transition: all .1s ease-out;
 }
 

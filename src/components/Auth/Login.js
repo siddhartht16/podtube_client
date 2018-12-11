@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './auth.style.css';
 import {Link} from "react-router-dom";
 import UserService from "../../services/UserService";
+import * as utils from '../../common/utils';
 
 export default class Login extends Component {
     constructor(props) {
@@ -29,6 +30,15 @@ export default class Login extends Component {
         });
     };
 
+    setUserIdInLocal = (user) => {
+        localStorage.setItem('user_id', user.id);
+    };
+
+    getUserId = () => {
+        console.log(
+            utils.getUserIdFromLocal());
+    };
+
     loginUser = () => {
 
         if (this.state.username === null ||
@@ -52,9 +62,10 @@ export default class Login extends Component {
                         })
                     }
                     else {
+                        this.setUserIdInLocal(data);
                         this.setState({
                             isLoggedIn: true
-                        })
+                        });
                     }
                 })
         }

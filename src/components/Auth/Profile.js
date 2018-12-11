@@ -2,23 +2,29 @@ import React, {Component} from 'react'
 import UserService from "../../services/UserService";
 import {Link} from "react-router-dom";
 import Comment from "../Comment";
+import Followers from "../Followers";
+import Following from "../Following";
+import * as utils from '../../common/utils';
 
 export default class Profile extends Component {
     constructor(props) {
         super(props);
         const userId = this.props.match ? this.props.match.params.id : null;
+        let loggedInUserId = utils.getUserIdFromLocal();
         this.state = {
             userId: userId,
             userProfile: null,
             isLoggedOut: false,
             comments: null,
-            error: false
+            error: false,
+            loggedInUserId: loggedInUserId
         }
     }
 
     componentDidMount() {
         UserService.fetchProfileForUser()
             .then(data => {
+                    console.log(data);
                     if (data === 401) {
                         this.setState({isLoggedOut: true})
                     }
@@ -27,25 +33,8 @@ export default class Profile extends Component {
                     }
                 }
             );
-        this.getCommentForUser();
     }
 
-    getCommentForUser = () => {
-        //Way to find the actual userId of the loggedIn user
-        // Temp set it as 1 so work things
-        let userId = this.state.userId !== null ? this.state.userId : 1;
-        UserService.getCommentForUser(userId)
-            .then(data => {
-                if (data === 400) {
-                    this.setState({
-                        error: true
-                    })
-                }
-                this.setState({
-                    comments: data
-                })
-            })
-    };
 
     formatCommentDate = (date) => {
         var newDate = (new Date(date));
@@ -68,57 +57,63 @@ export default class Profile extends Component {
                                                 <p className="text-green">Profile</p>
                                                 <form role="form">
                                                     <div className="form-group">
+                                                        <label className="control-label">Username</label>
+                                                        <p id="profile-username">{this.state.userProfile.user.username}</p>
+                                                    </div>
+
+                                                    <div className="form-group">
                                                         <label className="control-label">First name</label>
-                                                        <p id="profile-firstname">{this.state.userProfile.firstname}</p>
+                                                        <p id="profile-firstname">{this.state.userProfile.user.firstname ? this.state.userProfile.user.firstname :
+                                                            <span>---</span>}</p>
                                                     </div>
 
                                                     <div className="form-group">
                                                         <label className="control-label">Last name</label>
-                                                        <p id="profile-lastname">{this.state.userProfile.lastname}</p>
+                                                        <p id="profile-lastname">{this.state.userProfile.user.lastname ? this.state.userProfile.user.lastname :
+                                                            <span>---</span>}</p>
                                                     </div>
 
                                                     <div className="form-group">
                                                         <label className="control-label">Email Address</label>
-                                                        <p id="profile-email">{this.state.userProfile.email}</p>
-                                                    </div>
-
-                                                    <div className="form-group">
-                                                        <label className="control-label">Username</label>
-                                                        <p id="profile-username">{this.state.userProfile.username}</p>
+                                                        <p id="profile-email">
+                                                            {this.state.userProfile.user.email ? this.state.userProfile.user.email :
+                                                                <span>---</span>}</p>
                                                     </div>
                                                     <div>
-                                                        <button className="btn__cta btn" type="button">
-                                                            <Link to="/update/profile">Edit Profile</Link>
-                                                        </button>
-
-                                                        <button className="btn btn__cta mt-3"
-                                                                type="button">Follow &nbsp;
-                                                            {this.state.userProfile.username}
-                                                        </button>
-
+                                                        {
+                                                            this.state.loggedInUserId === this.state.userProfile.user.id ?
+                                                                <button className="btn__cta btn mb-3" type="button">
+                                                                    <Link to="/update/profile">Edit Profile</Link>
+                                                                </button> :
+                                                                <button className="btn btn__cta"
+                                                                        type="button">Follow &nbsp;
+                                                                    {this.state.userProfile.user.username}
+                                                                </button>
+                                                        }
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                         <div className="col-md-6">
                                             <div className="profile-body">
-                                                <p className="text-green">Details</p>
+                                                <p className="text-green">Follower Count</p>
                                                 <form role="form">
                                                     <div className="form-group">
-                                                        <label className="control-label">Follower Count</label>
-                                                        <p id="profile-followers">{this.state.userProfile.followerCount}</p>
+                                                        <Followers count={this.state.userProfile.followerCount}/>
+                                                        <button className="btn btn__cta"
+                                                                type="button">See Followers
+                                                        </button>
                                                     </div>
+                                                </form>
+                                            </div>
+                                            <div className="profile-body mt-4">
+                                                <p className="text-green">Following Count</p>
+                                                <form role="form">
                                                     <div className="form-group">
-                                                        <label className="control-label">Following Count</label>
-                                                        <p id="profile-following">{this.state.userProfile.followeeCount}</p>
-                                                    </div>
-                                                    <div className="form-group">
-                                                        <label className="control-label">Subscriptions</label>
-                                                        <p id="profile-subs">Click here to see your&nbsp;
-                                                            <Link
-                                                                to="/subscriptions" className="text-green">subscriptions
-                                                            </Link>
-                                                        </p>
+                                                        <Following count={this.state.userProfile.followeeCount}/>
+                                                        <button className="btn btn__cta"
+                                                                type="button">See Following
+                                                        </button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -128,18 +123,17 @@ export default class Profile extends Component {
                                                 <p className="text-green">Comments and Ratings</p>
                                                 <form role="form">
                                                     <div className="form-group">
-                                                        {this.state.comments === null ? <p><i>Loading...</i></p> :
-                                                            <ul>{this.state.comments.length === 0 ?
-                                                                <span className="help-text">No comments given by this user</span> : null}
-                                                                {
-                                                                    this.state.error === false &&
-                                                                    this.state.comments.map((comment) =>
-                                                                        <Comment comment={comment}
-                                                                                 date={this.formatCommentDate(comment.createdOn)}
-                                                                                 proComp={true}/>)
-                                                                }
-                                                            </ul>
-                                                        }
+                                                        <ul>{this.state.userProfile.comments.length === 0 ?
+                                                            <span
+                                                                className="help-text">No comments given by this user </span> : null}
+                                                            {
+                                                                this.state.error === false &&
+                                                                this.state.userProfile.comments.map((comment) =>
+                                                                    <Comment comment={comment}
+                                                                             date={this.formatCommentDate(comment.createdOn)}
+                                                                             proComp={true}/>)
+                                                            }
+                                                        </ul>
                                                     </div>
                                                 </form>
                                             </div>

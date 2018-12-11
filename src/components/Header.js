@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
 import UserService from "../services/UserService";
+import * as utils from '../common/utils';
 
 export default class Header extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ export default class Header extends Component {
 
     logoutUser = () => {
         UserService.logoutUser();
+        utils.clearUserDataFromLocal();
         console.log("User logged out");
     };
 
