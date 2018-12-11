@@ -1,27 +1,24 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import PodcastService from "../services/PodcastService";
 import "./GenreList.style.css";
 import Genre from "./Genre";
 
-
 export default class GenreList extends Component {
-
     constructor(props) {
         super(props);
         console.log(props);
         this.state = {
-            categories: null,
-        }
+            categories: null
+        };
     }
 
     componentDidMount() {
-        PodcastService.findAllCategories()
-            .then(categories => {
-                this.setState({categories: categories})
-            });
+        PodcastService.findAllCategories().then(categories => {
+            this.setState({ categories: categories });
+        });
     }
 
-    shortenTitle = (title) => {
+    shortenTitle = title => {
         let short = title.replace(/(.{10})..+/, "$1...");
         return short;
     };
@@ -29,19 +26,22 @@ export default class GenreList extends Component {
     render() {
         return (
             <div>
-                {this.state.categories === null ? <p className="mt-5">Loading...</p> :
+                {this.state.categories === null ? (
+                    <p className="mt-5">Loading...</p>
+                ) : (
                     <div className="genre-list">
                         <ul>
-                            {this.state.categories.map((genre) =>
-                                <Genre id={genre.id}
-                                       fullTitle={genre.title}
-                                       title={this.shortenTitle(genre.title)}/>)
-                            }
+                            {this.state.categories.map(genre => (
+                                <Genre
+                                    id={genre.id}
+                                    fullTitle={genre.title}
+                                    title={this.shortenTitle(genre.title)}
+                                />
+                            ))}
                         </ul>
                     </div>
-                }
+                )}
             </div>
-        )
+        );
     }
-
 }

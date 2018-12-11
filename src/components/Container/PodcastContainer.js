@@ -1,27 +1,19 @@
-import React, {Component} from 'react';
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
-import App from "../../App";
+import React, { Component } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
 export default class PodcastContainer extends Component {
-
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {};
     }
 
-    componentDidMount() {
-
-    }
-
+    componentDidMount() {}
 
     render() {
         return (
             <Router>
-                <div>
-
-                </div>
+                <div />
             </Router>
-        )
+        );
     }
-
 }

@@ -1,12 +1,12 @@
-import React from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
-const Category = ({id, title}) =>
+const Category = ({ id, title }) => (
     <div>
         <li key={id}>
             <Link to={`/admin/categories/${id}/podcasts`}>{title} </Link>
         </li>
-    </div>;
+    </div>
+);
 
-
-export default Category
+export default Category;

@@ -1,12 +1,9 @@
-import React from 'react'
+import React from "react";
 
-const AdminEpisode = ({id, title}) =>
+const AdminEpisode = ({ id, title }) => (
     <div>
-        <li key={id}>
-            {title}
-        </li>
-
+        <li key={id}>{title}</li>
     </div>
+);
 
-
-export default AdminEpisode
+export default AdminEpisode;

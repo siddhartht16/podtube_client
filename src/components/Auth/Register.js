@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
-import './auth.style.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./auth.style.css";
 import UserService from "../../services/UserService";
 
 export default class Register extends Component {
@@ -8,45 +8,45 @@ export default class Register extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
-            firstname: '',
-            lastname: '',
-            email: '',
+            username: "",
+            password: "",
+            firstname: "",
+            lastname: "",
+            email: "",
             isRegistered: false,
             error: false
         };
     }
 
-    onChangeUsername = (e) => {
+    onChangeUsername = e => {
         this.setState({
             username: e.target.value,
             error: false
         });
     };
 
-    onChangePassword = (e) => {
+    onChangePassword = e => {
         this.setState({
             password: e.target.value,
             error: false
         });
     };
 
-    onChangeEmail = (e) => {
+    onChangeEmail = e => {
         this.setState({
             email: e.target.value,
             error: false
         });
     };
 
-    onChangeFirstName = (e) => {
+    onChangeFirstName = e => {
         this.setState({
             firstname: e.target.value,
             error: false
         });
     };
 
-    onChangeLastName = (e) => {
+    onChangeLastName = e => {
         this.setState({
             lastname: e.target.value,
             error: false
@@ -54,62 +54,59 @@ export default class Register extends Component {
     };
 
     registerUser = () => {
-        if (this.state.username.length === 0 ||
-            this.state.password.length === 0) {
+        if (
+            this.state.username.length === 0 ||
+            this.state.password.length === 0
+        ) {
             return false;
-        }
-        else {
+        } else {
             let userObject = {
-                'username': this.state.username,
-                'password': this.state.password,
-                'email': this.state.email,
-                'firstname': this.state.firstname,
-                'lastname': this.state.lastname,
+                username: this.state.username,
+                password: this.state.password,
+                email: this.state.email,
+                firstname: this.state.firstname,
+                lastname: this.state.lastname
             };
-            UserService.registerUser(userObject).then(
-                data => {
-                    if (data === 401 || data === 400) {
-                        this.setState({
-                            error: true
-                        });
-                    }
-                    else {
-                        this.setState({
-                            isRegistered: true
-                        })
-                    }
+            UserService.registerUser(userObject).then(data => {
+                if (data === 401 || data === 400) {
+                    this.setState({
+                        error: true
+                    });
+                } else {
+                    this.setState({
+                        isRegistered: true
+                    });
                 }
-            )
+            });
         }
     };
 
     redirectAfterRegister = () => {
-        setTimeout(function () {
-            window.location = '/categories'
-        }, 2000)
+        setTimeout(function() {
+            window.location = "/categories";
+        }, 2000);
     };
-
 
     render() {
         const isRegistered = this.state.isRegistered;
         if (isRegistered === true) {
-            this.redirectAfterRegister()
+            this.redirectAfterRegister();
         }
         return (
             <div className="row mt-3">
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
-                    {
-                        this.state.isRegistered === true ?
-                            <div className="alert alert-success" role="alert">
-                                Successfully registered. Please wait while we redirect you....
-                            </div> : null
-                    }
-                    {
-                        this.state.error === true ?
-                            <div className="alert alert-danger" role="alert">
-                                Some error occurred while registering. Please try again
-                            </div> : null
-                    }
+                    {this.state.isRegistered === true ? (
+                        <div className="alert alert-success" role="alert">
+                            Successfully registered. Please wait while we
+                            redirect you....
+                        </div>
+                    ) : null}
+                    {this.state.error === true ? (
+                        <div className="alert alert-danger" role="alert">
+                            Some error occurred while registering. Please try
+                            again
+                        </div>
+                    ) : null}
 
                     <form className="form">
                         <div className="card card-auth">
@@ -119,62 +116,77 @@ export default class Register extends Component {
                             <div className="card-body">
                                 <div className="form-group">
                                     <label>First Name</label>
-                                    <input type="text"
-                                           id="firstname"
-                                           value={this.state.firstname}
-                                           onChange={this.onChangeFirstName}
-                                           placeholder="First Name"
-                                           required
-                                           className="form-control input-fld"/>
+                                    <input
+                                        type="text"
+                                        id="firstname"
+                                        value={this.state.firstname}
+                                        onChange={this.onChangeFirstName}
+                                        placeholder="First Name"
+                                        required
+                                        className="form-control input-fld"
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Last Name</label>
-                                    <input type="text"
-                                           placeholder="Last Name"
-                                           id="lastname"
-                                           onChange={this.onChangeLastName}
-                                           value={this.state.lastname}
-                                           required
-                                           className="form-control input-fld"/>
+                                    <input
+                                        type="text"
+                                        placeholder="Last Name"
+                                        id="lastname"
+                                        onChange={this.onChangeLastName}
+                                        value={this.state.lastname}
+                                        required
+                                        className="form-control input-fld"
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Email</label>
-                                    <input type="email"
-                                           placeholder="Email Address"
-                                           id="lastname"
-                                           onChange={this.onChangeEmail}
-                                           value={this.state.email}
-                                           required
-                                           className="form-control input-fld"/>
+                                    <input
+                                        type="email"
+                                        placeholder="Email Address"
+                                        id="lastname"
+                                        onChange={this.onChangeEmail}
+                                        value={this.state.email}
+                                        required
+                                        className="form-control input-fld"
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Username</label>
-                                    <input type="text"
-                                           id="username"
-                                           onChange={this.onChangeUsername}
-                                           value={this.state.username}
-                                           placeholder="Username"
-                                           required
-                                           className="form-control input-fld"/>
+                                    <input
+                                        type="text"
+                                        id="username"
+                                        onChange={this.onChangeUsername}
+                                        value={this.state.username}
+                                        placeholder="Username"
+                                        required
+                                        className="form-control input-fld"
+                                    />
                                 </div>
                                 <div className="form-group">
                                     <label>Password</label>
-                                    <input type="password"
-                                           id="password"
-                                           onChange={this.onChangePassword}
-                                           value={this.state.password}
-                                           placeholder="Password"
-                                           required
-                                           className="form-control input-fld"/>
+                                    <input
+                                        type="password"
+                                        id="password"
+                                        onChange={this.onChangePassword}
+                                        value={this.state.password}
+                                        placeholder="Password"
+                                        required
+                                        className="form-control input-fld"
+                                    />
                                 </div>
                             </div>
                             <div className="card-footer">
-                                <button onClick={this.registerUser}
-                                        type="button"
-                                        className="btn btn__cta">Sign Up
+                                <button
+                                    onClick={this.registerUser}
+                                    type="button"
+                                    className="btn btn__cta"
+                                >
+                                    Sign Up
                                 </button>
                                 <div className="register-promt mt-4">
-                                    <p className="text-center">Already have an account ? </p>
+                                    <p className="text-center">
+                                        Already have an account ?{" "}
+                                    </p>
                                     <button className="btn btn__alt2">
                                         <Link to="/login">
                                             Sign in on PodTube
@@ -186,6 +198,6 @@ export default class Register extends Component {
                     </form>
                 </div>
             </div>
-        )
+        );
     }
 }

@@ -1,21 +1,15 @@
-import React, {Component} from 'react'
-import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom'
+import React, { Component } from "react";
+
 export default class Logout extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {};
     }
 
-    componentDidMount() {
-
-    }
+    componentDidMount() {}
 
     render() {
-        return (
-            <div>
-                Logout Component
-            </div>
-        )
+        return <div>Logout Component</div>;
     }
 }
