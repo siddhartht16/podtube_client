@@ -28,7 +28,7 @@ export default class PublicProfile extends Component {
         if (this.state.userId !== null) {
             console.log("Parameter in URL : " + this.state.userId);
             UserService.fetchPublicProfileForUser(this.state.userId).then(data => {
-                // console.log(data);
+                console.log(data);
                 if (data === 401) {
                     this.setState({isLoggedOut: true});
                 } else {
@@ -139,6 +139,29 @@ export default class PublicProfile extends Component {
 
                                             </div>
                                         </form>
+                                    </div>
+                                </div>
+                                <div className="col-md-12 mt-3">
+                                    <div className="profile-body">
+                                        <p className="text-green">Subscribed Podcasts</p>
+                                        <div className="form-group">
+                                            {
+                                                this.state.userProfile.subscribedPodcasts.length === 0 ?
+                                                    <span className="help-text">No subscribed podcasts</span> :
+                                                    <ul>
+                                                        {
+                                                            this.state.userProfile.subscribedPodcasts.map((sub, index) =>
+                                                                <li key={index}>
+                                                                    <p><Link className="text-dark"
+                                                                        to={`/podcast/${sub.id}/episodes`}>{sub.title}
+                                                                    </Link>
+                                                                    </p>
+                                                                </li>
+                                                            )
+                                                        }
+                                                    </ul>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                                 {/*<div className="col-md-12 mt-3">*/}
