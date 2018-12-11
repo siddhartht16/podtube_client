@@ -14,8 +14,8 @@ export default class Podcast extends Component {
         };
     }
 
-    onSubscribe = podcast_id => {
-        SubscriptionService.subscribeUser(podcast_id)
+    onSubscribe = podcast_url => {
+        SubscriptionService.subscribeUser(podcast_url)
             .then(podcast => {
                 if (podcast === 401) {
                     this.setState({
@@ -89,7 +89,7 @@ export default class Podcast extends Component {
                                 <button
                                     className="btn__alt unsub float-right"
                                     onClick={() =>
-                                        this.onSubscribe(this.state.podcast.id)
+                                        this.onSubscribe(this.state.podcast.url)
                                     }
                                 >
                                     Subscribe

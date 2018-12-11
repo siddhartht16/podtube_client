@@ -1,6 +1,8 @@
+import { BASE_URL } from "../common/constants";
+
 export default class RecentlyPlayedService {
     static getHistoryForUser = () => {
-        return fetch("http://localhost:8080/api/history", {
+        return fetch(`${BASE_URL}api/history`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -16,16 +18,13 @@ export default class RecentlyPlayedService {
     };
 
     static createUserHistoryItem = episode_id => {
-        return fetch(
-            "http://localhost:8080/api/history/episode/" + episode_id,
-            {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/history/episode/${episode_id}`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -35,16 +34,13 @@ export default class RecentlyPlayedService {
     };
 
     static deleteHistoryItem = bookmark_id => {
-        return fetch(
-            "http://localhost:8080/api/history/episode/" + bookmark_id,
-            {
-                method: "DELETE",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/history/episode/${bookmark_id}`, {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             if (response.ok) {
                 return response.json();
             } else {

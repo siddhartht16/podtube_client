@@ -1,6 +1,8 @@
+import { BASE_URL, GPODDER_SEARCH_URL } from "../common/constants";
+
 export default class PodcastService {
     static findAllCategories = () => {
-        return fetch("http://localhost:8080/api/categories", {
+        return fetch(`${BASE_URL}api/categories`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -12,37 +14,31 @@ export default class PodcastService {
     };
 
     static findPodcastForCategory = categoryId => {
-        return fetch(
-            "http://localhost:8080/api/categories/" + categoryId + "/podcasts",
-            {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/categories/${categoryId}/podcasts`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             return response.json();
         });
     };
 
     static findEpisodesForPodcast = podcast_id => {
-        return fetch(
-            "http://localhost:8080/api/podcasts/" + podcast_id + "/episodes",
-            {
-                method: "GET",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/podcasts/${podcast_id}/episodes`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             return response.json();
         });
     };
 
     static searchPodcastList = search_term => {
-        return fetch("https://gpodder.net/search.json?q=" + search_term, {
+        return fetch(`${GPODDER_SEARCH_URL}${search_term}`, {
             method: "GET",
             headers: {
                 "Content-Type": "text/plain"

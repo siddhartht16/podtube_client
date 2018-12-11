@@ -1,6 +1,8 @@
+import { BASE_URL } from "../common/constants";
+
 export default class UserService {
     static registerUser = usercredentials => {
-        return fetch("http://localhost:8080/api/register", {
+        return fetch(`${BASE_URL}api/register`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -17,7 +19,7 @@ export default class UserService {
     };
 
     static loginUser = usercredentials => {
-        return fetch("http://localhost:8080/api/login", {
+        return fetch(`${BASE_URL}api/login`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -34,7 +36,7 @@ export default class UserService {
     };
 
     static fetchProfileForUser = () => {
-        return fetch("http://localhost:8080/api/profile", {
+        return fetch(`${BASE_URL}api/profile`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -50,7 +52,7 @@ export default class UserService {
     };
 
     static logoutUser = () => {
-        return fetch("http://localhost:8080/api/logout", {
+        return fetch(`${BASE_URL}api/logout`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -60,7 +62,7 @@ export default class UserService {
     };
 
     static getCommentForUser = user_id => {
-        return fetch("http://localhost:8080/api/user/" + user_id + "/comment", {
+        return fetch(`${BASE_URL}api/user/${user_id}/comment`, {
             method: "GET",
             credentials: "include",
             headers: {

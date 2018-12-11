@@ -1,6 +1,8 @@
+import { BASE_URL } from "../common/constants";
+
 export default class BookmarkService {
     static getAllUserBookmarks = () => {
-        return fetch("http://localhost:8080/api/bookmarks", {
+        return fetch(`${BASE_URL}api/bookmarks`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -16,16 +18,13 @@ export default class BookmarkService {
     };
 
     static createUserBookmark = episode_id => {
-        return fetch(
-            "http://localhost:8080/api/bookmarks/episode/" + episode_id,
-            {
-                method: "POST",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/bookmarks/episode/${episode_id}`, {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             if (response.ok) {
                 return response.json();
             } else {
@@ -35,16 +34,13 @@ export default class BookmarkService {
     };
 
     static deleteUserBookmark = bookmark_id => {
-        return fetch(
-            "http://localhost:8080/api/bookmarks/episode/" + bookmark_id,
-            {
-                method: "DELETE",
-                credentials: "include",
-                headers: {
-                    "Content-Type": "application/json"
-                }
+        return fetch(`${BASE_URL}api/bookmarks/episode/${bookmark_id}`, {
+            method: "DELETE",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
             }
-        ).then(response => {
+        }).then(response => {
             if (response.ok) {
                 return response.json();
             } else {
