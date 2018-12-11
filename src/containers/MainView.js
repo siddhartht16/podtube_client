@@ -12,6 +12,7 @@ import Bookmarks from "../components/Bookmarks";
 import Profile from "../auth/Profile";
 import EditProfile from "../auth/EditProfile";
 import CategoryList from "../components/CategoryList";
+import PublicProfile from "../auth/PublicProfile";
 
 export default class MainView extends Component {
     constructor(props) {
@@ -74,6 +75,11 @@ export default class MainView extends Component {
                     result.contextParam = parseInt(params.id, 10);
                 }
                 break;
+            case appContexts.PUBLIC_PROFILE_CONTEXT_CONST:
+                if (!_.isEmpty(params)) {
+                    result.contextParam = parseInt(params.id, 10);
+                }
+                break;
             default:
                 break;
         }
@@ -127,6 +133,10 @@ export default class MainView extends Component {
             // "/profile"
             case appContexts.PROFILE_CONTEXT_CONST:
                 result = <Profile userId={this.state.contextParam} />;
+                break;
+
+            case appContexts.PUBLIC_PROFILE_CONTEXT_CONST:
+                result = <PublicProfile userId={this.state.contextParam} />;
                 break;
 
             // "/editProfile"

@@ -39,7 +39,7 @@ export default class AdminPodcastList extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid mt-5">
                 <div className="sync-btn-wrapper pt-2 pb-2">
                     {this.state.categoryId !== null ? (
                         <button

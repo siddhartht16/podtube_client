@@ -14,7 +14,7 @@ const Comment = ({ comment, date, proComp }) => (
                     </span>
                 ) : null}
             </p>
-            <span className="comment-date">{date}</span>
+            <span className="comment-date"> - {date}</span>
         </li>
     </div>
 );

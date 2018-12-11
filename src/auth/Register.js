@@ -93,7 +93,7 @@ export default class Register extends Component {
             this.redirectAfterRegister();
         }
         return (
-            <div className="row mt-3">
+            <div className="row mt-5">
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
                     {this.state.isRegistered === true ? (
                         <div className="alert alert-success" role="alert">

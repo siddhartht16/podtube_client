@@ -80,7 +80,7 @@ export default class Login extends Component {
             this.redirectAfterLogin();
         }
         return (
-            <div className="row mt-3">
+            <div className="row mt-5">
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
                     {this.state.isLoggedIn === true ? (
                         <div className="alert alert-success" role="alert">
