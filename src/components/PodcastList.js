@@ -40,32 +40,8 @@ export default class PodcastList extends Component {
                 ) : (
                     <div>
                         <h3 className="mt-3">
-                            Select a podcast to view episodes
+                            Select a podcast to view its episodes
                         </h3>
-                        <div className="input-group mt-3">
-                            <input
-                                type="text"
-                                className="search-podcast"
-                                value={this.state.searchedPodcast}
-                                placeholder="Search Podcasts"
-                                onChange={this.getSearchedPodcastName}
-                            />
-                            <span className="input-group-btn">
-                                <Link
-                                    to={`/search/${this.state.searchedPodcast}`}
-                                >
-                                    <span
-                                        className="fa fa-search search-icon"
-                                        role="button"
-                                        title="Search"
-                                    />
-                                </Link>
-                            </span>
-                        </div>
-                        <h3 className="mt-3">
-                            Select a podcast to view episodes
-                        </h3>
-
                         <div className="podcast-list">
                             {this.state.podcasts &&
                             this.state.podcasts.length ? (

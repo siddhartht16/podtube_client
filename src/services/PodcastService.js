@@ -45,7 +45,7 @@ export default class PodcastService {
         return fetch("https://gpodder.net/search.json?q=" + search_term, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "text/plain"
             }
         }).then(response => {
             if (response.ok) {

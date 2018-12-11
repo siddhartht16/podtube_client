@@ -145,6 +145,11 @@ export default class MainView extends Component {
         };
 
         const mainElement = this.getMainElement();
+        let searchTerm = "";
+
+        if (this.state.context === appContexts.SEARCH_CONTEXT_CONST) {
+            searchTerm = this.state.contextParam;
+        }
 
         return (
             <div className="container-fluid">
@@ -156,7 +161,7 @@ export default class MainView extends Component {
                         className="col-md-9 ml-sm-auto col-lg-10 px-4"
                         style={pb80}
                     >
-                        <Header />
+                        <Header searchTerm={searchTerm} />
                         {mainElement}
                         {/*<Footer/>*/}
                     </main>

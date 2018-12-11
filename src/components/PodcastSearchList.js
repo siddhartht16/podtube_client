@@ -16,6 +16,10 @@ export default class PodcastSearchList extends Component {
     }
 
     componentDidMount = () => {
+        this.makeSearchRequest();
+    };
+
+    makeSearchRequest() {
         if (this.state.searchTerm.length > 0) {
             PodcastService.searchPodcastList(this.state.searchTerm).then(
                 data => {
@@ -30,7 +34,16 @@ export default class PodcastSearchList extends Component {
         } else {
             this.setState({ error: true });
         }
-    };
+    }
+
+    componentWillReceiveProps(nextProps, nextContext) {
+        const newSearchTerm = nextProps.searchTerm;
+        if (this.state.searchTerm !== newSearchTerm) {
+            console.log("setting new state");
+            this.setState({ searchTerm: newSearchTerm });
+            this.makeSearchRequest();
+        }
+    }
 
     render() {
         return (
