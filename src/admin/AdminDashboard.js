@@ -35,8 +35,7 @@ export default class AdminDashboard extends Component {
                     <h2 className="mt-3 text-center font-weight-bold">PodTube Admin</h2>
                     {this.state.isLoggedIn === false ? (
                         <p className="help-text text-white mt-4">
-                            Please <Link to="/admin">Log In</Link> to see the
-                            dashboard bookmarks
+                            Please <Link to="/admin">Log In</Link> to see the admin dashboard
                         </p>
                     ) : (
                         <div>
