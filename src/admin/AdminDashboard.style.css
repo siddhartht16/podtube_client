@@ -33,3 +33,7 @@
     color: #1DB954;
     transition: 0.3s all ease-in-out;
 }
+
+.admin-table{
+    font-size: 13px;
+}

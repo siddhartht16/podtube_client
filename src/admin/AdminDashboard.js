@@ -32,9 +32,9 @@ export default class AdminDashboard extends Component {
         return (
             <div className="container-fluid mt-5">
                 <div className="admin-dashboard-wrapper">
-                    <h3 className="mt-3">PodTube Admin</h3>
+                    <h2 className="mt-3 text-center font-weight-bold">PodTube Admin</h2>
                     {this.state.isLoggedIn === false ? (
-                        <p className="help-text text-white mt-3">
+                        <p className="help-text text-white mt-4">
                             Please <Link to="/admin">Log In</Link> to see the
                             dashboard bookmarks
                         </p>
@@ -53,8 +53,7 @@ export default class AdminDashboard extends Component {
                                                 Users:{" "}
                                                 <span className="count">
                                                     {
-                                                        this.state.appStats
-                                                            .noOfTotalUsers
+                                                        this.state.appStats.noOfTotalUsers
                                                     }
                                                 </span>
                                             </p>
@@ -69,8 +68,7 @@ export default class AdminDashboard extends Component {
                                                 Categories:{" "}
                                                 <span className="count">
                                                     {
-                                                        this.state.appStats
-                                                            .noOfCategories
+                                                        this.state.appStats.noOfCategories
                                                     }
                                                 </span>
                                             </p>
