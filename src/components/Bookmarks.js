@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import BookmarkService from "../services/BookmarkService";
 import PodcastIcon from "../assests/podcast-icon2.jpg";
 import Episode from "./Episode";
-import ReactPlayer from "react-player";
 import * as utils from "../common/utils";
 import PlayerWrapper from "./PlayerWrapper";
 import _ from "lodash";

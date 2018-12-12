@@ -84,14 +84,14 @@ export default class Login extends Component {
                 <div className="col-md-6 col-sm-6 ml-auto mr-auto">
                     {this.state.isLoggedIn === true ? (
                         <div className="alert alert-success" role="alert">
-                            Successfully loggedIn. Please wait while we redirect
-                            you....
+                            Successfully logged in. Please wait while we
+                            redirect you....
                         </div>
                     ) : null}
                     {this.state.error === true ? (
                         <div className="alert alert-danger" role="alert">
-                            Some error occurred while logging In. Please try
-                            again
+                            Some error occurred while logging in. Please try
+                            again.
                         </div>
                     ) : null}
                     <form className="form">

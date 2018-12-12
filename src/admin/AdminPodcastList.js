@@ -38,7 +38,54 @@ export default class AdminPodcastList extends Component {
         );
     };
 
+    getGridHtml(data) {
+        return (
+            <div className={"table table-striped table-hover text-justify"}>
+                {/*<ul>*/}
+                <div className="row bg-light text-dark">
+                    <div className={"col"}>Id</div>
+                    <div className={"col"}>Title</div>
+                    <div className={"col"}>Description</div>
+                    <div className={"col"}>Last Synced On</div>
+                    <div className={"col"}>Url</div>
+                    <div className={"col"}>Website</div>
+                    <div className={"col"}>GPodder Link</div>
+                    <div className={"col"}>Author</div>
+                    <div className={"col"}>Created By</div>
+                    <div className={"col"}>Modified By</div>
+                    <div className={"col"}>Created On</div>
+                    <div className={"col"}>Modified On</div>
+                </div>
+                {/*<ul>*/}
+                {data.map((podcast, index) => (
+                    <AdminPodcast
+                        key={index}
+                        id={podcast.id}
+                        logo={podcast.logo_url}
+                        title={podcast.title}
+                        url={podcast.url}
+                        website={podcast.website}
+                        mygpo_link={podcast.mygpo_link}
+                        author={podcast.author}
+                        createdBy={podcast.createdBy}
+                        modifiedBy={podcast.modifiedBy}
+                        createdOn={podcast.createdOn}
+                        modifiedOn={podcast.modifiedOn}
+                        lastSyncedOn={podcast.lastSyncedOn}
+                        description={podcast.description}
+                    />
+                ))}
+                {/*</ul>*/}
+            </div>
+        );
+    } //getGridHtml..
+
     render() {
+        const data =
+            this.state.categoryId !== null
+                ? this.state.podcasts
+                : this.state.allPodcasts;
+
         return (
             <div className="container-fluid mt-5">
                 <div className="sync-btn-wrapper pt-2 pb-2">
@@ -47,44 +94,15 @@ export default class AdminPodcastList extends Component {
                             className="btn btn__alt"
                             onClick={this.syncPodcasts}
                         >
-                            Sync Podcast
+                            Sync Podcasts
                         </button>
                     ) : null}
                 </div>
                 <div className="podcast-list">
-                    {this.state.categoryId !== null &&
-                    this.state.podcasts === null ? (
+                    {data === null ? (
                         <p className="mt-5">Loading...</p>
                     ) : (
-                        <div>
-                            <ul>
-                                {this.state.categoryId !== null &&
-                                    this.state.podcasts.map(podcast => (
-                                        <AdminPodcast
-                                            id={podcast.id}
-                                            logo={podcast.logo_url}
-                                            title={podcast.title}
-                                        />
-                                    ))}
-                            </ul>
-                        </div>
-                    )}
-                    {this.state.categoryId === null &&
-                    this.state.allPodcasts === null ? (
-                        <p className="mt-5">Loading...</p>
-                    ) : (
-                        <div>
-                            <ul>
-                                {this.state.categoryId === null &&
-                                    this.state.allPodcasts.map(podcast => (
-                                        <AdminPodcast
-                                            logo={podcast.logo_url}
-                                            id={podcast.id}
-                                            title={podcast.title}
-                                        />
-                                    ))}
-                            </ul>
-                        </div>
+                        this.getGridHtml(data)
                     )}
                 </div>
             </div>

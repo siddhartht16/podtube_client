@@ -34,19 +34,40 @@ export default class AdminCategoryList extends Component {
                         Sync Categories
                     </button>
                 </div>
+                <br />
                 <div className="podcast-list">
                     {this.state.categories === null ? (
                         <p className="mt-5">Loading...</p>
                     ) : (
-                        <div>
-                            <ul>
-                                {this.state.categories.map(category => (
-                                    <AdminCategory
-                                        id={category.id}
-                                        title={category.title}
-                                    />
-                                ))}
-                            </ul>
+                        <div
+                            className={
+                                "table table-striped table-hover text-justify"
+                            }
+                        >
+                            {/*<ul>*/}
+                            <div className="row bg-light text-dark">
+                                <div className={"col"}>Id</div>
+                                <div className={"col"}>Title</div>
+                                <div className={"col"}>Tag</div>
+                                <div className={"col"}>Last Synced On</div>
+                                <div className={"col"}>Created By</div>
+                                <div className={"col"}>Modified By</div>
+                                <div className={"col"}>Created On</div>
+                                <div className={"col"}>Modified On</div>
+                            </div>
+                            {this.state.categories.map((category, index) => (
+                                <AdminCategory
+                                    key={index}
+                                    id={category.id}
+                                    title={category.title}
+                                    tag={category.tag}
+                                    createdBy={category.createdBy}
+                                    modifiedBy={category.modifiedBy}
+                                    createdOn={category.createdOn}
+                                    modifiedOn={category.modifiedOn}
+                                    lastSyncedOn={category.lastSyncedOn}
+                                />
+                            ))}
                         </div>
                     )}
                 </div>

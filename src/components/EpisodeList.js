@@ -185,12 +185,6 @@ export default class EpisodeList extends Component {
                             mediaUrl={this.state.selectedEpisodeURL}
                             episode={this.state.selectedEpisode}
                         />
-                        {/*<ReactPlayer*/}
-                        {/*url={this.state.episodeURL}*/}
-                        {/*className="react-player fixed-bottom"*/}
-                        {/*controls*/}
-                        {/*playbackRate={1}*/}
-                        {/*/>*/}
                     </div>
                 )}
             </div>
