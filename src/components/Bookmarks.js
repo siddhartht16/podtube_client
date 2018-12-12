@@ -5,6 +5,8 @@ import PodcastIcon from "../assests/podcast-icon2.jpg";
 import Episode from "./Episode";
 import ReactPlayer from "react-player";
 import * as utils from "../common/utils";
+import PlayerWrapper from "./PlayerWrapper";
+import _ from "lodash";
 
 export default class Bookmarks extends Component {
     constructor(props) {
@@ -12,8 +14,8 @@ export default class Bookmarks extends Component {
         this.state = {
             bookmarks: null,
             isLoggedOut: false,
-            episode: null,
-            episodeURL: ""
+            selectedEpisode: null,
+            selectedEpisodeURL: null
         };
     }
 
@@ -32,15 +34,17 @@ export default class Bookmarks extends Component {
         });
     }
 
-    getEpisodeAudio = audioURL => {
-        if (
-            audioURL.length === 0 ||
-            typeof audioURL === "undefined" ||
-            audioURL === null
-        ) {
-            alert("No MP3 link for this episode");
+    getEpisodeAudio = episode => {
+        const episodeMediaUrl = episode.enclosureLink;
+        if (_.isEmpty(episodeMediaUrl)) {
+            alert("No media found for this episode");
+            return;
         } else {
-            this.setState({ episodeURL: audioURL });
+            console.log(episodeMediaUrl);
+            this.setState({
+                selectedEpisodeURL: episodeMediaUrl,
+                selectedEpisode: episode
+            });
         }
     };
 
@@ -73,25 +77,25 @@ export default class Bookmarks extends Component {
                                     {this.state.bookmarks.length}
                                 </p>
                                 <ul>
-                                    {this.state.bookmarks.map(episode => (
-                                        <Episode
-                                            id={episode.id}
-                                            episode={episode.episode}
-                                            PodcastImg={PodcastIcon}
-                                            getEpisodeAudio={() =>
-                                                this.getEpisodeAudio(
-                                                    episode.episode
-                                                        .enclosureLink
-                                                )
-                                            }
-                                        />
-                                    ))}
+                                    {this.state.bookmarks.map(
+                                        (episode, index) => (
+                                            <Episode
+                                                key={index}
+                                                id={episode.id}
+                                                episode={episode.episode}
+                                                PodcastImg={PodcastIcon}
+                                                getEpisodeAudio={() =>
+                                                    this.getEpisodeAudio(
+                                                        episode.episode
+                                                    )
+                                                }
+                                            />
+                                        )
+                                    )}
                                 </ul>
-                                <ReactPlayer
-                                    url={this.state.episodeURL}
-                                    className="react-player fixed-bottom"
-                                    controls
-                                    playbackRate={1}
+                                <PlayerWrapper
+                                    mediaUrl={this.state.selectedEpisodeURL}
+                                    episode={this.state.selectedEpisode}
                                 />
                             </div>
                         )}

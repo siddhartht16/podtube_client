@@ -94,29 +94,27 @@ export default class RecentlyPlayed extends Component {
                                     Clear History
                                 </button>
                                 <ul>
-                                    {this.state.history.map(episode => (
-                                        <Episode
-                                            id={episode.id}
-                                            episode={episode.episode}
-                                            PodcastImg={PodcastIcon}
-                                            getEpisodeAudio={() =>
-                                                this.getEpisodeAudio(
-                                                    episode.episode
-                                                )
-                                            }
-                                        />
-                                    ))}
+                                    {this.state.history.map(
+                                        (episode, index) => (
+                                            <Episode
+                                                key={index}
+                                                id={episode.id}
+                                                episode={episode.episode}
+                                                PodcastImg={PodcastIcon}
+                                                getEpisodeAudio={() =>
+                                                    this.getEpisodeAudio(
+                                                        episode.episode
+                                                    )
+                                                }
+                                            />
+                                        )
+                                    )}
                                 </ul>
                                 <PlayerWrapper
                                     mediaUrl={this.state.selectedEpisodeURL}
                                     episode={this.state.selectedEpisode}
+                                    shouldSave={false}
                                 />
-                                {/*<ReactPlayer*/}
-                                {/*url={this.state.episodeURL}*/}
-                                {/*className="react-player fixed-bottom"*/}
-                                {/*controls*/}
-                                {/*playbackRate={1}*/}
-                                {/*/>*/}
                             </div>
                         )}
                     </div>

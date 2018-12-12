@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactPlayer from "react-player";
 import * as utils from "../common/utils";
 import RecentlyPlayedService from "../services/RecentlyPlayedService";
+import _ from "lodash";
 
 export default class PlayerWrapper extends Component {
     constructor(props) {
@@ -9,7 +10,10 @@ export default class PlayerWrapper extends Component {
         utils.logToConsole(props);
         this.state = {
             mediaUrl: this.props.mediaUrl,
-            episode: this.props.episode
+            episode: this.props.episode,
+            shouldSave: _.isBoolean(this.props.shouldSave)
+                ? this.props.shouldSave
+                : true
         };
     }
 
@@ -18,7 +22,10 @@ export default class PlayerWrapper extends Component {
         if (this.state.mediaUrl !== nextProps.mediaUrl) {
             this.setState({
                 mediaUrl: nextProps.mediaUrl,
-                episode: nextProps.episode
+                episode: nextProps.episode,
+                shouldSave: _.isBoolean(nextProps.shouldSave)
+                    ? nextProps.shouldSave
+                    : true
             });
         }
     }
@@ -28,15 +35,18 @@ export default class PlayerWrapper extends Component {
     };
     onPlay = () => {
         utils.logToConsole("ON play");
-        RecentlyPlayedService.createUserHistoryItem(this.state.episode.id).then(
-            res => {
+        utils.logToConsole("Should save", this.state.shouldSave);
+        if (this.state.shouldSave) {
+            RecentlyPlayedService.createUserHistoryItem(
+                this.state.episode.id
+            ).then(res => {
                 if (res === 401) {
                     utils.logToConsole("User not logged in.");
                 } else {
                     utils.logToConsole("User logged in.");
                 }
-            }
-        );
+            });
+        }
     };
     onEnd = () => {
         utils.logToConsole("ON end");
