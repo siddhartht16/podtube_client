@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import "./EpisodeList.style.css";
 import BookmarkService from "../services/BookmarkService";
 import * as utils from "../common/utils";
+import {Redirect} from "react-router-dom";
 
 export default class Episode extends Component {
     constructor(props) {
@@ -42,11 +43,9 @@ export default class Episode extends Component {
         BookmarkService.createUserBookmark(this.state.episode.id).then(
             episode => {
                 if (episode === 401) {
-                    this.setState({
-                        error: true
-                    });
+                    this.setState({error: true});
                 } else {
-                    this.setState({ episode: episode, error: false });
+                    this.setState({episode: episode, error: false});
                 }
             }
         );
@@ -62,7 +61,7 @@ export default class Episode extends Component {
                         error: true
                     });
                 } else {
-                    this.setState({ episode: episode, error: false });
+                    this.setState({episode: episode, error: false});
                 }
             }
         );
@@ -73,6 +72,10 @@ export default class Episode extends Component {
     }
 
     render() {
+        const error = this.state.error;
+        if (error === true) {
+            return <Redirect to="/login"/>;
+        }
         return (
             <div className="episode-wrapper mb-2">
                 <div className="row">
