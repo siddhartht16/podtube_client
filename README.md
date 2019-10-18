@@ -14,13 +14,13 @@ Please refresh a couple of times if you do not see some content.
 
 <br/>
 <br/>
-Please visit: [https://rocky-basin-94797.herokuapp.com/](https://rocky-basin-94797.herokuapp.com/) to see the website.
+Please visit: [Site Heroku link](https://rocky-basin-94797.herokuapp.com/) to see the website.
 
 <br/>
 <br/>
-Backend site: [https://frozen-atoll-79406.herokuapp.com/](https://frozen-atoll-79406.herokuapp.com/).
+Backend site: [Site backend Heroku link](https://frozen-atoll-79406.herokuapp.com/).
 <br/>
-Backend github: [https://github.com/siddhartht16/podtube](https://github.com/siddhartht16/podtube).
+Backend github: [Site backend Github link](https://github.com/siddhartht16/podtube).
 
 <br/>
 <br/>
