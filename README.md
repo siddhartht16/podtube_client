@@ -8,16 +8,23 @@ Made by integrating podcast sources/feeds from [GPodder](https://gpodder.net/).
 
 Developed using React JS and Java Spring.
 
-Backend and frontend, are both hosted on Heroku free tier, so it might take some time to load. Please refresh a couple of times if you do not see some content.
+Backend and frontend, are both hosted on Heroku free tier, so it might take some time to load. 
+<br/>
+Please refresh a couple of times if you do not see some content.
 
-
+<br/>
+<br/>
 Please visit: [https://rocky-basin-94797.herokuapp.com/](https://rocky-basin-94797.herokuapp.com/) to see the website.
 
-
+<br/>
+<br/>
 Backend site: [https://frozen-atoll-79406.herokuapp.com/](https://frozen-atoll-79406.herokuapp.com/).
+
+<br/>
 <br/>
 Backend github: [https://github.com/siddhartht16/podtube](https://github.com/siddhartht16/podtube).
 
-
+<br/>
+<br/>
 
 **Developed in collaboration with [Siddhant Pasari](https://github.com/sidco0014) and [Charmik Sheth](https://github.com/Charmik-Sheth).**
