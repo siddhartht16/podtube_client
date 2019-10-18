@@ -11,7 +11,6 @@ Developed using React JS and Java Spring.
 Backend and frontend, are both hosted on Heroku free tier, so it might take some time to load. 
 <br/>
 Please refresh a couple of times if you do not see some content.
-
 <br/>
 <br/>
 Please visit: [Site Heroku link](https://rocky-basin-94797.herokuapp.com/) to see the website.
